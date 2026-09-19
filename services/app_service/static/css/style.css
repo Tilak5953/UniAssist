@@ -1020,31 +1020,67 @@ input:checked + .slider:before {
 }
 
 /* Tab Navigation for Evaluation Modal */
+.eval-modal-card .modal-sub {
+  flex-shrink: 0;
+}
+
 .eval-tabs-nav {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  gap: 10px;
   border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 12px;
+  padding: 6px 4px 14px 4px;
+  margin-bottom: 18px;
   overflow-x: auto;
-  scrollbar-width: none;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.4) transparent;
 }
 
 .eval-tabs-nav::-webkit-scrollbar {
-  display: none;
+  height: 5px;
+  display: block;
+}
+
+.eval-tabs-nav::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+.eval-tabs-nav::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.4);
+  border-radius: 4px;
+}
+
+.eval-tabs-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.7);
 }
 
 .eval-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   padding: 8px 16px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
   color: var(--text-secondary);
   font-family: var(--font-sans);
-  font-size: 0.84rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .eval-tab-btn:hover {
