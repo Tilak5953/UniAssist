@@ -242,6 +242,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === kbModal) kbModal.classList.remove('active');
   });
 
+  // Evaluation & Benchmark Modal Controls
+  const btnOpenEval = document.getElementById('btn-open-eval');
+  const btnCloseEvalModal = document.getElementById('btn-close-eval-modal');
+  const evalModal = document.getElementById('eval-modal');
+
+  if (btnOpenEval) {
+    btnOpenEval.addEventListener('click', () => {
+      evalModal.classList.add('active');
+    });
+  }
+
+  if (btnCloseEvalModal) {
+    btnCloseEvalModal.addEventListener('click', () => {
+      evalModal.classList.remove('active');
+    });
+  }
+
+  if (evalModal) {
+    evalModal.addEventListener('click', (e) => {
+      if (e.target === evalModal) evalModal.classList.remove('active');
+    });
+  }
+
   // Check Health Status
   async function checkHealth() {
     try {

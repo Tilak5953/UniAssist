@@ -1,0 +1,227 @@
+[
+  {
+    "id": "Q01",
+    "category": "Examination Policies",
+    "question": "What is the passing criteria for end-semester examinations and what is the CIA weightage?",
+    "expected_file": "01_semester_examination_policy.md",
+    "expected_section": "2. Examination Structure & Credit Weightage",
+    "required_facts": ["40%", "Continuous Internal Assessment", "End-Semester Examination", "60%"],
+    "ground_truth": "Continuous Internal Assessment (CIA) accounts for 40% and End-Semester Examination (ESE) accounts for 60%. A student must secure a minimum of 40% in each component and 40% overall aggregate to pass."
+  },
+  {
+    "id": "Q02",
+    "category": "Examination Policies",
+    "question": "How much is the regular backlog examination fee per subject and summer supplementary fee?",
+    "expected_file": "01_semester_examination_policy.md",
+    "expected_section": "4. Backlog Examinations & Supplementary Attempts",
+    "required_facts": ["₹750", "₹1,500"],
+    "ground_truth": "The regular backlog examination registration fee is ₹750 per subject, while the summer supplementary examination fee is ₹1,500 per subject."
+  },
+  {
+    "id": "Q03",
+    "category": "Examination Policies",
+    "question": "What is the fee and process for formal re-evaluation of an examination answer script?",
+    "expected_file": "01_semester_examination_policy.md",
+    "expected_section": "5. Re-Evaluation and Answer Script Verification",
+    "required_facts": ["₹800", "14 calendar days", "external examiner"],
+    "ground_truth": "Formal re-evaluation costs ₹800 per subject and must be requested within 14 calendar days of result declaration. If marks increase by 10% or more, a 50% refund (₹400) is credited back."
+  },
+  {
+    "id": "Q04",
+    "category": "Examination Policies",
+    "question": "What are the rules regarding late entry and early exit from the examination hall?",
+    "expected_file": "01_semester_examination_policy.md",
+    "expected_section": "3. Admit Card & Examination Hall Regulations",
+    "required_facts": ["15 minutes", "30 minutes", "90 minutes"],
+    "ground_truth": "Students must arrive 15 minutes before the exam starts. Entry is prohibited 30 minutes after commencement, and no student may leave before 90 minutes have elapsed."
+  },
+  {
+    "id": "Q05",
+    "category": "Attendance & Condonation",
+    "question": "What is the mandatory attendance requirement to appear in end-semester exams?",
+    "expected_file": "02_attendance_policy_and_condonation.md",
+    "expected_section": "1. Statutory Attendance Requirement",
+    "required_facts": ["75%", "aggregate attendance", "Debarred"],
+    "ground_truth": "Students must maintain a minimum of 75% aggregate attendance in each individual course. Falling below 75% results in automatic debarment."
+  },
+  {
+    "id": "Q06",
+    "category": "Attendance & Condonation",
+    "question": "Can a student with 68% attendance get condonation, and what is the fine?",
+    "expected_file": "02_attendance_policy_and_condonation.md",
+    "expected_section": "2. Categories of Condonation (Relaxation)",
+    "required_facts": ["65%", "10%", "₹1,200", "Dean of Academic Affairs"],
+    "ground_truth": "Yes, attendance between 65% and 74.9% is eligible for up to 10% condonation subject to approval by the Dean of Academic Affairs and payment of a ₹1,200 fine."
+  },
+  {
+    "id": "Q07",
+    "category": "Attendance & Condonation",
+    "question": "What is the deadline and documentation required for submitting a medical leave certificate?",
+    "expected_file": "02_attendance_policy_and_condonation.md",
+    "expected_section": "3. Medical Leave Protocol & Documentation",
+    "required_facts": ["7 working days", "registered medical practitioner", "prescriptions"],
+    "ground_truth": "Medical documentation must be submitted to the HoD within 7 working days of returning to campus, including doctor's certificate, prescriptions, and test reports."
+  },
+  {
+    "id": "Q08",
+    "category": "Attendance & Condonation",
+    "question": "How many days of Official Duty (OD) leave can a student claim per semester?",
+    "expected_file": "02_attendance_policy_and_condonation.md",
+    "expected_section": "4. Official Duty Leave (OD / On-Duty Attendance)",
+    "required_facts": ["10 calendar days", "100% present", "Sports", "hackathons"],
+    "ground_truth": "A maximum of 10 calendar days per semester can be claimed as Official Duty (OD) leave for approved sports, hackathons, or academic competitions, credited as 100% present."
+  },
+  {
+    "id": "Q09",
+    "category": "Academic Regulations & Grading",
+    "question": "What grade point and percentage range correspond to an 'A+' grade?",
+    "expected_file": "03_academic_regulations_and_grading.md",
+    "expected_section": "2. 10-Point Letter Grading Scale",
+    "required_facts": ["9", "80% to 89%", "Excellent"],
+    "ground_truth": "An 'A+' grade corresponds to 9 grade points, described as 'Excellent', with a percentage equivalent range of 80% to 89%."
+  },
+  {
+    "id": "Q10",
+    "category": "Academic Regulations & Grading",
+    "question": "What is the formula used to convert CGPA to equivalent percentage?",
+    "expected_file": "03_academic_regulations_and_grading.md",
+    "expected_section": "3. Computation of SGPA and CGPA",
+    "required_facts": ["(CGPA - 0.75) * 10", "Equivalent Percentage"],
+    "ground_truth": "The conversion formula is: Equivalent Percentage = (CGPA - 0.75) * 10."
+  },
+  {
+    "id": "Q11",
+    "category": "Academic Regulations & Grading",
+    "question": "What is the CGPA threshold for being placed on Academic Probation?",
+    "expected_file": "03_academic_regulations_and_grading.md",
+    "expected_section": "4. Academic Probation and Detention Rules",
+    "required_facts": ["5.00", "Academic Probation", "warning"],
+    "ground_truth": "A student whose cumulative grade point average (CGPA) drops below 5.00 is placed on Academic Probation for the subsequent semester."
+  },
+  {
+    "id": "Q12",
+    "category": "Academic Regulations & Grading",
+    "question": "What are the eligibility requirements for branch transfer at the end of first year?",
+    "expected_file": "03_academic_regulations_and_grading.md",
+    "expected_section": "5. Branch Transfer (Change of Engineering Discipline)",
+    "required_facts": ["8.50", "first attempt", "no backlogs", "10%"],
+    "ground_truth": "Students must have cleared all 1st year courses in the first attempt with no backlogs and maintain a minimum CGPA of 8.50, subject to a 10% branch intake cap."
+  },
+  {
+    "id": "Q13",
+    "category": "Fee Structure & Scholarships",
+    "question": "What is the semester tuition fee for B.Tech CSE and what is the late fine schedule?",
+    "expected_file": "04_fee_structure_and_scholarships.md",
+    "expected_section": "1. Tuition & Academic Fee Schedule",
+    "required_facts": ["₹85,000", "₹100,000", "₹100 per day"],
+    "ground_truth": "B.Tech CSE tuition fee is ₹85,000 per semester (total ₹100,000 including lab and exam fees). Late fines are ₹100/day for days 1-10 and ₹250/day for days 11-20."
+  },
+  {
+    "id": "Q14",
+    "category": "Fee Structure & Scholarships",
+    "question": "What tuition fee waiver is offered to students in the top 2% of their batch?",
+    "expected_file": "04_fee_structure_and_scholarships.md",
+    "expected_section": "3. Merit & Need-Based Scholarships",
+    "required_facts": ["75%", "top 2%", "CGPA >= 9.50"],
+    "ground_truth": "Top 2% of the batch or students with CGPA >= 9.50 receive a 75% tuition fee waiver under the Academic Excellence Merit Scholarship."
+  },
+  {
+    "id": "Q15",
+    "category": "Fee Structure & Scholarships",
+    "question": "What is the fee refund policy if a student withdraws 15 days or more before the admission closing date?",
+    "expected_file": "04_fee_structure_and_scholarships.md",
+    "expected_section": "4. Fee Refund Policy (Withdrawal from Program)",
+    "required_facts": ["100%", "₹1,000 processing fee"],
+    "ground_truth": "A 100% refund of aggregate fees is granted with a maximum ₹1,000 processing deduction if requested 15 days or more before the formally notified last date of admission."
+  },
+  {
+    "id": "Q16",
+    "category": "Campus Facilities & Conduct",
+    "question": "What are the Central Library operating hours and book borrowing limits for undergraduate students?",
+    "expected_file": "05_campus_facilities_and_code_of_conduct.md",
+    "expected_section": "1. Central Library Regulations & Services",
+    "required_facts": ["8:00 AM to 11:00 PM", "4 books", "14 days", "24/7 during exams"],
+    "ground_truth": "Library is open 8:00 AM to 11:00 PM (24/7 during exams). Undergraduate students can borrow up to 4 books for 14 days."
+  },
+  {
+    "id": "Q17",
+    "category": "Campus Facilities & Conduct",
+    "question": "What is the hostel gate closing curfew and biometric in-time for residents?",
+    "expected_file": "05_campus_facilities_and_code_of_conduct.md",
+    "expected_section": "2. Residence Halls & Hostel Regulations",
+    "required_facts": ["10:00 PM", "10:30 PM", "Late Entry Warning"],
+    "ground_truth": "The campus main gate closes at 10:00 PM and hostel biometric in-time is 10:30 PM. Late arrivals between 10:30 PM and 11:15 PM receive a Late Entry Warning."
+  },
+  {
+    "id": "Q18",
+    "category": "Campus Facilities & Conduct",
+    "question": "What are the emergency contact numbers for the anti-ragging helpline and medical health centre?",
+    "expected_file": "05_campus_facilities_and_code_of_conduct.md",
+    "expected_section": "3. Strict Anti-Ragging Policy & Helplines",
+    "required_facts": ["1800-180-5522", "+91-11-2800-4499", "Ext. 108 / 112"],
+    "ground_truth": "Campus Anti-Ragging Flying Squad is +91-11-2800-4499, National Helpline is 1800-180-5522, and Campus Medical Emergency is Ext. 108 / 112."
+  },
+  {
+    "id": "Q19",
+    "category": "Campus Facilities & Conduct",
+    "question": "What is the penalty for possessing high-wattage electronic appliances or narcotics in hostels?",
+    "expected_file": "05_campus_facilities_and_code_of_conduct.md",
+    "expected_section": "2. Residence Halls & Hostel Regulations",
+    "required_facts": ["banned", "suspension", "₹20,000"],
+    "ground_truth": "High-wattage appliances are strictly banned for fire safety. Narcotics or alcohol possession results in immediate suspension and a ₹20,000 penalty."
+  },
+  {
+    "id": "Q20",
+    "category": "Campus Facilities & Conduct",
+    "question": "How does a student file an online grievance and what is the resolution timeline?",
+    "expected_file": "05_campus_facilities_and_code_of_conduct.md",
+    "expected_section": "5. Student Grievance Redressal Mechanism",
+    "required_facts": ["grievance.apexuniv.ac.in", "7 working days", "Ombudsman"],
+    "ground_truth": "Students submit tickets via the online Grievance Portal (grievance.apexuniv.ac.in) with a guaranteed resolution timeline of 7 working days."
+  },
+  {
+    "id": "Q21",
+    "category": "Codebase Architecture",
+    "question": "Which file in the UniAssist repository handles document chunking and sliding window logic?",
+    "expected_file": "services/rag_service/chunking.py",
+    "expected_section": "DocumentChunker class",
+    "required_facts": ["chunking.py", "DocumentChunker", "chunk_size", "chunk_overlap"],
+    "ground_truth": "Document chunking is handled in services/rag_service/chunking.py by the DocumentChunker class using section-aware parsing and sliding windows."
+  },
+  {
+    "id": "Q22",
+    "category": "Codebase Architecture",
+    "question": "Which component and route orchestrates the side-by-side comparison between RAG and Direct LLM?",
+    "expected_file": "services/app_service/main.py",
+    "expected_section": "/api/compare route",
+    "required_facts": ["/api/compare", "app_service", "main.py", "QueryRequest"],
+    "ground_truth": "The side-by-side comparison is implemented in services/app_service/main.py under the POST /api/compare endpoint, invoking handle_query with use_rag=True and use_rag=False."
+  },
+  {
+    "id": "Q23",
+    "category": "Codebase Architecture",
+    "question": "How are vector embeddings computed and what fallback mechanism exists when Ollama is offline?",
+    "expected_file": "services/rag_service/embeddings.py",
+    "expected_section": "EmbeddingEngine class",
+    "required_facts": ["EmbeddingEngine", "embeddings.py", "generate_local_dense_embedding", "fallback"],
+    "ground_truth": "EmbeddingEngine in services/rag_service/embeddings.py queries Ollama /api/embeddings and automatically falls back to a zero-dependency local normalized dense vector projection if Ollama is unreachable."
+  },
+  {
+    "id": "Q24",
+    "category": "Codebase Architecture",
+    "question": "What Docker network and internal port numbers interconnect the three microservices?",
+    "expected_file": "docker-compose.yml",
+    "expected_section": "networks and ports",
+    "required_facts": ["uniassist-net", "8000", "8001", "11434"],
+    "ground_truth": "Services communicate over bridge network uniassist-net: Gateway (port 8000), RAG microservice (port 8001), and Ollama (port 11434)."
+  },
+  {
+    "id": "Q25",
+    "category": "Codebase Architecture",
+    "question": "What happens in the application pipeline when a student submits a query with RAG enabled?",
+    "expected_file": "services/app_service/main.py",
+    "expected_section": "handle_query workflow",
+    "required_facts": ["call_rag_service", "/retrieve", "prompt orchestration", "generate"],
+    "ground_truth": "The query is sent to app_service, which calls rag_service /retrieve for top-K chunks, injects them into the system prompt, sends to Ollama, and returns the grounded answer with citations."
+  }
+]

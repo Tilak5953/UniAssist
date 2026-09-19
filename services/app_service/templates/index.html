@@ -45,6 +45,15 @@
           </div>
         </div>
 
+        <button class="btn-ghost" id="btn-open-eval" title="View Multi-Model Evaluation Charts">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          Evaluation & Charts
+        </button>
+
         <button class="btn-ghost" id="btn-open-kb" title="Browse Knowledge Base">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -250,6 +259,93 @@
         <p class="modal-sub">These official university regulatory documents are indexed into dense vector embeddings and chunked with sliding windows for high-recall semantic retrieval:</p>
         <div class="doc-list" id="kb-doc-list">
           <div class="loading-state">Loading indexed documents...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multi-Model Evaluation & Benchmarks Modal -->
+  <div class="modal-backdrop" id="eval-modal">
+    <div class="modal-card eval-modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          <h3>Week 4 Multi-Model Evaluation & Benchmarks</h3>
+        </div>
+        <button class="btn-close" id="btn-close-eval-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-sub">Rigorous empirical benchmark across 3 models on a standardized 25-task evaluation dataset under identical RAG and context conditions:</p>
+
+        <!-- Metrics Comparison Table -->
+        <div class="eval-table-wrapper">
+          <table class="eval-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Accuracy</th>
+                <th>Relevance</th>
+                <th>Hallucination</th>
+                <th>Latency</th>
+                <th>RAM Usage</th>
+                <th>Recommendation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Qwen 2.5 (0.5B)</strong></td>
+                <td><span class="score-badge green">57.3%</span></td>
+                <td>44.2%</td>
+                <td><span class="score-badge yellow">40.0%</span></td>
+                <td><strong>232 ms</strong></td>
+                <td><strong>580 MB</strong></td>
+                <td><span class="tag-opt">Best for 1GB RAM AWS</span></td>
+              </tr>
+              <tr>
+                <td><strong>TinyLlama (1.1B)</strong></td>
+                <td><span class="score-badge green">66.0%</span></td>
+                <td>51.2%</td>
+                <td><span class="score-badge green">28.0%</span></td>
+                <td>390 ms</td>
+                <td>910 MB</td>
+                <td>Fast Compact Baseline</td>
+              </tr>
+              <tr>
+                <td><strong>Qwen 2.5 (1.5B)</strong></td>
+                <td><span class="score-badge green"><strong>72.3%</strong></span></td>
+                <td><strong>58.9%</strong></td>
+                <td><span class="score-badge green"><strong>24.0%</strong></span></td>
+                <td>608 ms</td>
+                <td>1,420 MB</td>
+                <td><span class="tag-rec">Highest Quality</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Charts Gallery -->
+        <h4 class="chart-gallery-heading">Evaluation Graphs & Pareto Analysis</h4>
+        <div class="eval-charts-grid">
+          <div class="chart-box">
+            <h5>Quality vs Latency (Pareto Frontier)</h5>
+            <img src="/static/charts/accuracy_vs_latency.png" alt="Accuracy vs Latency Tradeoff" class="chart-img">
+          </div>
+          <div class="chart-box">
+            <h5>Computational Footprint (RAM / Disk / CPU)</h5>
+            <img src="/static/charts/resource_consumption_bar.png" alt="Resource Consumption" class="chart-img">
+          </div>
+          <div class="chart-box">
+            <h5>Multi-Dimensional Trade-off Radar</h5>
+            <img src="/static/charts/quality_metrics_radar.png" alt="Quality Metrics Radar" class="chart-img">
+          </div>
+          <div class="chart-box">
+            <h5>Domain Accuracy Across Knowledge Base</h5>
+            <img src="/static/charts/domain_accuracy_bar.png" alt="Domain Accuracy" class="chart-img">
+          </div>
         </div>
       </div>
     </div>
