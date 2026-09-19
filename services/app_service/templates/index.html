@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniAssist – AI-Powered University Assistant</title>
+  <meta name="description" content="Intelligent University Assistant powered by Retrieval-Augmented Generation (RAG) and ultra-lightweight LLMs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="glow glow-3"></div>
+
+  <div class="app-container">
+    <!-- Header Navigation -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>UniAssist <span class="badge-tag">AI Portal</span></h1>
+          <p class="tagline">Apex Global University • Knowledge Base RAG Assistant</p>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Service Status Badges -->
+        <div class="status-group">
+          <div class="status-indicator" id="rag-status-badge" title="RAG Vector Service Status">
+            <span class="pulse-dot active"></span>
+            <span class="status-text">RAG: <span id="rag-status-label">Checking...</span></span>
+          </div>
+          <div class="status-indicator" id="ollama-status-badge" title="Ollama Inference Service Status">
+            <span class="pulse-dot active"></span>
+            <span class="status-text">Ollama: <span id="ollama-status-label">Checking...</span></span>
+          </div>
+        </div>
+
+        <button class="btn-ghost" id="btn-open-kb" title="Browse Knowledge Base">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          Knowledge Base (<span id="kb-count-pill">5 Docs</span>)
+        </button>
+      </div>
+    </header>
+
+    <!-- Control Bar: Model Selector, RAG Toggle, Comparison Mode -->
+    <div class="control-panel">
+      <!-- Model Selector (Exercise 1 & Low RAM AWS requirement) -->
+      <div class="control-group">
+        <label class="control-label" for="model-selector">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+            <line x1="6" y1="6" x2="6.01" y2="6"/>
+            <line x1="6" y1="18" x2="6.01" y2="18"/>
+          </svg>
+          Active LLM:
+        </label>
+        <select id="model-selector" class="custom-select">
+          {% for m in models %}
+            <option value="{{ m.id }}" {% if m.id == default_model %}selected{% endif %}>
+              {{ m.name }} — {{ m.badge }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Mode Selector: Normal vs Comparison Mode -->
+      <div class="mode-toggles">
+        <div class="toggle-container">
+          <label class="switch">
+            <input type="checkbox" id="rag-toggle" checked>
+            <span class="slider round"></span>
+          </label>
+          <span class="toggle-label" id="rag-toggle-text">RAG Enabled</span>
+        </div>
+
+        <button class="btn-toggle-compare" id="btn-toggle-compare">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          <span id="compare-button-text">Compare Mode (RAG vs Direct)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Suggestions -->
+    <div class="suggestions-container">
+      <span class="suggestions-label">Try Asking:</span>
+      <div class="suggestion-chips" id="suggestion-chips">
+        <button class="chip" data-q="What is the attendance condonation rule if I have 68% attendance?">75% Attendance & Condonation</button>
+        <button class="chip" data-q="How much is the backlog exam fee per subject?">Backlog Examination Fees</button>
+        <button class="chip" data-q="What is the CGPA requirement to avoid academic probation?">CGPA & Academic Probation</button>
+        <button class="chip" data-q="What are the merit scholarships for top 2% students?">Merit Scholarships</button>
+        <button class="chip" data-q="What is the hostel curfew and night out pass rule?">Hostel Curfew & Entry Rules</button>
+      </div>
+    </div>
+
+    <!-- Main Content Workspace -->
+    <main class="main-workspace">
+      <!-- Standard Mode Output Card -->
+      <div id="standard-view" class="response-view">
+        <div class="card result-card" id="result-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="badge-pill" id="result-model-badge">Model: Qwen 2.5 0.5B</span>
+              <span class="badge-pill rag-badge" id="result-rag-badge">RAG Active</span>
+              <span class="badge-pill metric-pill" id="result-latency-pill">Latency: -- ms</span>
+            </div>
+            <button class="btn-icon" id="btn-copy-answer" title="Copy Response">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="card-body">
+            <div class="answer-container" id="answer-content">
+              <div class="empty-state">
+                <div class="empty-state-icon">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <h3>Ask UniAssist Anything About University Policies</h3>
+                <p>Pose a question about examinations, attendance, grading, fees, or campus rules. UniAssist retrieves exact policy clauses from the university knowledge base.</p>
+              </div>
+            </div>
+
+            <!-- Citations & Sources Section -->
+            <div class="citations-section" id="citations-wrapper" style="display: none;">
+              <h4 class="citations-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                Retrieved Context & University Policy Citations
+              </h4>
+              <div class="citations-list" id="citations-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side-by-Side Comparison Mode (Exercise 3 Demonstration) -->
+      <div id="comparison-view" class="comparison-view" style="display: none;">
+        <div class="comparison-header">
+          <div class="comp-badge-box">
+            <span class="comp-tag highlight">Exercise 3 Architecture Demo</span>
+            <h3>Side-by-Side Evaluation: RAG Context vs Direct LLM</h3>
+          </div>
+          <p class="comp-desc">Demonstrates how the response differs when relevant information is provided through university RAG compared with asking the LLM without retrieval.</p>
+        </div>
+
+        <div class="comparison-grid">
+          <!-- Left Column: With RAG -->
+          <div class="card comp-card rag-card">
+            <div class="card-header comp-card-header green-tint">
+              <div>
+                <span class="badge-status-green">RAG Augmented</span>
+                <h4>Grounded in University Knowledge Base</h4>
+              </div>
+              <span class="badge-pill metric-pill" id="comp-rag-latency">-- ms</span>
+            </div>
+            <div class="card-body">
+              <div class="answer-box" id="comp-rag-answer">Awaiting query...</div>
+              <div class="comp-citations" id="comp-rag-citations"></div>
+            </div>
+          </div>
+
+          <!-- Right Column: Without RAG -->
+          <div class="card comp-card direct-card">
+            <div class="card-header comp-card-header red-tint">
+              <div>
+                <span class="badge-status-orange">Direct LLM (No RAG)</span>
+                <h4>Ungrounded Parametric Output</h4>
+              </div>
+              <span class="badge-pill metric-pill" id="comp-direct-latency">-- ms</span>
+            </div>
+            <div class="card-body">
+              <div class="answer-box direct-answer" id="comp-direct-answer">Awaiting query...</div>
+              <div class="comp-warning-box">
+                <span class="warning-icon">⚠️</span>
+                <span><strong>Hallucination / Generic Risk:</strong> Direct LLM lacks verified Apex Global University regulations, often fabricating passing criteria or providing generic disclaimers.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Query Input Area -->
+    <div class="query-dock">
+      <form id="query-form" class="query-form">
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="query-input" 
+            class="query-input" 
+            placeholder="Ask about semester exams, attendance condonation, backlog fees, CGPA rules..." 
+            autocomplete="off"
+            required
+          >
+          <button type="submit" class="btn-send" id="btn-submit" title="Send Request">
+            <span id="btn-send-text">Send</span>
+            <svg id="btn-send-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            <div class="spinner" id="btn-spinner" style="display: none;"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Knowledge Base Modal Drawer -->
+  <div class="modal-backdrop" id="kb-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          <h3>University Knowledge Base Documents</h3>
+        </div>
+        <button class="btn-close" id="btn-close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-sub">These official university regulatory documents are indexed into dense vector embeddings and chunked with sliding windows for high-recall semantic retrieval:</p>
+        <div class="doc-list" id="kb-doc-list">
+          <div class="loading-state">Loading indexed documents...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

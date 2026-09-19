@@ -1,0 +1,85 @@
+version: "3.8"
+
+services:
+  # -------------------------------------------------------------
+  # Service 1: Ollama LLM Inference Engine (Ultra-Lightweight Models)
+  # -------------------------------------------------------------
+  ollama-service:
+    image: ollama/ollama:latest
+    container_name: uniassist-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - uniassist-net
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+    deploy:
+      resources:
+        limits:
+          memory: 1500M
+
+  # -------------------------------------------------------------
+  # Service 2: RAG & Vector Retrieval Service
+  # -------------------------------------------------------------
+  rag-service:
+    build:
+      context: ./services/rag_service
+      dockerfile: Dockerfile
+    container_name: uniassist-rag
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./knowledge_base:/app/knowledge_base:ro
+      - rag_data:/app/data
+    environment:
+      - KNOWLEDGE_BASE_DIR=/app/knowledge_base
+      - INDEX_STORAGE_PATH=/app/data/vector_index.json
+      - OLLAMA_BASE_URL=http://ollama-service:11434
+      - CHUNK_SIZE=600
+      - CHUNK_OVERLAP=120
+      - DEFAULT_TOP_K=3
+    networks:
+      - uniassist-net
+    depends_on:
+      - ollama-service
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+  # -------------------------------------------------------------
+  # Service 3: Application Gateway & Student Web Portal
+  # -------------------------------------------------------------
+  app-service:
+    build:
+      context: ./services/app_service
+      dockerfile: Dockerfile
+    container_name: uniassist-gateway
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - RAG_SERVICE_URL=http://rag-service:8001
+      - OLLAMA_SERVICE_URL=http://ollama-service:11434
+      - DEFAULT_MODEL=qwen2.5:0.5b
+    networks:
+      - uniassist-net
+    depends_on:
+      - rag-service
+      - ollama-service
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+networks:
+  uniassist-net:
+    driver: bridge
+
+volumes:
+  ollama_data:
+  rag_data:
