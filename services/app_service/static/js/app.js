@@ -265,6 +265,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Evaluation Modal Tabs Switching
+  document.querySelectorAll('.eval-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.eval-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.eval-tab-pane').forEach(p => p.classList.remove('active'));
+
+      btn.classList.add('active');
+      const tabId = btn.getAttribute('data-tab');
+      const targetPane = document.getElementById(tabId);
+      if (targetPane) targetPane.classList.add('active');
+    });
+  });
+
   // Check Health Status
   async function checkHealth() {
     try {

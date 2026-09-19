@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/style.css?v=3">
 </head>
 <body>
   <!-- Ambient background glow elements -->
@@ -281,76 +281,130 @@
       <div class="modal-body">
         <p class="modal-sub">Rigorous empirical benchmark across 3 models on a standardized 25-task evaluation dataset under identical RAG and context conditions:</p>
 
-        <!-- Metrics Comparison Table -->
-        <div class="eval-table-wrapper">
-          <table class="eval-table">
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th>Accuracy</th>
-                <th>Relevance</th>
-                <th>Hallucination</th>
-                <th>Latency</th>
-                <th>RAM Usage</th>
-                <th>Recommendation</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Qwen 2.5 (0.5B)</strong></td>
-                <td><span class="score-badge green">57.3%</span></td>
-                <td>44.2%</td>
-                <td><span class="score-badge yellow">40.0%</span></td>
-                <td><strong>232 ms</strong></td>
-                <td><strong>580 MB</strong></td>
-                <td><span class="tag-opt">Best for 1GB RAM AWS</span></td>
-              </tr>
-              <tr>
-                <td><strong>TinyLlama (1.1B)</strong></td>
-                <td><span class="score-badge green">66.0%</span></td>
-                <td>51.2%</td>
-                <td><span class="score-badge green">28.0%</span></td>
-                <td>390 ms</td>
-                <td>910 MB</td>
-                <td>Fast Compact Baseline</td>
-              </tr>
-              <tr>
-                <td><strong>Qwen 2.5 (1.5B)</strong></td>
-                <td><span class="score-badge green"><strong>72.3%</strong></span></td>
-                <td><strong>58.9%</strong></td>
-                <td><span class="score-badge green"><strong>24.0%</strong></span></td>
-                <td>608 ms</td>
-                <td>1,420 MB</td>
-                <td><span class="tag-rec">Highest Quality</span></td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Tab Navigation -->
+        <div class="eval-tabs-nav">
+          <button class="eval-tab-btn active" data-tab="tab-all">📊 Overview & 2x2 Grid</button>
+          <button class="eval-tab-btn" data-tab="tab-pareto">📈 Pareto Frontier (Latency vs Acc)</button>
+          <button class="eval-tab-btn" data-tab="tab-radar">🎯 Trade-off Radar</button>
+          <button class="eval-tab-btn" data-tab="tab-resources">💻 RAM & CPU Footprint</button>
+          <button class="eval-tab-btn" data-tab="tab-domains">🏛️ Domain Accuracy</button>
         </div>
 
-        <!-- Charts Gallery -->
-        <h4 class="chart-gallery-heading">Evaluation Graphs & Pareto Analysis</h4>
-        <div class="eval-charts-grid">
-          <div class="chart-box">
-            <h5>Quality vs Latency (Pareto Frontier)</h5>
-            <img src="/static/charts/accuracy_vs_latency.png" alt="Accuracy vs Latency Tradeoff" class="chart-img">
+        <!-- Tab 1: Overview & 2x2 Grid -->
+        <div class="eval-tab-pane active" id="tab-all">
+          <div class="eval-table-wrapper">
+            <table class="eval-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Accuracy</th>
+                  <th>Relevance</th>
+                  <th>Hallucination</th>
+                  <th>Latency</th>
+                  <th>RAM Usage</th>
+                  <th>Recommendation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Qwen 2.5 (0.5B)</strong></td>
+                  <td><span class="score-badge green">57.3%</span></td>
+                  <td>44.2%</td>
+                  <td><span class="score-badge yellow">40.0%</span></td>
+                  <td><strong>232 ms</strong></td>
+                  <td><strong>580 MB</strong></td>
+                  <td><span class="tag-opt">Best for 1GB RAM AWS</span></td>
+                </tr>
+                <tr>
+                  <td><strong>TinyLlama (1.1B)</strong></td>
+                  <td><span class="score-badge green">66.0%</span></td>
+                  <td>51.2%</td>
+                  <td><span class="score-badge green">28.0%</span></td>
+                  <td>390 ms</td>
+                  <td>910 MB</td>
+                  <td>Fast Compact Baseline</td>
+                </tr>
+                <tr>
+                  <td><strong>Qwen 2.5 (1.5B)</strong></td>
+                  <td><span class="score-badge green"><strong>72.3%</strong></span></td>
+                  <td><strong>58.9%</strong></td>
+                  <td><span class="score-badge green"><strong>24.0%</strong></span></td>
+                  <td>608 ms</td>
+                  <td>1,420 MB</td>
+                  <td><span class="tag-rec">Highest Quality</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="chart-box">
-            <h5>Computational Footprint (RAM / Disk / CPU)</h5>
-            <img src="/static/charts/resource_consumption_bar.png" alt="Resource Consumption" class="chart-img">
+
+          <h4 class="chart-gallery-heading">Evaluation Graphs (Click any tab above for high-res focus view)</h4>
+          <div class="eval-charts-grid">
+            <div class="chart-box">
+              <h5>📈 Quality vs Latency (Pareto Frontier)</h5>
+              <img src="/static/charts/accuracy_vs_latency.png" alt="Accuracy vs Latency Tradeoff" class="chart-img">
+            </div>
+            <div class="chart-box">
+              <h5>💻 Resource Consumption (RAM / Disk / CPU)</h5>
+              <img src="/static/charts/resource_consumption_bar.png" alt="Resource Consumption" class="chart-img">
+            </div>
+            <div class="chart-box">
+              <h5>🎯 Multi-Dimensional Radar Chart</h5>
+              <img src="/static/charts/quality_metrics_radar.png" alt="Quality Metrics Radar" class="chart-img">
+            </div>
+            <div class="chart-box">
+              <h5>🏛️ Domain Accuracy Across KB</h5>
+              <img src="/static/charts/domain_accuracy_bar.png" alt="Domain Accuracy" class="chart-img">
+            </div>
           </div>
-          <div class="chart-box">
-            <h5>Multi-Dimensional Trade-off Radar</h5>
-            <img src="/static/charts/quality_metrics_radar.png" alt="Quality Metrics Radar" class="chart-img">
+        </div>
+
+        <!-- Tab 2: Pareto Frontier Full -->
+        <div class="eval-tab-pane" id="tab-pareto">
+          <div class="single-chart-card">
+            <h5>Quality vs Latency Pareto Frontier (Exercise 4)</h5>
+            <img src="/static/charts/accuracy_vs_latency.png" alt="Pareto Frontier" class="single-chart-img">
+            <div class="chart-explanation">
+              <strong>Key Finding:</strong> Qwen 2.5 0.5B achieves 232ms latency with 57.3% accuracy, while Qwen 2.5 1.5B achieves 72.3% accuracy at 608ms. This represents a classic Pareto frontier where higher reasoning requires a 2.6x latency tradeoff.
+            </div>
           </div>
-          <div class="chart-box">
-            <h5>Domain Accuracy Across Knowledge Base</h5>
-            <img src="/static/charts/domain_accuracy_bar.png" alt="Domain Accuracy" class="chart-img">
+        </div>
+
+        <!-- Tab 3: Trade-off Radar Full -->
+        <div class="eval-tab-pane" id="tab-radar">
+          <div class="single-chart-card">
+            <h5>Multi-Dimensional Trade-off Radar (Exercises 1 & 3)</h5>
+            <img src="/static/charts/quality_metrics_radar.png" alt="Radar Chart" class="single-chart-img">
+            <div class="chart-explanation">
+              <strong>Key Finding:</strong> Visualizes Accuracy, Relevance, Hallucination Resistance, Latency Efficiency, and RAM Efficiency. Qwen 0.5B dominates on efficiency metrics, whereas Qwen 1.5B dominates on qualitative reasoning.
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Computational Footprint Full -->
+        <div class="eval-tab-pane" id="tab-resources">
+          <div class="single-chart-card">
+            <h5>RAM, Disk Image & CPU Utilization (Exercise 3)</h5>
+            <img src="/static/charts/resource_consumption_bar.png" alt="Resource Footprint" class="single-chart-img">
+            <div class="chart-explanation">
+              <strong>Key Finding:</strong> Qwen 2.5 0.5B uses 580MB RAM (34% CPU) fitting inside AWS Free-Tier 1GB instances. In contrast, Qwen 1.5B requires 1,420MB RAM (78% CPU) and requires 2GB+ instances.
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 5: Domain Breakdown Full -->
+        <div class="eval-tab-pane" id="tab-domains">
+          <div class="single-chart-card">
+            <h5>Accuracy Breakdown Across Knowledge Base Domains (Exercise 2)</h5>
+            <img src="/static/charts/domain_accuracy_bar.png" alt="Domain Accuracy" class="single-chart-img">
+            <div class="chart-explanation">
+              <strong>Key Finding:</strong> All models achieve >75% on Examination and Attendance queries due to high chunk lexical density, while codebase architecture questions show higher variance between 0.5B (60%) and 1.5B (100%).
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="/static/js/app.js"></script>
+  <script src="/static/js/app.js?v=3"></script>
 </body>
 </html>
