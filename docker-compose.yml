@@ -62,6 +62,9 @@ services:
     restart: unless-stopped
     ports:
       - "8000:8000"
+    volumes:
+      - ./services/app_service/templates:/app/templates
+      - ./services/app_service/static:/app/static
     environment:
       - RAG_SERVICE_URL=http://rag-service:8001
       - OLLAMA_SERVICE_URL=http://ollama-service:11434
