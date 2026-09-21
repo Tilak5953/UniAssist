@@ -13,12 +13,16 @@ echo "=========================================================="
 git fetch origin main
 git reset --hard origin/main
 
-# 2. Stop and remove old gateway container to guarantee fresh rebuild
-echo "Rebuilding UniAssist gateway container..."
-sudo docker compose stop app-service || true
-sudo docker compose rm -f app-service || true
-sudo docker compose build --no-cache app-service
-sudo docker compose up -d --force-recreate app-service
+# 2. Stop and rebuild containers to guarantee fresh update
+echo "Rebuilding UniAssist gateway and RAG containers..."
+sudo docker compose stop app-service rag-service || true
+sudo docker compose rm -f app-service rag-service || true
+sudo docker compose build --no-cache app-service rag-service
+sudo docker compose up -d --force-recreate app-service rag-service
+
+# Re-ingest knowledge base
+sleep 3
+curl -s -X POST http://localhost:8001/ingest || true
 
 # 3. Status
 echo "=========================================================="
