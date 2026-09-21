@@ -8,59 +8,89 @@ The system is containerized as three autonomous microservices orchestrated via *
 
 ---
 
-## 2. High-Level System Architecture
+## 2. High-Level System Architecture Diagram
 
-```mermaid
-flowchart TD
-    subgraph ClientLayer ["1. Client & Presentation Layer"]
-        Browser["Web Browser / Student Client<br/>• Single Query Portal<br/>• Side-by-Side Comparison<br/>• Knowledge Base Inspector<br/>• Evaluation & Charts Modal"]
-    end
+![UniAssist System Architecture](evaluations/charts/system_architecture.png)
 
-    subgraph Host ["AWS EC2 Host / Docker Engine (uniassist-net)"]
-        
-        subgraph GatewayService ["2. Application Gateway Service (:8000)"]
-            FastAPIGateway["FastAPI Gateway (services/app_service/main.py)<br/>• Session & Request Orchestration<br/>• Jinja2 HTML/CSS/JS Serving<br/>• Dynamic Model Router<br/>• Multi-Chunk Fallback Engine"]
-            Templates["Templates & Static UI<br/>(templates/index.html & static/js/app.js)"]
-            FastAPIGateway --- Templates
-        end
+### Complete Visual Component & Network Topology:
 
-        subgraph RAGService ["3. RAG & Vector Retrieval Microservice (:8001)"]
-            RAGAPI["FastAPI Retrieval Service (services/rag_service/main.py)<br/>• POST /retrieve<br/>• POST /ingest<br/>• GET /documents"]
-            
-            Chunker["Document Chunker (chunking.py)<br/>• Header Splitter (H2/H3)<br/>• Sliding Window (600c window, 120c overlap)<br/>• 50 Enriched Context Chunks"]
-            
-            Embedder["Embedding Engine (embeddings.py)<br/>• 256-dim Dense Vector Projector<br/>• MD5 Token Sign-Hashing<br/>• Ollama all-minilm Bridge"]
-            
-            VectorStore["Vector Store & Index (vector_store.py)<br/>• In-Memory Cosine Similarity<br/>• Lexical Overlap Re-ranking<br/>• Title & Numerical Bracket Boost<br/>• JSON Persistence (data/vector_index.json)"]
-            
-            KBFiles[("Knowledge Base Files<br/>knowledge_base/*.md<br/>• 01 Exams Policy<br/>• 02 Attendance & Condonation<br/>• 03 Academic Grading<br/>• 04 Fees & Scholarships<br/>• 05 Campus Conduct")]
-
-            KBFiles --> Chunker
-            Chunker --> Embedder
-            Embedder --> VectorStore
-            RAGAPI --> VectorStore
-        end
-
-        subgraph LLMService ["4. Inference Engine (:11434)"]
-            OllamaServer["Ollama Container (uniassist-ollama)<br/>GGUF Quantized Model Runtime"]
-            M1["qwen2.5:0.5b (Default, 390 MB, ~580 MB RAM)"]
-            M2["tinyllama:latest (Fast, 630 MB, ~910 MB RAM)"]
-            M3["qwen2.5:1.5b (Reasoning, 980 MB, ~1420 MB RAM)"]
-            
-            OllamaServer --> M1
-            OllamaServer --> M2
-            OllamaServer --> M3
-        end
-
-    end
-
-    %% Networking and data flows
-    Browser -->|HTTP POST /api/query<br/>Port 8000| FastAPIGateway
-    FastAPIGateway -->|1. /retrieve Query<br/>HTTP Port 8001| RAGAPI
-    RAGAPI -->|2. Top-3 Ranked Chunks + Similarity Scores| FastAPIGateway
-    FastAPIGateway -->|3. /api/generate<br/>Prompt + Injected Chunks<br/>HTTP Port 11434| OllamaServer
-    OllamaServer -->|4. Next-Token Output| FastAPIGateway
-    FastAPIGateway -->|5. JSON: Answer + Citations + Latency| Browser
+```
++=============================================================================================================+
+|                                      1. CLIENT & PRESENTATION LAYER                                         |
+|                                                                                                             |
+|  +-------------------------------------------------------------------------------------------------------+  |
+|  |                             STUDENT WEB PORTAL & CLIENT INTERFACE                                     |  |
+|  |  * Single Query Interface                 * Side-by-Side Evaluation Mode (RAG vs Direct LLM)          |  |
+|  |  * Dynamic Model Switcher Dropdown        * Real-time Health Monitors (RAG :8001 | Ollama :11434)     |  |
+|  |  * University Policy Citations Display    * Knowledge Base Inspector (5 Indexed Documents)            |  |
+|  |  * Evaluation & Benchmark Modal Tabs     * Low-Latency Streamlined Execution (No heavy JS frameworks)|  |
+|  +-------------------------------------------------------------------------------------------------------+  |
++==================================================+==========================================================+
+                                                   |
+                        HTTP Requests              |  JSON Payload:
+                        (Port 8000)                |  { query, model, use_rag, top_k }
+                                                   v
++=============================================================================================================+
+|                              AWS EC2 HOST INFRASTRUCTURE / DOCKER ENGINE                                    |
+|                              Private Docker Bridge Network: "uniassist-net"                                 |
+|                                                                                                             |
+|  +-------------------------------------------------------------------------------------------------------+  |
+|  |                       2. APPLICATION GATEWAY & ORCHESTRATOR MICROSERVICE                              |  |
+|  |                       Container: uniassist-gateway  |  Port: 8000:8000                                |  |
+|  |                       Source: services/app_service/main.py                                            |  |
+|  |                                                                                                       |  |
+|  |   [FastAPI Core Engine]                                                                               |  |
+|  |     |-- Serves Single Page App (SPA) via Jinja2 (templates/index.html + static/js/app.js)             |  |
+|  |     |-- Request Router: POST /api/query, POST /api/compare, GET /api/status, GET /api/documents       |  |
+|  |     |-- Dynamic Model Dispatcher: Maps query to selected LLM (qwen2.5:0.5b / tinyllama / 1.5b)        |  |
+|  |     |-- RAG Prompt Constructor: Injects retrieved Top-3 chunks into SYSTEM_PROMPT_RAG                 |  |
+|  |     +-- Zero-Downtime Fallback Generator: Multi-chunk synthesis engine if inference times out         |  |
+|  +-----------------------------------+---------------------------------------+---------------------------+  |
+|                                      |                                       |                              |
+|           1. POST /retrieve          |                                       | 3. POST /api/generate        |
+|              {"query": "...",        |                                       |    {"model": "qwen2.5",      |
+|               "top_k": 3}            |                                       |     "prompt": "..."}         |
+|                                      |                                       |                              |
+|           2. Ranked Top-3 Chunks     |                                       | 4. Next-Token Output         |
+|              + Similarity Scores     |                                       |    (Grounded Text)           |
+|                                      v                                       v                              |
+|  +---------------------------------------------------+   +-----------------------------------------------+  |
+|  |        3. RAG RETRIEVAL & VECTOR MICROSERVICE     |   |         4. OLLAMA LOCAL INFERENCE ENGINE      |  |
+|  |        Container: uniassist-rag  |  Port: 8001    |   |         Container: uniassist-ollama           |  |
+|  |        Source: services/rag_service/main.py       |   |         Image: ollama/ollama:latest (:11434)  |  |
+|  |                                                   |   |                                               |  |
+|  |   [A. Document Chunker (chunking.py)]             |   |   [Quantized GGUF Local Models on CPU]        |  |
+|  |     * Markdown Header Splitter (## / ###)         |   |     |-- qwen2.5:0.5b (Default, 390 MB, ~580MB)|  |
+|  |     * 600-char Window + 120-char Overlap          |   |     |-- tinyllama:latest (Fast, 630 MB, ~910MB|  |
+|  |     * Backward delimiter scan (sentence safe)     |   |     +-- qwen2.5:1.5b (Quality, 980 MB, ~1.4GB)|  |
+|  |     * Produces 50 enriched contextual chunks      |   |                                               |  |
+|  |                       |                           |   |   [Resource Caps & Low-RAM Cloud Safety]      |  |
+|  |                       v                           |   |     * Docker Memory Cap: 1500M                |  |
+|  |   [B. Embedding Engine (embeddings.py)]           |   |     * Host 2GB Linux Swap Space (/swapfile)   |  |
+|  |     * 256-dimensional Dense Vector Projector      |   |     * Prevents OOM crashes on 1-2GB AWS hosts |  |
+|  |     * MD5 Token Feature Hashing + Sign-Hash       |   +-----------------------------------------------+  |
+|  |     * L2-Unit Normalization (0ms, Zero PyTorch)   |                                                      |
+|  |                       |                           |                                                      |
+|  |                       v                           |                                                      |
+|  |   [C. Vector Store & Re-ranking (vector_store.py)]|                                                      |
+|  |     * Cosine Similarity Metric (40% weight)       |                                                      |
+|  |     * Lexical Token Overlap Boost (35% weight)    |                                                      |
+|  |     * Section Title Match Boost (25% weight)      |                                                      |
+|  |     * Numerical Percentage Bracket Match (68%)    |                                                      |
+|  |     * Disk Persistence: data/vector_index.json    |                                                      |
+|  +-----------------------+---------------------------+                                                      |
+|                          |                                                                                  |
+|                          v                                                                                  |
+|  +-------------------------------------------------------------------------------------------------------+  |
+|  |                                  5. KNOWLEDGE BASE & VOLUME PERSISTENCE                               |  |
+|  |  * 01_semester_examination_policy.md (Passing marks, ₹750/₹1,500 backlog fees, ₹800 re-evaluation)   |  |
+|  |  * 02_attendance_policy_and_condonation.md (75% rule, 65-74.9% condonation bracket with ₹1,200 fine)  |  |
+|  |  * 03_academic_regulations_and_grading.md (10-pt scale, SGPA/CGPA formulas, probation threshold)     |  |
+|  |  * 04_fee_structure_and_scholarships.md (Tuition fees, ₹100/day late fine, 75% merit scholarships)    |  |
+|  |  * 05_campus_facilities_and_code_of_conduct.md (24/7 library, 10:30 PM curfew, anti-ragging helpline) |  |
+|  |  * Volume Mounts: ollama_data (weights), rag_data (index), ./knowledge_base (ro mount)                |  |
+|  +-------------------------------------------------------------------------------------------------------+  |
++=============================================================================================================+
 ```
 
 ---
@@ -172,37 +202,55 @@ The application is decomposed into three isolated microservices configured in [`
 
 ---
 
-## 5. End-to-End Request Flow & Sequence Diagram
+## 5. End-to-End Request Flow & Execution Trace
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Student as Student (Browser)
-    participant Gateway as App Gateway (:8000)
-    participant RAG as RAG Service (:8001)
-    participant VStore as Vector Store (JSON)
-    participant Ollama as Ollama Engine (:11434)
-
-    Student->>Gateway: POST /api/query {"query": "...", "model": "qwen2.5:0.5b", "use_rag": true}
-    
-    rect rgb(24, 28, 48)
-        Note over Gateway,VStore: Step 1: Semantic Retrieval & Ranking
-        Gateway->>RAG: POST /retrieve {"query": "...", "top_k": 3}
-        RAG->>RAG: Generate 256-dim Dense Query Vector
-        RAG->>VStore: Calculate Cosine Sim + Lexical & Title Boost
-        VStore-->>RAG: Ranked Chunks with Similarity Scores
-        RAG-->>Gateway: Top-3 Context Chunks + Citations
-    end
-
-    rect rgb(20, 36, 32)
-        Note over Gateway,Ollama: Step 2: Prompt Augmentation & Next-Token Inference
-        Gateway->>Gateway: Construct Augmented Prompt (Context + SYSTEM_PROMPT_RAG)
-        Gateway->>Ollama: POST /api/generate {"model": "qwen2.5:0.5b", "prompt": "..."}
-        Ollama-->>Gateway: Generated Answer Text
-    end
-
-    Gateway->>Gateway: Calculate Total Latency (ms)
-    Gateway-->>Student: JSON Response (Answer + Citations + Latency + Status)
+```
+[ 1. STUDENT (Web Browser) ]
+        |
+        |  Step 1: Submits Question
+        |          POST /api/query {"query": "What is the attendance condonation rule if I have 68%?", ...}
+        v
+[ 2. APPLICATION GATEWAY (:8000) ]
+        |
+        |  Step 2: Calls Retrieval Service
+        |          POST http://rag-service:8001/retrieve {"query": "...", "top_k": 3}
+        v
+[ 3. RAG RETRIEVAL SERVICE (:8001) ]
+        |
+        |-- Converts query into 256-dim Dense Vector (EmbeddingEngine)
+        |-- Calculates Cosine Similarity across all 50 chunks (VectorStore)
+        |-- Applies Lexical Token Overlap + Section Title Match + Percentage Bracket Boost
+        |-- Ranks and filters Top-3 chunks:
+        |     * Chunk 1: Section 2 (Categories of Condonation - 65% to 74.9% bracket)
+        |     * Chunk 2: Section 1 (Statutory Attendance Requirement - 75% rule)
+        |     * Chunk 3: Section 3 (Medical Leave Protocol & Documentation)
+        |
+        +-- Returns JSON: { query, total_retrieved: 3, results: [Chunk1, Chunk2, Chunk3] }
+        v
+[ 2. APPLICATION GATEWAY (:8000) ]
+        |
+        |-- Injects Top-3 chunks into SYSTEM_PROMPT_RAG
+        |-- Formats Grounded Prompt: "Context Information: [...] Question: [...] Answer strictly from context:"
+        |
+        |  Step 3: Calls Local LLM
+        |          POST http://ollama-service:11434/api/generate {"model": "qwen2.5:0.5b", "prompt": "..."}
+        v
+[ 4. OLLAMA INFERENCE ENGINE (:11434) ]
+        |
+        |-- Generates next-token predictions constrained strictly to provided context
+        |-- Extracts exact figures: 65%–74.9% bracket, Dean approval, and ₹1,200 fine
+        v
+[ 2. APPLICATION GATEWAY (:8000) ]
+        |
+        |-- Measures execution time: elapsed_ms = (t_end - t_start) * 1000
+        |-- Formats source document titles and similarity scores into citation cards
+        |
+        |  Step 4: Returns Complete JSON
+        |          { query, model, use_rag, answer, citations, latency_ms, service_status }
+        v
+[ 1. STUDENT (Web Browser) ]
+        |
+        +-- Renders formatted markdown answer with verified citations and latency pill
 ```
 
 ---
@@ -343,7 +391,8 @@ UniAssist/
 │   ├── benchmark_results.json      <-- Structured Benchmark Metrics
 │   ├── rag_pipeline_analysis.py    <-- Exercise 5 RAG Diagnostics
 │   ├── rag_traces.json             <-- Empirical Retrieval Traces
-│   └── charts/                     <-- 4 Visualization PNG Charts
+│   └── charts/                     <-- 4 Visualization PNG Charts + Architecture Diagram
+│       └── system_architecture.png
 │
 └── scripts/
     ├── deploy_aws.sh               <-- AWS EC2 One-Click Deployment Script
