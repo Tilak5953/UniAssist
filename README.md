@@ -172,4 +172,4 @@ python scripts/test_pipeline.py
 ### Side-by-Side RAG Demonstration
 Click the **Compare Mode (RAG vs Direct)** button in the web UI. 
 - **With RAG:** Produces accurate university policy answers with citations, percentages, and fees.
-- **Without RAG:** Direct LLM output lacks specific knowledge of Apex Global University rules, providing generic or ungrounded responses.
+- **Without RAG:** Direct LLM output lacks specific knowledge of BML Munjal University rules, providing generic or ungrounded responses.

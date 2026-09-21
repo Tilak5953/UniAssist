@@ -1,4 +1,4 @@
-# Apex Global University – Campus Facilities & Code of Student Conduct
+# BML Munjal University – Campus Facilities & Code of Student Conduct
 
 ## 1. Central Library Regulations & Services
 1. **Operating Hours:**
@@ -31,7 +31,7 @@
 ---
 
 ## 3. Strict Anti-Ragging Policy & Helplines
-In adherence to Supreme Court guidelines and UGC regulations, Apex Global University follows a **Zero Tolerance Policy** toward ragging in any form:
+In adherence to Supreme Court guidelines and UGC regulations, BML Munjal University follows a **Zero Tolerance Policy** toward ragging in any form:
 - **Definition:** Any disorderly conduct, spoken or written, teasing, treating, handling with rudeness, or causing psychological harm or fear.
 - **Punitive Actions:** Immediate suspension, expulsion from hostel and academic institution, debarment from campus placements, and filing of a First Information Report (FIR) under the Indian Penal Code.
 - **Emergency Helplines:**

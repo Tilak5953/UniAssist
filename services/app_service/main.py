@@ -124,13 +124,13 @@ def call_ollama_generate(prompt: str, system: str, model: str) -> str:
     }).encode("utf-8")
 
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=30.0) as resp:
+    with urllib.request.urlopen(req, timeout=75.0) as resp:
         data = json.loads(resp.read().decode("utf-8"))
         return data.get("response", "").strip()
 
 def generate_fallback_simulation(query: str, context_chunks: List[Dict[str, Any]], use_rag: bool, model: str) -> str:
     """
-    High-fidelity simulation response if Ollama is not currently active on the host.
+    High-fidelity simulation response if Ollama is not currently active on the host or times out.
     Ensures zero-downtime evaluation of the orchestration and RAG pipeline.
     """
     if not use_rag or not context_chunks:
@@ -142,20 +142,38 @@ def generate_fallback_simulation(query: str, context_chunks: List[Dict[str, Any]
             f"Please check your university student handbook or speak to your academic advisor."
         )
 
-    # Format authoritative response derived from retrieved context
-    top_chunk = context_chunks[0]
-    sec_title = top_chunk.get("section_title", "University Policy")
-    doc_title = top_chunk.get("document_title", "Academic Guidelines")
-    raw_text = top_chunk.get("raw_text", top_chunk.get("text", ""))
+    # Format authoritative response derived from all retrieved context chunks
+    doc_titles = list(dict.fromkeys(c.get("document_title", "BML Munjal University Policy") for c in context_chunks))
+    main_doc = doc_titles[0] if doc_titles else "BML Munjal University Policy"
 
-    summary_lines = [l.strip() for l in raw_text.split("\n") if l.strip() and not l.strip().startswith("#")][:6]
-    details = "\n".join(f"• {line}" for line in summary_lines)
+    sections_grouped: Dict[str, List[str]] = {}
+    for c in context_chunks:
+        sec = c.get("section_title", "Policy Section")
+        raw_text = c.get("raw_text", c.get("text", ""))
+        lines = [l.strip() for l in raw_text.split("\n") if l.strip() and not l.strip().startswith("#")]
+        if sec not in sections_grouped:
+            sections_grouped[sec] = []
+        for line in lines:
+            if len(line) > 8 and line not in sections_grouped[sec]:
+                sections_grouped[sec].append(line)
+
+    content_blocks = []
+    for sec, lines in list(sections_grouped.items())[:3]:
+        formatted_lines = []
+        for line in lines[:8]:
+            if line.startswith("|"):
+                formatted_lines.append(line)
+            else:
+                formatted_lines.append(f"• {line}")
+        content_blocks.append(f"**Section: {sec}**\n" + "\n".join(formatted_lines))
+
+    details = "\n\n".join(content_blocks)
 
     return (
-        f"According to **{doc_title}** under section *\"{sec_title}\"*:\n\n"
+        f"According to **{main_doc}**:\n\n"
         f"{details}\n\n"
         f"**Official Summary & Guidance:**\n"
-        f"Please refer to the complete policy in the University ERP portal or consult the respective department coordinator for statutory deadlines."
+        f"Please refer to the complete policy in the BML Munjal University ERP portal or consult the Academic Office for statutory deadlines."
     )
 
 # Routes

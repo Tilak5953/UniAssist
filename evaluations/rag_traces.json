@@ -5,12 +5,12 @@
     "question": "What is the fee and process for formal re-evaluation of an examination script?",
     "retrieved_context": {
       "source_file": "01_semester_examination_policy.md",
-      "document_title": "Apex Global University \u2013 Semester Examination Policy & Guidelines",
+      "document_title": "BML Munjal University \u2013 Semester Examination Policy & Guidelines",
       "section_title": "5. Re-Evaluation and Answer Script Verification",
       "similarity_score": 0.6122,
       "snippet": "2: Formal Re-Evaluation**\n   - Fee: **\u20b9800 per subject**.\n   - Script is assigned to an independent external examiner.\n   - If the revised mark varies by more than **15%**, the script is sent to a third evaluator, and the average of the two nearest marks is fi..."
     },
-    "llm_response": "According to Apex Global University \u2013 Semester Examination Policy & Guidelines [5. Re-Evaluation and Answer Script Verification]:\n2: Formal Re-Evaluation**\n   - Fee: **\u20b9800 per subject**.\n   - Script is assigned to an independent external examiner.\n   - If the revised mark varies by more than **15%**, the script is sent to a third evaluator, and the average of the two nearest marks is fi...\nPlease consult university office for exceptions.",
+    "llm_response": "According to BML Munjal University \u2013 Semester Examination Policy & Guidelines [5. Re-Evaluation and Answer Script Verification]:\n2: Formal Re-Evaluation**\n   - Fee: **\u20b9800 per subject**.\n   - Script is assigned to an independent external examiner.\n   - If the revised mark varies by more than **15%**, the script is sent to a third evaluator, and the average of the two nearest marks is fi...\nPlease consult university office for exceptions.",
     "analysis": {
       "retrieval_quality": "High",
       "context_alignment": "Aligned",
@@ -23,12 +23,12 @@
     "question": "What happens if a student has 63% attendance?",
     "retrieved_context": {
       "source_file": "02_attendance_policy_and_condonation.md",
-      "document_title": "Apex Global University \u2013 Student Attendance Policy & Condonation Rules",
+      "document_title": "BML Munjal University \u2013 Student Attendance Policy & Condonation Rules",
       "section_title": "General Overview",
       "similarity_score": 0.3509,
-      "snippet": "# Apex Global University \u2013 Student Attendance Policy & Condonation Rules..."
+      "snippet": "# BML Munjal University \u2013 Student Attendance Policy & Condonation Rules..."
     },
-    "llm_response": "According to Apex Global University \u2013 Student Attendance Policy & Condonation Rules [General Overview]:\n# Apex Global University \u2013 Student Attendance Policy & Condonation Rules...\nPlease consult university office for exceptions.",
+    "llm_response": "According to BML Munjal University \u2013 Student Attendance Policy & Condonation Rules [General Overview]:\n# BML Munjal University \u2013 Student Attendance Policy & Condonation Rules...\nPlease consult university office for exceptions.",
     "analysis": {
       "retrieval_quality": "High",
       "context_alignment": "Aligned",
@@ -41,12 +41,12 @@
     "question": "Where can I find the student parking lot and vehicle registration desk?",
     "retrieved_context": {
       "source_file": "02_attendance_policy_and_condonation.md",
-      "document_title": "Apex Global University \u2013 Student Attendance Policy & Condonation Rules",
+      "document_title": "BML Munjal University \u2013 Student Attendance Policy & Condonation Rules",
       "section_title": "5. Attendance Debarment Notice & Appeals Mechanism",
       "similarity_score": 0.2959,
       "snippet": "of notice publication.\n   - The committee conducts hearings on day 3 post-notice and delivers a final binding decision.\n3. **Consequences of Debarment:**\n   - The student receives an 'FA' (Failed due to Attendance) grade on the transcript.\n   - The student mus..."
     },
-    "llm_response": "According to Apex Global University \u2013 Student Attendance Policy & Condonation Rules [5. Attendance Debarment Notice & Appeals Mechanism]:\nof notice publication.\n   - The committee conducts hearings on day 3 post-notice and delivers a final binding decision.\n3. **Consequences of Debarment:**\n   - The student receives an 'FA' (Failed due to Attendance) grade on the transcript.\n   - The student mus...\nPlease consult university office for exceptions.",
+    "llm_response": "According to BML Munjal University \u2013 Student Attendance Policy & Condonation Rules [5. Attendance Debarment Notice & Appeals Mechanism]:\nof notice publication.\n   - The committee conducts hearings on day 3 post-notice and delivers a final binding decision.\n3. **Consequences of Debarment:**\n   - The student receives an 'FA' (Failed due to Attendance) grade on the transcript.\n   - The student mus...\nPlease consult university office for exceptions.",
     "analysis": {
       "retrieval_quality": "Medium",
       "context_alignment": "Misaligned",
@@ -59,12 +59,12 @@
     "question": "Can an executive student council leader be on academic probation with a 4.8 CGPA?",
     "retrieved_context": {
       "source_file": "03_academic_regulations_and_grading.md",
-      "document_title": "Apex Global University \u2013 Academic Regulations & Grading System",
+      "document_title": "BML Munjal University \u2013 Academic Regulations & Grading System",
       "section_title": "4. Academic Probation and Detention Rules",
       "similarity_score": 0.5574,
       "snippet": "1. **Academic Warning:** Issued if a student's SGPA falls below 5.50 in any single semester.\n2. **Academic Probation:**\n   - A student whose CGPA drops below **5.00** is placed on Academic Probation for the subsequent semester.\n   - A student on probation is b..."
     },
-    "llm_response": "According to Apex Global University \u2013 Academic Regulations & Grading System [4. Academic Probation and Detention Rules]:\n1. **Academic Warning:** Issued if a student's SGPA falls below 5.50 in any single semester.\n2. **Academic Probation:**\n   - A student whose CGPA drops below **5.00** is placed on Academic Probation for the subsequent semester.\n   - A student on probation is b...\nPlease consult university office for exceptions.",
+    "llm_response": "According to BML Munjal University \u2013 Academic Regulations & Grading System [4. Academic Probation and Detention Rules]:\n1. **Academic Warning:** Issued if a student's SGPA falls below 5.50 in any single semester.\n2. **Academic Probation:**\n   - A student whose CGPA drops below **5.00** is placed on Academic Probation for the subsequent semester.\n   - A student on probation is b...\nPlease consult university office for exceptions.",
     "analysis": {
       "retrieval_quality": "High",
       "context_alignment": "Misaligned",

@@ -90,9 +90,23 @@ class VectorStore:
             # Lexical boost with stop words removed
             chunk_terms = set(re.findall(r"\b[a-zA-Z0-9]{2,}\b", chunk["text"].lower()))
             overlap_count = len(query_terms.intersection(chunk_terms))
-            lexical_boost = (overlap_count / max(1, len(query_terms))) * 0.40
+            lexical_boost = (overlap_count / max(1, len(query_terms))) * 0.35
 
-            final_score = cos_sim * 0.6 + lexical_boost
+            # Section title match boost
+            sec_title_terms = set(re.findall(r"\b[a-zA-Z0-9]{2,}\b", chunk.get("section_title", "").lower()))
+            sec_overlap = len(query_terms.intersection(sec_title_terms))
+            sec_boost = (sec_overlap / max(1, len(query_terms))) * 0.25
+
+            # Numerical / percentage awareness for attendance and condonation brackets
+            bracket_boost = 0.0
+            numbers_in_query = [int(n) for n in re.findall(r"\b\d{1,2}\b", query) if 1 <= int(n) <= 100]
+            for num in numbers_in_query:
+                if 65 <= num < 75 and "condonation" in chunk.get("section_title", "").lower():
+                    bracket_boost = 0.25
+                elif (num == 75 or "attendance" in query.lower()) and "statutory" in chunk.get("section_title", "").lower():
+                    bracket_boost = 0.15
+
+            final_score = cos_sim * 0.4 + lexical_boost + sec_boost + bracket_boost
 
             if final_score >= min_score:
                 scored_results.append({

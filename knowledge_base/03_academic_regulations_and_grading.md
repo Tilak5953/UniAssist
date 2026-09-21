@@ -1,4 +1,4 @@
-# Apex Global University – Academic Regulations & Grading System
+# BML Munjal University – Academic Regulations & Grading System
 
 ## 1. Credit Structure & Graduation Requirements
 1. **Curriculum Framework:** The University adopts the Choice Based Credit System (CBCS).

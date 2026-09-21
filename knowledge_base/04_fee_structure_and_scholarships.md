@@ -1,4 +1,4 @@
-# Apex Global University – Fee Structure, Payment Schedule & Scholarships
+# BML Munjal University – Fee Structure, Payment Schedule & Scholarships
 
 ## 1. Tuition & Academic Fee Schedule
 Fees are payable at the commencement of each semester via the University Student ERP Finance Gateway.
@@ -28,7 +28,7 @@ Fees are payable at the commencement of each semester via the University Student
 ---
 
 ## 3. Merit & Need-Based Scholarships
-Apex Global University awards over ₹5 Crores annually in financial aid across various categories:
+BML Munjal University awards over ₹5 Crores annually in financial aid across various categories:
 
 ### A. Academic Excellence Merit Scholarship
 - **Category I (Top 2% of Batch / CGPA >= 9.50):** 75% tuition fee waiver for the following academic year.

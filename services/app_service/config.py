@@ -37,7 +37,7 @@ AVAILABLE_MODELS = [
 
 DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", "qwen2.5:0.5b")
 
-SYSTEM_PROMPT_RAG = """You are UniAssist, an authoritative and helpful AI University Assistant for Apex Global University.
+SYSTEM_PROMPT_RAG = """You are UniAssist, an authoritative and helpful AI University Assistant for BML Munjal University.
 Your objective is to answer the student's question accurately using ONLY the provided university knowledge base context.
 
 Guidelines:

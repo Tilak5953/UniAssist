@@ -1,7 +1,7 @@
-# Apex Global University – Student Attendance Policy & Condonation Rules
+# BML Munjal University – Student Attendance Policy & Condonation Rules
 
 ## 1. Statutory Attendance Requirement
-Regular academic attendance is considered an indispensable component of the learning experience at Apex Global University.
+Regular academic attendance is considered an indispensable component of the learning experience at BML Munjal University.
 1. Every registered student is expected to maintain a minimum of **75% aggregate attendance** in every individual course (theory lectures, tutorials, and practical lab sessions separately).
 2. Students falling below 75% attendance are automatically flagged on the Academic ERP as **Debarred (Ineligible)** from appearing in the End-Semester Examination for that specific course.
 

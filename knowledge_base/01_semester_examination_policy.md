@@ -1,7 +1,7 @@
-# Apex Global University – Semester Examination Policy & Guidelines
+# BML Munjal University – Semester Examination Policy & Guidelines
 
 ## 1. Overview and Applicability
-This policy applies to all undergraduate (B.Tech, BCA, B.Sc, BBA) and postgraduate (M.Tech, MCA, MBA) programs conducted at Apex Global University. The examination framework operates under the Choice Based Credit System (CBCS) governed by the Office of the Controller of Examinations (CoE).
+This policy applies to all undergraduate (B.Tech, BCA, B.Sc, BBA) and postgraduate (M.Tech, MCA, MBA) programs conducted at BML Munjal University. The examination framework operates under the Choice Based Credit System (CBCS) governed by the Office of the Controller of Examinations (CoE).
 
 ---
 
