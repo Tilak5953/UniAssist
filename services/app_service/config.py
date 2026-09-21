@@ -37,6 +37,33 @@ AVAILABLE_MODELS = [
 
 DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", "qwen2.5:0.5b")
 
+# Default models selected for live multi-model comparison
+DEFAULT_COMPARE_MODELS = ["qwen2.5:0.5b", "tinyllama:latest", "qwen2.5:1.5b"]
+
+# Priority presets for question-specific recommendation engine
+EVALUATION_PRIORITIES = {
+    "balanced": {
+        "label": "Balanced Performance",
+        "description": "Harmonizes accuracy, relevance, low hallucination, speed, and memory usage."
+    },
+    "fastest": {
+        "label": "Fastest Response",
+        "description": "Prioritizes lowest response latency and highest generation throughput."
+    },
+    "accuracy": {
+        "label": "Most Accurate Answer",
+        "description": "Emphasizes exact factual adherence to official university regulations."
+    },
+    "memory": {
+        "label": "Lowest Memory Usage",
+        "description": "Prefers lightweight models that minimize RAM consumption (ideal for 1GB EC2)."
+    },
+    "relevance": {
+        "label": "Most Relevant & Grounded",
+        "description": "Prioritizes context grounding, retrieval overlap, and hallucination resistance."
+    }
+}
+
 SYSTEM_PROMPT_RAG = """You are UniAssist, an authoritative and helpful AI University Assistant for BML Munjal University.
 Your objective is to answer the student's question accurately using ONLY the provided university knowledge base context.
 

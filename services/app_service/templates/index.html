@@ -206,8 +206,35 @@
       </div>
     </header>
 
-    <!-- Control Bar: Model Selector, RAG Toggle, Comparison Mode -->
-    <div class="control-panel">
+    <!-- View Switcher Navigation Bar -->
+    <div class="app-nav-tabs-wrapper">
+      <nav class="app-nav-tabs">
+        <button type="button" class="nav-tab-btn active" id="tab-btn-eval" data-view="model-eval-view">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <span>Compare Models (Live Evaluation)</span>
+          <span class="nav-badge-pill">Live Dashboard</span>
+        </button>
+        <button type="button" class="nav-tab-btn" id="tab-btn-chat" data-view="standard-view">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Student Assistant Chat</span>
+        </button>
+        <button type="button" class="nav-tab-btn" id="tab-btn-legacy-comp" data-view="comparison-view">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          <span>RAG vs Direct LLM Demo</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Control Bar: Model Selector, RAG Toggle, Comparison Mode (Active in Chat / Legacy views) -->
+    <div class="control-panel" id="legacy-control-panel" style="display: none;">
       <!-- Model Selector (Exercise 1 & Low RAM AWS requirement) -->
       <div class="control-group">
         <label class="control-label" for="model-selector">
@@ -249,8 +276,8 @@
       </div>
     </div>
 
-    <!-- Quick Suggestions -->
-    <div class="suggestions-container">
+    <!-- Quick Suggestions for Chat Mode -->
+    <div class="suggestions-container" id="legacy-suggestions" style="display: none;">
       <span class="suggestions-label">Try Asking:</span>
       <div class="suggestion-chips" id="suggestion-chips">
         <button class="chip" data-q="What is the attendance condonation rule if I have 68% attendance?">75% Attendance & Condonation</button>
@@ -263,8 +290,289 @@
 
     <!-- Main Content Workspace -->
     <main class="main-workspace">
-      <!-- Standard Mode Output Card -->
-      <div id="standard-view" class="response-view">
+      <!-- ============================================================ -->
+      <!-- VIEW 1: Question-Specific Live Model Evaluation Dashboard    -->
+      <!-- ============================================================ -->
+      <div id="model-eval-view" class="model-eval-view">
+        <!-- Input Section -->
+        <div class="card eval-input-panel">
+          <div class="eval-card-header-main">
+            <div class="eval-header-title">
+              <div class="icon-bubble">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Question-Specific Live Model Evaluation</h3>
+                <p class="eval-subtitle">Submit any question to evaluate models side-by-side on your exact query. Compares actual answers, measured response time, factual accuracy, relevance, hallucination risk, and memory footprint.</p>
+              </div>
+            </div>
+            <div class="live-pill-tag">
+              <span class="pulse-dot active"></span> LIVE EVALUATOR
+            </div>
+          </div>
+
+          <!-- Question Input Form -->
+          <form id="eval-form" class="eval-form">
+            <!-- A. Large Question Input Box -->
+            <div class="eval-textarea-wrap">
+              <label for="eval-question-input" class="eval-field-label">Student Question:</label>
+              <textarea 
+                id="eval-question-input" 
+                class="eval-question-textarea" 
+                rows="3" 
+                placeholder="Enter your question, e.g., 'What is the minimum attendance requirement for appearing in semester examinations?'"
+                required
+              ></textarea>
+            </div>
+
+            <!-- Quick Suggestion Chips for Non-Technical Users -->
+            <div class="eval-chips-row">
+              <span class="eval-chips-label">Sample Questions:</span>
+              <div class="eval-chips-list">
+                <button type="button" class="eval-chip" data-q="What is the minimum attendance requirement for appearing in semester examinations?">1. Attendance Requirement</button>
+                <button type="button" class="eval-chip" data-q="What are the semester examination rules and CIA passing criteria?">2. Semester Exam Rules</button>
+                <button type="button" class="eval-chip" data-q="How is SGPA calculated and converted to equivalent percentage?">3. SGPA Calculation</button>
+                <button type="button" class="eval-chip" data-q="What is the late fee for tuition payment and refund schedule?">4. Late Tuition Fees</button>
+                <button type="button" class="eval-chip" data-q="Where is the campus swimming pool and gym registration desk?">5. Out-of-Domain Test</button>
+              </div>
+            </div>
+
+            <!-- Controls Row: Mode, Models, Priority -->
+            <div class="eval-controls-grid">
+              <!-- Mode Selection (RAG vs Direct LLM) -->
+              <div class="eval-ctrl-box">
+                <label class="eval-ctrl-title">Mode Selection:</label>
+                <div class="eval-mode-toggle-group">
+                  <label class="eval-radio-label active" id="label-mode-rag">
+                    <input type="radio" name="eval-mode" value="rag" checked id="eval-mode-rag">
+                    <span class="radio-custom"></span>
+                    <span class="radio-text">
+                      <strong>RAG Mode</strong>
+                      <small>Grounded in University Knowledge Base</small>
+                    </span>
+                  </label>
+                  <label class="eval-radio-label" id="label-mode-direct">
+                    <input type="radio" name="eval-mode" value="direct" id="eval-mode-direct">
+                    <span class="radio-custom"></span>
+                    <span class="radio-text">
+                      <strong>Direct LLM</strong>
+                      <small>General Parametric Memory (Ungrounded)</small>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Model Selection Checkboxes -->
+              <div class="eval-ctrl-box">
+                <label class="eval-ctrl-title">Models to Compare:</label>
+                <div class="eval-models-checkboxes" id="eval-models-group">
+                  {% for m in models %}
+                    {% if m.id in compare_models %}
+                    <label class="eval-checkbox-label">
+                      <input type="checkbox" name="eval-models" value="{{ m.id }}" checked>
+                      <span class="checkbox-custom"></span>
+                      <span class="model-check-text">
+                        <strong>{{ m.name }}</strong>
+                        <span class="badge-mini">{{ m.badge }}</span>
+                      </span>
+                    </label>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+
+              <!-- Recommendation Priority Controls -->
+              <div class="eval-ctrl-box">
+                <label class="eval-ctrl-title" for="eval-priority-select">Recommendation Priority:</label>
+                <select id="eval-priority-select" class="custom-select eval-priority-dropdown">
+                  <option value="balanced" selected>⚖️ Balanced Performance (Default)</option>
+                  <option value="fastest">⚡ Fastest Response</option>
+                  <option value="accuracy">🎯 Most Accurate Answer</option>
+                  <option value="memory">💾 Lowest Memory Usage</option>
+                  <option value="relevance">🛡️ Most Relevant & Grounded</option>
+                </select>
+                <small class="priority-hint" id="priority-hint-text">Harmonizes accuracy, relevance, low hallucination, speed, and memory.</small>
+              </div>
+            </div>
+
+            <!-- Action Button Row -->
+            <div class="eval-action-row">
+              <button type="submit" class="btn-primary-action" id="btn-compare-models">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                <span id="btn-compare-text">Compare Models</span>
+                <div class="spinner" id="eval-btn-spinner" style="display: none;"></div>
+              </button>
+              <span class="eval-action-hint">Evaluates selected models sequentially to safeguard AWS EC2 memory limits.</span>
+            </div>
+          </form>
+
+          <!-- Animated Loading Progress Indicator -->
+          <div class="eval-progress-card" id="eval-progress-card" style="display: none;">
+            <div class="progress-info-row">
+              <div class="progress-status-text">
+                <span class="pulse-dot active"></span>
+                <strong id="eval-progress-step">Evaluating models live...</strong>
+              </div>
+              <span class="progress-pct" id="eval-progress-pct">0%</span>
+            </div>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" id="eval-progress-fill" style="width: 15%;"></div>
+            </div>
+            <div class="progress-subtext" id="eval-progress-sub">Measuring inference latency, RAM footprint, and factual grounding...</div>
+          </div>
+
+          <!-- Error Message Banner -->
+          <div class="eval-error-card" id="eval-error-card" style="display: none;">
+            <span class="error-icon">⚠️</span>
+            <div id="eval-error-message">An error occurred during evaluation.</div>
+          </div>
+        </div>
+
+        <!-- Dynamic Results Section (Appears after submission) -->
+        <div id="eval-results-wrapper" class="eval-results-wrapper" style="display: none;">
+          <!-- Section D: Question-Specific Model Recommendation Banner -->
+          <div class="card recommendation-card" id="eval-rec-card">
+            <div class="rec-header">
+              <div class="rec-header-left">
+                <div class="trophy-badge">🏆</div>
+                <div>
+                  <span class="rec-kicker">Live Evaluation Verdict</span>
+                  <h2 class="rec-title" id="rec-verdict-text">Which model is most suitable for this question?</h2>
+                </div>
+              </div>
+              <div class="rec-priority-badge" id="rec-priority-label">
+                Priority: Balanced Performance
+              </div>
+            </div>
+
+            <div class="rec-body">
+              <p class="rec-summary-paragraph" id="rec-summary-text"></p>
+              
+              <div class="rec-evidence-box">
+                <div class="evidence-icon">📊</div>
+                <div>
+                  <strong>Evaluation Evidence Behind Recommendation:</strong>
+                  <p id="rec-evidence-text"></p>
+                </div>
+              </div>
+
+              <div class="rec-tradeoffs-box">
+                <div class="tradeoff-icon">⚖️</div>
+                <div>
+                  <strong>Trade-off Analysis:</strong>
+                  <p id="rec-tradeoffs-text"></p>
+                </div>
+              </div>
+
+              <!-- Interactive Priority Quick Switcher -->
+              <div class="rec-interactive-priority">
+                <span class="rec-switch-label">Adjust Recommendation Priority:</span>
+                <div class="priority-pill-buttons">
+                  <button type="button" class="priority-pill active" data-priority="balanced">⚖️ Balanced</button>
+                  <button type="button" class="priority-pill" data-priority="fastest">⚡ Fastest</button>
+                  <button type="button" class="priority-pill" data-priority="accuracy">🎯 Most Accurate</button>
+                  <button type="button" class="priority-pill" data-priority="memory">💾 Lowest Memory</button>
+                  <button type="button" class="priority-pill" data-priority="relevance">🛡️ Grounded & Relevant</button>
+                </div>
+              </div>
+
+              <div class="rec-disclaimer">
+                <span>ℹ️</span>
+                <span><strong>Transparency Note:</strong> This recommendation is specific to your current question and active knowledge base context, not a universal benchmark ranking.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section B: Model Comparison Summary Table -->
+          <div class="card eval-table-card">
+            <div class="eval-table-header">
+              <div>
+                <h3>Model Comparison Results</h3>
+                <p class="table-sub">Live measured metrics for this specific query across all evaluated models.</p>
+              </div>
+              <!-- Non-Technical "Explain These Metrics" Accordion Toggle -->
+              <button type="button" class="btn-ghost-sm" id="btn-toggle-explainer">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                <span id="explainer-toggle-text">Explain These Metrics</span>
+              </button>
+            </div>
+
+            <!-- Beginner Metric Explainer Accordion -->
+            <div class="metrics-explainer-panel" id="metrics-explainer-panel" style="display: none;">
+              <div class="explainer-grid">
+                <div class="explainer-card">
+                  <h4>⏱️ Latency</h4>
+                  <p><strong>"How long the model took to answer"</strong> — Measured wall-clock time in milliseconds from question submission to full answer generation. Reports total time including context retrieval and model inference.</p>
+                </div>
+                <div class="explainer-card">
+                  <h4>🎯 Accuracy</h4>
+                  <p><strong>"Factual adherence to verified rules"</strong> — Calculated only when an official university policy reference answer is available in our dataset. If no reference is available, explicitly displayed as 'Accuracy not verified – no suitable reference answer available'.</p>
+                </div>
+                <div class="explainer-card">
+                  <h4>🛡️ Hallucination</h4>
+                  <p><strong>"Claims not supported by evidence"</strong> — Checks whether fee amounts, attendance percentages, dates, and names exist in official retrieved university context or contradict policy.</p>
+                </div>
+                <div class="explainer-card">
+                  <h4>📊 Relevance</h4>
+                  <p><strong>"How closely the answer matches your question"</strong> — Evaluates topical focus and semantic concept preservation using our standardized overlap evaluator.</p>
+                </div>
+                <div class="explainer-card">
+                  <h4>💻 RAM Usage</h4>
+                  <p><strong>"Memory required at runtime"</strong> — Measured memory footprint. Smaller models (0.5B) run reliably on low-cost AWS servers (1GB RAM) without Out-Of-Memory termination.</p>
+                </div>
+                <div class="explainer-card">
+                  <h4>🔎 Retrieval Quality</h4>
+                  <p><strong>"Finding the right policy document"</strong> — Confirms whether the search engine retrieved the required knowledge base file in the top results.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="eval-table-wrapper">
+              <table class="eval-live-table" id="eval-live-table">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>Generated Answer</th>
+                    <th>Latency</th>
+                    <th>Accuracy</th>
+                    <th>Relevance</th>
+                    <th>Hallucination</th>
+                    <th>RAM Usage</th>
+                    <th>Retrieval Quality</th>
+                  </tr>
+                </thead>
+                <tbody id="eval-table-tbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section C: Side-by-Side Detailed Answers & Citations -->
+          <div class="eval-section-title-wrap">
+            <h3>Side-by-Side Answers & Retrieved Context</h3>
+            <p>Compare the actual generated answers, inspect citations, and review resource disclosures.</p>
+          </div>
+
+          <div class="eval-model-cards-grid" id="eval-model-cards-grid">
+            <!-- Dynamically populated model cards -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- VIEW 2: Standard Single Query Assistant                      -->
+      <!-- ============================================================ -->
+      <div id="standard-view" class="response-view" style="display: none;">
         <div class="card result-card" id="result-card">
           <div class="card-header">
             <div class="card-title-group">
@@ -312,7 +620,9 @@
         </div>
       </div>
 
-      <!-- Side-by-Side Comparison Mode (Exercise 3 Demonstration) -->
+      <!-- ============================================================ -->
+      <!-- VIEW 3: Side-by-Side Comparison Mode (Exercise 3 RAG vs Pure LLM) -->
+      <!-- ============================================================ -->
       <div id="comparison-view" class="comparison-view" style="display: none;">
         <div class="comparison-header">
           <div class="comp-badge-box">
@@ -359,8 +669,8 @@
       </div>
     </main>
 
-    <!-- Query Input Area -->
-    <div class="query-dock">
+    <!-- Query Input Area (Active for Student Chat & RAG Demo) -->
+    <div class="query-dock" id="chat-query-dock" style="display: none;">
       <form id="query-form" class="query-form">
         <div class="input-wrapper">
           <input 

@@ -79,11 +79,13 @@ The system is separated into autonomous, loosely coupled services:
 - **Features:** 
   - Dynamic model switcher (`qwen2.5:0.5b`, `tinyllama`, `qwen2.5:1.5b`)
   - Real-time RAG On/Off toggle
+  - **Question-Specific Live Model Evaluation Dashboard** (Answers, measured latency, factual accuracy, relevance, hallucination assessment, RAM footprint, and transparent recommendations with trade-offs)
   - **Side-by-Side Comparison Mode** (RAG vs Pure LLM)
   - Interactive Knowledge Base Inspector
 - **Key Endpoints:**
   - `POST /api/query`: Handles queries with context augmentation and citations.
-  - `POST /api/compare`: Runs queries side-by-side with and without RAG to demonstrate hallucination reduction.
+  - `POST /api/compare-models`: Evaluates user questions live across selected models sequentially, measuring latency, factual accuracy, relevance, hallucination risk, and memory usage.
+  - `POST /api/compare`: Backwards-compatible comparison endpoint supporting both multi-model and legacy RAG vs Direct LLM evaluations.
   - `GET /api/models`: Lists supported lightweight models.
   - `GET /api/documents`: Fetches indexed documents and chunk statistics.
 
@@ -166,10 +168,20 @@ chmod +x scripts/*.sh
 UniAssist includes an automated test suite verifying chunking, vector embedding, and similarity accuracy:
 
 ```bash
+# 1. Pipeline and Vector Index Verification
 python scripts/test_pipeline.py
+
+# 2. Multi-Model Live Evaluation Test Suite
+python scripts/test_live_eval.py
 ```
 
+### Live Model Evaluation & Recommendation Dashboard
+1. Open `http://localhost:8000` and ensure the **Compare Models (Live Evaluation)** view is selected.
+2. Enter a student query or click a quick preset (e.g. *What is the minimum attendance requirement for appearing in semester examinations?*).
+3. Click **Compare Models** to execute the query live across `qwen2.5:0.5b`, `tinyllama:latest`, and `qwen2.5:1.5b`.
+4. Inspect the **Question-Specific Model Recommendation** with evidence and trade-offs, toggle priority filters (Fastest, Most Accurate, Lowest Memory, Balanced), inspect the Comparison Table, and expand **View Retrieved Sources** for each model.
+
 ### Side-by-Side RAG Demonstration
-Click the **Compare Mode (RAG vs Direct)** button in the web UI. 
+Click the **RAG vs Direct LLM Demo** tab in the web UI. 
 - **With RAG:** Produces accurate university policy answers with citations, percentages, and fees.
 - **Without RAG:** Direct LLM output lacks specific knowledge of BML Munjal University rules, providing generic or ungrounded responses.
