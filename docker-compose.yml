@@ -9,7 +9,7 @@ services:
     container_name: uniassist-ollama
     restart: unless-stopped
     ports:
-      - "11434:11434"
+      - "127.0.0.1:11434:11434"
     volumes:
       - ollama_data:/root/.ollama
     networks:
@@ -65,6 +65,7 @@ services:
     volumes:
       - ./services/app_service/templates:/app/templates
       - ./services/app_service/static:/app/static
+      - ./evaluations:/app/evaluations:ro
     environment:
       - RAG_SERVICE_URL=http://rag-service:8001
       - OLLAMA_SERVICE_URL=http://ollama-service:11434

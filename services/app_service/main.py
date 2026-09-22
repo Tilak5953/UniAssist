@@ -39,7 +39,14 @@ app = FastAPI(
 
 BASE_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = BASE_DIR.parent.parent
-DATASET_PATH = PROJECT_ROOT / "evaluations" / "dataset.json"
+
+# Candidate paths for evaluation dataset across host, Docker, and relative environments
+CANDIDATE_DATASET_PATHS = [
+    PROJECT_ROOT / "evaluations" / "dataset.json",
+    BASE_DIR / "evaluations" / "dataset.json",
+    Path("/app/evaluations/dataset.json"),
+    Path("./evaluations/dataset.json"),
+]
 
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
@@ -53,16 +60,17 @@ def load_evaluation_dataset() -> List[Dict[str, Any]]:
     global _DATASET
     if _DATASET:
         return _DATASET
-    try:
-        if DATASET_PATH.exists():
-            with open(DATASET_PATH, "r", encoding="utf-8") as f:
+    target_path = next((p for p in CANDIDATE_DATASET_PATHS if p.exists()), None)
+    if target_path and target_path.exists():
+        try:
+            with open(target_path, "r", encoding="utf-8") as f:
                 _DATASET = json.load(f)
-                logger.info(f"Loaded {len(_DATASET)} reference tasks from {DATASET_PATH}")
-        else:
-            logger.warning(f"Evaluation dataset not found at {DATASET_PATH}")
+                logger.info(f"Loaded {len(_DATASET)} reference tasks from {target_path}")
+        except Exception as e:
+            logger.error(f"Error loading evaluation dataset from {target_path}: {e}")
             _DATASET = []
-    except Exception as e:
-        logger.error(f"Error loading evaluation dataset: {e}")
+    else:
+        logger.warning(f"Evaluation dataset not found in candidate paths: {[str(p) for p in CANDIDATE_DATASET_PATHS]}")
         _DATASET = []
     return _DATASET
 
@@ -81,7 +89,8 @@ class Citation(BaseModel):
     snippet: str
 
 class QueryRequest(BaseModel):
-    query: str = Field(..., description="Student query")
+    query: Optional[str] = Field(default=None, description="Student query")
+    question: Optional[str] = Field(default=None, description="Alternative field for student query")
     model: Optional[str] = Field(default=DEFAULT_MODEL, description="LLM model identifier")
     use_rag: Optional[bool] = Field(default=True, description="Enable Retrieval-Augmented Generation")
     top_k: Optional[int] = Field(default=3, description="Number of context chunks to retrieve")
@@ -800,7 +809,8 @@ def get_documents():
 @app.post("/api/query", response_model=QueryResponse)
 def handle_query(req: QueryRequest):
     start_time = time.time()
-    query = req.query.strip()
+    raw_query = req.query or req.question or ""
+    query = raw_query.strip()
     if not query:
         raise HTTPException(status_code=400, detail="Query cannot be empty")
 
@@ -869,6 +879,15 @@ def handle_query(req: QueryRequest):
             "ollama_service": ollama_ok
         }
     )
+
+
+@app.post("/api/ask", response_model=QueryResponse)
+def handle_ask(req: QueryRequest):
+    """
+    Direct alias for /api/query to maintain 100% backward-compatibility
+    with Nginx reverse-proxies, standard client libraries, and evaluation scripts.
+    """
+    return handle_query(req)
 
 
 # -------------------------------------------------------------
