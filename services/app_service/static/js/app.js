@@ -261,33 +261,45 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnCompareText) btnCompareText.textContent = 'Evaluating Models...';
     if (evalBtnSpinner) evalBtnSpinner.style.display = 'block';
     if (evalProgressCard) evalProgressCard.style.display = 'flex';
+    if (evalResultsWrapper) evalResultsWrapper.style.opacity = '0.35';
 
-    let currentPct = 10;
+    let currentPct = 5;
     updateProgressUI(currentPct, 'Step 1/3: Retrieving university context from vector store...');
 
+    // Pace ticks proportionally to number of models being evaluated
+    const tickMs = Math.max(240, numModels * 110);
+
     progressInterval = setInterval(() => {
-      if (currentPct < 35) {
+      if (currentPct < 30) {
         currentPct += 5;
         updateProgressUI(currentPct, 'Step 1/3: Retrieving university context from vector store...');
-      } else if (currentPct < 75) {
-        currentPct += 4;
+      } else if (currentPct < 70) {
+        currentPct += 3;
         updateProgressUI(currentPct, `Step 2/3: Sequentially executing ${numModels} models on this query...`);
-      } else if (currentPct < 92) {
+      } else if (currentPct < 88) {
         currentPct += 2;
         updateProgressUI(currentPct, 'Step 3/3: Evaluating factual accuracy & hallucination risk...');
-      } else if (currentPct < 98) {
+      } else if (currentPct < 94) {
         currentPct += 1;
         updateProgressUI(currentPct, 'Synthesizing transparent evidence-based recommendation...');
       }
-    }, 180);
+    }, tickMs);
   }
 
   function stopEvalLoading() {
-    if (progressInterval) clearInterval(progressInterval);
+    if (progressInterval) {
+      clearInterval(progressInterval);
+      progressInterval = null;
+    }
+    updateProgressUI(100, 'Evaluation complete!');
     if (btnCompareModels) btnCompareModels.disabled = false;
     if (btnCompareText) btnCompareText.textContent = 'Compare Models';
     if (evalBtnSpinner) evalBtnSpinner.style.display = 'none';
-    if (evalProgressCard) evalProgressCard.style.display = 'none';
+    if (evalResultsWrapper) evalResultsWrapper.style.opacity = '1';
+
+    setTimeout(() => {
+      if (evalProgressCard) evalProgressCard.style.display = 'none';
+    }, 300);
   }
 
   function updateProgressUI(pct, text) {

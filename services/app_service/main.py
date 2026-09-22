@@ -219,15 +219,17 @@ def call_ollama_generate(prompt: str, system: str, model: str) -> str:
         "prompt": prompt,
         "system": system,
         "stream": False,
+        "keep_alive": 0,
         "options": {
             "temperature": 0.2,
             "top_p": 0.9,
-            "num_ctx": 2048
+            "num_ctx": 512,
+            "num_predict": 128
         }
     }).encode("utf-8")
 
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=75.0) as resp:
+    with urllib.request.urlopen(req, timeout=18.0) as resp:
         data = json.loads(resp.read().decode("utf-8"))
         return data.get("response", "").strip()
 
