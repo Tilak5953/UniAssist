@@ -1,0 +1,755 @@
+{
+  "timestamp": "2026-09-23T01:42:31Z",
+  "models_evaluated": [
+    {
+      "id": "qwen2.5:0.5b",
+      "name": "Qwen 2.5 (0.5B)",
+      "params": "0.49B",
+      "ram_mb": 580,
+      "disk_mb": 390,
+      "status": "active"
+    },
+    {
+      "id": "tinyllama:latest",
+      "name": "TinyLlama (1.1B)",
+      "params": "1.10B",
+      "ram_mb": 910,
+      "disk_mb": 630,
+      "status": "active"
+    },
+    {
+      "id": "qwen2.5:1.5b",
+      "name": "Qwen 2.5 (1.5B)",
+      "params": "1.54B",
+      "ram_mb": 1420,
+      "disk_mb": 980,
+      "status": "active"
+    },
+    {
+      "id": "codellama:7b",
+      "name": "Code Llama (7B)",
+      "params": "6.74B",
+      "ram_mb": 6144,
+      "disk_mb": 3800,
+      "status": "resource_limited"
+    }
+  ],
+  "category_summary": {
+    "Explanation": {
+      "qwen2.5:0.5b": {
+        "model_name": "Qwen 2.5 (0.5B)",
+        "accuracy_pct": 0.0,
+        "relevance_pct": 5.2,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 650.0,
+        "ram_mb": 580,
+        "status": "PASS"
+      },
+      "tinyllama:latest": {
+        "model_name": "TinyLlama (1.1B)",
+        "accuracy_pct": 10.0,
+        "relevance_pct": 11.1,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 910,
+        "status": "PASS"
+      },
+      "qwen2.5:1.5b": {
+        "model_name": "Qwen 2.5 (1.5B)",
+        "accuracy_pct": 0.0,
+        "relevance_pct": 6.7,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 1420,
+        "status": "PASS"
+      },
+      "codellama:7b": {
+        "model_name": "Code Llama (7B)",
+        "accuracy_pct": null,
+        "relevance_pct": null,
+        "hallucination_rate": null,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": null,
+        "ram_mb": 6144,
+        "status": "OOM (Host 2GB RAM Exceeded)"
+      }
+    },
+    "Code Retrieval": {
+      "qwen2.5:0.5b": {
+        "model_name": "Qwen 2.5 (0.5B)",
+        "accuracy_pct": 0.0,
+        "relevance_pct": 0.0,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 650.0,
+        "ram_mb": 580,
+        "status": "PASS"
+      },
+      "tinyllama:latest": {
+        "model_name": "TinyLlama (1.1B)",
+        "accuracy_pct": 0.0,
+        "relevance_pct": 29.3,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 910,
+        "status": "PASS"
+      },
+      "qwen2.5:1.5b": {
+        "model_name": "Qwen 2.5 (1.5B)",
+        "accuracy_pct": 0.0,
+        "relevance_pct": 24.3,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 1420,
+        "status": "PASS"
+      },
+      "codellama:7b": {
+        "model_name": "Code Llama (7B)",
+        "accuracy_pct": null,
+        "relevance_pct": null,
+        "hallucination_rate": null,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": null,
+        "ram_mb": 6144,
+        "status": "OOM (Host 2GB RAM Exceeded)"
+      }
+    },
+    "Dependency Understanding": {
+      "qwen2.5:0.5b": {
+        "model_name": "Qwen 2.5 (0.5B)",
+        "accuracy_pct": 0.0,
+        "relevance_pct": 9.9,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 650.0,
+        "ram_mb": 580,
+        "status": "PASS"
+      },
+      "tinyllama:latest": {
+        "model_name": "TinyLlama (1.1B)",
+        "accuracy_pct": 0.0,
+        "relevance_pct": 11.4,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 910,
+        "status": "PASS"
+      },
+      "qwen2.5:1.5b": {
+        "model_name": "Qwen 2.5 (1.5B)",
+        "accuracy_pct": 0.0,
+        "relevance_pct": 16.8,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 1420,
+        "status": "PASS"
+      },
+      "codellama:7b": {
+        "model_name": "Code Llama (7B)",
+        "accuracy_pct": null,
+        "relevance_pct": null,
+        "hallucination_rate": null,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": null,
+        "ram_mb": 6144,
+        "status": "OOM (Host 2GB RAM Exceeded)"
+      }
+    },
+    "Bug Analysis": {
+      "qwen2.5:0.5b": {
+        "model_name": "Qwen 2.5 (0.5B)",
+        "accuracy_pct": 10.0,
+        "relevance_pct": 11.8,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": 100.0,
+        "avg_latency_ms": 650.0,
+        "ram_mb": 580,
+        "status": "PASS"
+      },
+      "tinyllama:latest": {
+        "model_name": "TinyLlama (1.1B)",
+        "accuracy_pct": 10.0,
+        "relevance_pct": 22.6,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": 100.0,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 910,
+        "status": "PASS"
+      },
+      "qwen2.5:1.5b": {
+        "model_name": "Qwen 2.5 (1.5B)",
+        "accuracy_pct": 10.0,
+        "relevance_pct": 16.2,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": 100.0,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 1420,
+        "status": "PASS"
+      },
+      "codellama:7b": {
+        "model_name": "Code Llama (7B)",
+        "accuracy_pct": null,
+        "relevance_pct": null,
+        "hallucination_rate": null,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": null,
+        "ram_mb": 6144,
+        "status": "OOM (Host 2GB RAM Exceeded)"
+      }
+    },
+    "Code Generation": {
+      "qwen2.5:0.5b": {
+        "model_name": "Qwen 2.5 (0.5B)",
+        "accuracy_pct": 12.5,
+        "relevance_pct": 8.3,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": 100.0,
+        "avg_latency_ms": 650.0,
+        "ram_mb": 580,
+        "status": "PASS"
+      },
+      "tinyllama:latest": {
+        "model_name": "TinyLlama (1.1B)",
+        "accuracy_pct": 12.5,
+        "relevance_pct": 2.8,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": 100.0,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 910,
+        "status": "PASS"
+      },
+      "qwen2.5:1.5b": {
+        "model_name": "Qwen 2.5 (1.5B)",
+        "accuracy_pct": 12.5,
+        "relevance_pct": 8.3,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": 100.0,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 1420,
+        "status": "PASS"
+      },
+      "codellama:7b": {
+        "model_name": "Code Llama (7B)",
+        "accuracy_pct": null,
+        "relevance_pct": null,
+        "hallucination_rate": null,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": null,
+        "ram_mb": 6144,
+        "status": "OOM (Host 2GB RAM Exceeded)"
+      }
+    },
+    "Refactoring": {
+      "qwen2.5:0.5b": {
+        "model_name": "Qwen 2.5 (0.5B)",
+        "accuracy_pct": 0.0,
+        "relevance_pct": 4.5,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 650.0,
+        "ram_mb": 580,
+        "status": "PASS"
+      },
+      "tinyllama:latest": {
+        "model_name": "TinyLlama (1.1B)",
+        "accuracy_pct": 0.0,
+        "relevance_pct": 11.5,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 910,
+        "status": "PASS"
+      },
+      "qwen2.5:1.5b": {
+        "model_name": "Qwen 2.5 (1.5B)",
+        "accuracy_pct": 0.0,
+        "relevance_pct": 9.1,
+        "hallucination_rate": 1.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 1100.0,
+        "ram_mb": 1420,
+        "status": "PASS"
+      },
+      "codellama:7b": {
+        "model_name": "Code Llama (7B)",
+        "accuracy_pct": null,
+        "relevance_pct": null,
+        "hallucination_rate": null,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": null,
+        "ram_mb": 6144,
+        "status": "OOM (Host 2GB RAM Exceeded)"
+      }
+    },
+    "RAG-based Question": {
+      "qwen2.5:0.5b": {
+        "model_name": "Qwen 2.5 (0.5B)",
+        "accuracy_pct": 60.0,
+        "relevance_pct": 57.9,
+        "hallucination_rate": 0.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 1605.8,
+        "ram_mb": 580,
+        "status": "PASS"
+      },
+      "tinyllama:latest": {
+        "model_name": "TinyLlama (1.1B)",
+        "accuracy_pct": 60.0,
+        "relevance_pct": 55.7,
+        "hallucination_rate": 0.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 1520.0,
+        "ram_mb": 910,
+        "status": "PASS"
+      },
+      "qwen2.5:1.5b": {
+        "model_name": "Qwen 2.5 (1.5B)",
+        "accuracy_pct": 70.0,
+        "relevance_pct": 70.0,
+        "hallucination_rate": 0.0,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": 1518.0,
+        "ram_mb": 1420,
+        "status": "PASS"
+      },
+      "codellama:7b": {
+        "model_name": "Code Llama (7B)",
+        "accuracy_pct": null,
+        "relevance_pct": null,
+        "hallucination_rate": null,
+        "code_test_pass_rate_pct": null,
+        "avg_latency_ms": null,
+        "ram_mb": 6144,
+        "status": "OOM (Host 2GB RAM Exceeded)"
+      }
+    }
+  },
+  "detailed_task_evals": [
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 4.3,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 650.0,
+      "task_id": "EXP-01",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Explanation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 6.1,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 650.0,
+      "task_id": "EXP-02",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Explanation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 0.0,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 650.0,
+      "task_id": "RET-01",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Code Retrieval"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 0.0,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 650.0,
+      "task_id": "RET-02",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Code Retrieval"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 12.1,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 650.0,
+      "task_id": "DEP-01",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Dependency Understanding"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 7.7,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 650.0,
+      "task_id": "DEP-02",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Dependency Understanding"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 5.6,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 650.0,
+      "task_id": "BUG-01",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Bug Analysis"
+    },
+    {
+      "correctness_pct": 20.0,
+      "relevance_pct": 17.9,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 650.0,
+      "task_id": "BUG-02",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Bug Analysis"
+    },
+    {
+      "correctness_pct": 25.0,
+      "relevance_pct": 16.7,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 650.0,
+      "task_id": "GEN-01",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Code Generation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 0.0,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 650.0,
+      "task_id": "GEN-02",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Code Generation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 9.1,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 650.0,
+      "task_id": "REF-01",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Refactoring"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 0.0,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 650.0,
+      "task_id": "REF-02",
+      "model_id": "qwen2.5:0.5b",
+      "category": "Refactoring"
+    },
+    {
+      "correctness_pct": 60.0,
+      "relevance_pct": 60.7,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "latency_ms": 2155.56,
+      "task_id": "RAG-01",
+      "model_id": "qwen2.5:0.5b",
+      "category": "RAG-based Question"
+    },
+    {
+      "correctness_pct": 60.0,
+      "relevance_pct": 55.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "latency_ms": 1056.13,
+      "task_id": "RAG-02",
+      "model_id": "qwen2.5:0.5b",
+      "category": "RAG-based Question"
+    },
+    {
+      "correctness_pct": 20.0,
+      "relevance_pct": 13.0,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "EXP-01",
+      "model_id": "tinyllama:latest",
+      "category": "Explanation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 9.1,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "EXP-02",
+      "model_id": "tinyllama:latest",
+      "category": "Explanation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 30.0,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "RET-01",
+      "model_id": "tinyllama:latest",
+      "category": "Code Retrieval"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 28.6,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "RET-02",
+      "model_id": "tinyllama:latest",
+      "category": "Code Retrieval"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 15.2,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "DEP-01",
+      "model_id": "tinyllama:latest",
+      "category": "Dependency Understanding"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 7.7,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "DEP-02",
+      "model_id": "tinyllama:latest",
+      "category": "Dependency Understanding"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 16.7,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 1100.0,
+      "task_id": "BUG-01",
+      "model_id": "tinyllama:latest",
+      "category": "Bug Analysis"
+    },
+    {
+      "correctness_pct": 20.0,
+      "relevance_pct": 28.6,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 1100.0,
+      "task_id": "BUG-02",
+      "model_id": "tinyllama:latest",
+      "category": "Bug Analysis"
+    },
+    {
+      "correctness_pct": 25.0,
+      "relevance_pct": 5.6,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 1100.0,
+      "task_id": "GEN-01",
+      "model_id": "tinyllama:latest",
+      "category": "Code Generation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 0.0,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 1100.0,
+      "task_id": "GEN-02",
+      "model_id": "tinyllama:latest",
+      "category": "Code Generation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 18.2,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "REF-01",
+      "model_id": "tinyllama:latest",
+      "category": "Refactoring"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 4.8,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "REF-02",
+      "model_id": "tinyllama:latest",
+      "category": "Refactoring"
+    },
+    {
+      "correctness_pct": 60.0,
+      "relevance_pct": 46.4,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "latency_ms": 1518.09,
+      "task_id": "RAG-01",
+      "model_id": "tinyllama:latest",
+      "category": "RAG-based Question"
+    },
+    {
+      "correctness_pct": 60.0,
+      "relevance_pct": 65.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "latency_ms": 1521.82,
+      "task_id": "RAG-02",
+      "model_id": "tinyllama:latest",
+      "category": "RAG-based Question"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 4.3,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "EXP-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Explanation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 9.1,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "EXP-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Explanation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 20.0,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "RET-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Retrieval"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 28.6,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "RET-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Retrieval"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 18.2,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "DEP-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Dependency Understanding"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 15.4,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "DEP-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Dependency Understanding"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 11.1,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 1100.0,
+      "task_id": "BUG-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Bug Analysis"
+    },
+    {
+      "correctness_pct": 20.0,
+      "relevance_pct": 21.4,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 1100.0,
+      "task_id": "BUG-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Bug Analysis"
+    },
+    {
+      "correctness_pct": 25.0,
+      "relevance_pct": 16.7,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 1100.0,
+      "task_id": "GEN-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Generation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 0.0,
+      "hallucination_rate": 1.0,
+      "code_test_pass": true,
+      "latency_ms": 1100.0,
+      "task_id": "GEN-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Generation"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 18.2,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "REF-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Refactoring"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 0.0,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "latency_ms": 1100.0,
+      "task_id": "REF-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Refactoring"
+    },
+    {
+      "correctness_pct": 80.0,
+      "relevance_pct": 75.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "latency_ms": 1518.89,
+      "task_id": "RAG-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "RAG-based Question"
+    },
+    {
+      "correctness_pct": 60.0,
+      "relevance_pct": 65.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "latency_ms": 1517.11,
+      "task_id": "RAG-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "RAG-based Question"
+    }
+  ]
+}

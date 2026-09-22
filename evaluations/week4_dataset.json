@@ -1,0 +1,100 @@
+[
+  {
+    "id": "EXP-01",
+    "category": "Explanation",
+    "task": "Explain how the 10-point letter grading scale converts to grade points and how SGPA is calculated.",
+    "expected_concepts": ["10-point", "grade point", "credit", "SGPA", "weighted average"],
+    "ground_truth": "The 10-point grading system assigns letter grades (O=10, A+=9, A=8, B+=7, B=6, C=5, P=4, F=0). SGPA is computed as the sum of (Course Credits * Grade Points) divided by the total semester registered credits."
+  },
+  {
+    "id": "EXP-02",
+    "category": "Explanation",
+    "task": "Explain how dense vector embeddings and cosine similarity enable semantic retrieval in UniAssist.",
+    "expected_concepts": ["embedding", "vector", "cosine similarity", "dot product", "semantic"],
+    "ground_truth": "Dense embeddings project text chunks into 256-dimensional numerical vector space. Cosine similarity calculates the cosine of the angle between query and document vectors (dot product normalized by vector magnitudes), retrieving semantically relevant chunks even with differing vocabulary."
+  },
+  {
+    "id": "RET-01",
+    "category": "Code Retrieval",
+    "task": "Identify which function and file in the codebase performs sliding window text chunking with overlap.",
+    "expected_concepts": ["DocumentChunker", "chunk_text_sliding_window", "chunking.py", "chunk_size", "chunk_overlap"],
+    "ground_truth": "The chunk_text_sliding_window method inside the DocumentChunker class in services/rag_service/chunking.py."
+  },
+  {
+    "id": "RET-02",
+    "category": "Code Retrieval",
+    "task": "Which module and function implements cosine similarity calculation between two float vectors in UniAssist?",
+    "expected_concepts": ["cosine_similarity", "vector_store.py", "norm", "dot product"],
+    "ground_truth": "The cosine_similarity function in services/rag_service/vector_store.py."
+  },
+  {
+    "id": "DEP-01",
+    "category": "Dependency Understanding",
+    "task": "Explain the architectural dependency chain when a student submits a question to UniAssist.",
+    "expected_concepts": ["app-service", "rag-service", "ollama-service", "gateway", "retrieval"],
+    "ground_truth": "The student browser communicates with the Application Gateway (app-service on port 8000), which queries the RAG Service (rag-service on port 8001) for context chunks, constructs the grounded prompt, and dispatches it to the Ollama LLM Inference Engine (ollama-service on port 11434)."
+  },
+  {
+    "id": "DEP-02",
+    "category": "Dependency Understanding",
+    "task": "How do the Docker containers communicate internally, and what persistent storage volumes are mounted?",
+    "expected_concepts": ["uniassist-net", "bridge", "ollama_data", "rag_data", "knowledge_base"],
+    "ground_truth": "Containers communicate over the private Docker bridge network 'uniassist-net'. Persistent data is preserved via 'ollama_data' for model weights, 'rag_data' for the vector index, and a read-only bind mount for 'knowledge_base'."
+  },
+  {
+    "id": "BUG-01",
+    "category": "Bug Analysis",
+    "task": "Analyze the following Python snippet for a potential runtime bug:\n\ndef calculate_sgpa(grades, credits):\n    total_points = sum(g * c for g, c in zip(grades, credits))\n    return total_points / sum(credits)\n",
+    "expected_concepts": ["ZeroDivisionError", "division by zero", "empty", "sum(credits) == 0"],
+    "ground_truth": "If the credits list is empty or sum(credits) is 0, the function will raise a ZeroDivisionError. It must validate that sum(credits) > 0 before division."
+  },
+  {
+    "id": "BUG-02",
+    "category": "Bug Analysis",
+    "task": "Analyze this condonation eligibility snippet for a logic bug:\n\ndef is_eligible_condonation(attendance_pct):\n    if attendance_pct >= 65:\n        return True\n    return False\n",
+    "expected_concepts": ["upper bound", "75%", "74.9", "already eligible", "bracket"],
+    "ground_truth": "The function fails to check the upper boundary (< 75%). Students with 75% or higher attendance do not require condonation as they already meet the statutory threshold. Condonation applies specifically to the 65% to 74.9% bracket."
+  },
+  {
+    "id": "GEN-01",
+    "category": "Code Generation",
+    "task": "Write a Python function `check_exam_eligibility(attendance_pct, has_medical_cert)` that implements university attendance rules: >=75% eligible, 65-74.9% eligible only with condonation/medical certificate, <65% debarred.",
+    "expected_concepts": ["def check_exam_eligibility", "75", "65", "return"],
+    "ground_truth": "def check_exam_eligibility(attendance_pct, has_medical_cert):\n    if attendance_pct >= 75.0:\n        return {'status': 'Eligible', 'fee': 0}\n    elif 65.0 <= attendance_pct < 75.0 and has_medical_cert:\n        return {'status': 'Condonation Granted', 'fee': 1200}\n    else:\n        return {'status': 'Debarred', 'fee': 0}"
+  },
+  {
+    "id": "GEN-02",
+    "category": "Code Generation",
+    "task": "Write a Python function `calculate_backlog_fee(regular_subjects, summer_subjects)` where regular backlog is ₹750 per subject and summer supplementary is ₹1500 per subject.",
+    "expected_concepts": ["def calculate_backlog_fee", "750", "1500", "return"],
+    "ground_truth": "def calculate_backlog_fee(regular_subjects, summer_subjects):\n    return (regular_subjects * 750) + (summer_subjects * 1500)"
+  },
+  {
+    "id": "REF-01",
+    "category": "Refactoring",
+    "task": "Refactor this O(N*M) list lookup into an O(1) dictionary lookup:\n\ndef find_course_grade(student_records, target_course):\n    for record in student_records:\n        if record['course'] == target_course:\n            return record['grade']\n    return None\n",
+    "expected_concepts": ["dictionary", "dict", "map", "O(1)", "get"],
+    "ground_truth": "course_dict = {record['course']: record['grade'] for record in student_records}\nreturn course_dict.get(target_course, None)"
+  },
+  {
+    "id": "REF-02",
+    "category": "Refactoring",
+    "task": "Refactor this repetitive exception handling in vector storage loading:\n\ntry:\n    with open(f1) as a: d1 = json.load(a)\nexcept Exception: d1 = {}\ntry:\n    with open(f2) as b: d2 = json.load(b)\nexcept Exception: d2 = {}\n",
+    "expected_concepts": ["helper function", "reusable", "def load_json_safe", "dry"],
+    "ground_truth": "def load_json_safe(file_path, default=None):\n    if default is None: default = {}\n    try:\n        with open(file_path, 'r', encoding='utf-8') as f:\n            return json.load(f)\n    except Exception:\n        return default\n\nd1 = load_json_safe(f1)\nd2 = load_json_safe(f2)"
+  },
+  {
+    "id": "RAG-01",
+    "category": "RAG-based Question",
+    "task": "What is the mandatory attendance requirement to appear in end-semester examinations and what happens if a student has less than 65% attendance?",
+    "expected_concepts": ["75%", "65%", "Debarred", "repeat", "condonation"],
+    "ground_truth": "Students must maintain a minimum of 75% aggregate attendance in each individual course. If attendance falls below 65%, no condonation is permitted under any circumstances and the student is debarred and must repeat the course."
+  },
+  {
+    "id": "RAG-02",
+    "category": "RAG-based Question",
+    "task": "What are the fees for regular backlog examinations versus summer supplementary examinations, and what is the re-evaluation fee?",
+    "expected_concepts": ["₹750", "₹1,500", "₹800", "re-evaluation", "supplementary"],
+    "ground_truth": "Regular backlog examination fee is ₹750 per subject, summer supplementary fee is ₹1,500 per subject, and formal re-evaluation of an answer script costs ₹800 per subject."
+  }
+]

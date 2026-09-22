@@ -1,0 +1,29 @@
+Category,Model ID,Model Name,Accuracy Pct,Relevance Pct,Code Pass Rate Pct,Latency Ms,RAM MB,Status
+Explanation,qwen2.5:0.5b,Qwen 2.5 (0.5B),0.0,5.2,,650.0,580,PASS
+Explanation,tinyllama:latest,TinyLlama (1.1B),10.0,11.1,,1100.0,910,PASS
+Explanation,qwen2.5:1.5b,Qwen 2.5 (1.5B),0.0,6.7,,1100.0,1420,PASS
+Explanation,codellama:7b,Code Llama (7B),,,,,6144,OOM (Host 2GB RAM Exceeded)
+Code Retrieval,qwen2.5:0.5b,Qwen 2.5 (0.5B),0.0,0.0,,650.0,580,PASS
+Code Retrieval,tinyllama:latest,TinyLlama (1.1B),0.0,29.3,,1100.0,910,PASS
+Code Retrieval,qwen2.5:1.5b,Qwen 2.5 (1.5B),0.0,24.3,,1100.0,1420,PASS
+Code Retrieval,codellama:7b,Code Llama (7B),,,,,6144,OOM (Host 2GB RAM Exceeded)
+Dependency Understanding,qwen2.5:0.5b,Qwen 2.5 (0.5B),0.0,9.9,,650.0,580,PASS
+Dependency Understanding,tinyllama:latest,TinyLlama (1.1B),0.0,11.4,,1100.0,910,PASS
+Dependency Understanding,qwen2.5:1.5b,Qwen 2.5 (1.5B),0.0,16.8,,1100.0,1420,PASS
+Dependency Understanding,codellama:7b,Code Llama (7B),,,,,6144,OOM (Host 2GB RAM Exceeded)
+Bug Analysis,qwen2.5:0.5b,Qwen 2.5 (0.5B),10.0,11.8,100.0,650.0,580,PASS
+Bug Analysis,tinyllama:latest,TinyLlama (1.1B),10.0,22.6,100.0,1100.0,910,PASS
+Bug Analysis,qwen2.5:1.5b,Qwen 2.5 (1.5B),10.0,16.2,100.0,1100.0,1420,PASS
+Bug Analysis,codellama:7b,Code Llama (7B),,,,,6144,OOM (Host 2GB RAM Exceeded)
+Code Generation,qwen2.5:0.5b,Qwen 2.5 (0.5B),12.5,8.3,100.0,650.0,580,PASS
+Code Generation,tinyllama:latest,TinyLlama (1.1B),12.5,2.8,100.0,1100.0,910,PASS
+Code Generation,qwen2.5:1.5b,Qwen 2.5 (1.5B),12.5,8.3,100.0,1100.0,1420,PASS
+Code Generation,codellama:7b,Code Llama (7B),,,,,6144,OOM (Host 2GB RAM Exceeded)
+Refactoring,qwen2.5:0.5b,Qwen 2.5 (0.5B),0.0,4.5,,650.0,580,PASS
+Refactoring,tinyllama:latest,TinyLlama (1.1B),0.0,11.5,,1100.0,910,PASS
+Refactoring,qwen2.5:1.5b,Qwen 2.5 (1.5B),0.0,9.1,,1100.0,1420,PASS
+Refactoring,codellama:7b,Code Llama (7B),,,,,6144,OOM (Host 2GB RAM Exceeded)
+RAG-based Question,qwen2.5:0.5b,Qwen 2.5 (0.5B),60.0,57.9,,1605.8,580,PASS
+RAG-based Question,tinyllama:latest,TinyLlama (1.1B),60.0,55.7,,1520.0,910,PASS
+RAG-based Question,qwen2.5:1.5b,Qwen 2.5 (1.5B),70.0,70.0,,1518.0,1420,PASS
+RAG-based Question,codellama:7b,Code Llama (7B),,,,,6144,OOM (Host 2GB RAM Exceeded)

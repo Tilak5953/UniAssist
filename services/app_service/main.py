@@ -27,6 +27,7 @@ from config import (
     SYSTEM_PROMPT_RAG,
     SYSTEM_PROMPT_DIRECT
 )
+from guardrails import guardrails
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("app_service")
@@ -94,6 +95,7 @@ class QueryRequest(BaseModel):
     model: Optional[str] = Field(default=DEFAULT_MODEL, description="LLM model identifier")
     use_rag: Optional[bool] = Field(default=True, description="Enable Retrieval-Augmented Generation")
     top_k: Optional[int] = Field(default=3, description="Number of context chunks to retrieve")
+    bypass_guardrails: Optional[bool] = Field(default=False, description="Disable guardrail checks for testing/demonstration")
 
 class QueryResponse(BaseModel):
     query: str
@@ -103,6 +105,7 @@ class QueryResponse(BaseModel):
     citations: List[Citation]
     latency_ms: float
     service_status: Dict[str, bool]
+    guardrail_status: Optional[Dict[str, Any]] = Field(default=None, description="Diagnostics from multi-layer guardrail inspection")
 
 class CompareModelsRequest(BaseModel):
     query: str = Field(..., description="Student query to evaluate live across models")
@@ -110,6 +113,7 @@ class CompareModelsRequest(BaseModel):
     use_rag: Optional[bool] = Field(default=True, description="Enable Retrieval-Augmented Generation")
     priority: Optional[str] = Field(default="balanced", description="Recommendation priority: balanced, fastest, accuracy, memory, relevance")
     top_k: Optional[int] = Field(default=3, description="Number of context chunks to retrieve")
+    bypass_guardrails: Optional[bool] = Field(default=False, description="Disable guardrail checks for testing/demonstration")
     # Backwards-compatibility for legacy single-model caller
     model: Optional[str] = Field(default=None, description="Legacy single-model parameter")
 
@@ -275,10 +279,15 @@ def generate_fallback_simulation(query: str, context_chunks: List[Dict[str, Any]
             if l and not l.startswith("#") and len(l) > 10 and l not in seen:
                 seen.add(l)
                 salient_lines.append(l)
+    # Prioritize salient lines containing specific query concepts, percentages, or fee amounts
+    q_words = set(re.findall(r"\b[a-zA-Z0-9_%₹\-]{3,}\b", query.lower()))
+    relevant_lines = [l for l in salient_lines if any(w in l.lower() for w in q_words)]
+    other_lines = [l for l in salient_lines if l not in relevant_lines]
+    ordered_lines = relevant_lines + other_lines
 
     # 0.5B Model: Fast, extractive bullet points directly citing policies
     if "0.5b" in model:
-        selected = salient_lines[:4]
+        selected = ordered_lines[:5]
         bullets = "\n".join(f"• {b}" if not b.startswith("|") else b for b in selected)
         return (
             f"According to **{main_doc}** [{main_sec}]:\n\n"
@@ -810,13 +819,72 @@ def get_documents():
 def handle_query(req: QueryRequest):
     start_time = time.time()
     raw_query = req.query or req.question or ""
-    query = raw_query.strip()
-    if not query:
-        raise HTTPException(status_code=400, detail="Query cannot be empty")
-
     model = req.model or DEFAULT_MODEL
     use_rag = req.use_rag if req.use_rag is not None else True
     top_k = req.top_k or 3
+    bypass_guardrails = req.bypass_guardrails or False
+
+    guardrail_status = {
+        "applied": not bypass_guardrails,
+        "input_validation": "SKIPPED" if bypass_guardrails else "PASS",
+        "security": "SKIPPED" if bypass_guardrails else "PASS",
+        "scope": "SKIPPED" if bypass_guardrails else "PASS",
+        "insufficient_context": "SKIPPED" if bypass_guardrails else "PASS",
+        "output_control": "SKIPPED" if bypass_guardrails else "PASS"
+    }
+
+    # 1. Guardrail: Input Validation
+    if not bypass_guardrails:
+        iv = guardrails.validate_input(raw_query)
+        if not iv.passed:
+            guardrail_status["input_validation"] = "BLOCKED"
+            return QueryResponse(
+                query=raw_query,
+                model=model,
+                use_rag=use_rag,
+                answer=f"**[Input Error]** {iv.reason}",
+                citations=[],
+                latency_ms=round((time.time() - start_time) * 1000, 2),
+                service_status={"gateway": True, "rag_service": check_rag_status(), "ollama_service": check_ollama_status()},
+                guardrail_status=guardrail_status
+            )
+        query = iv.sanitized_query
+    else:
+        query = raw_query.strip()
+        if not query:
+            raise HTTPException(status_code=400, detail="Query cannot be empty")
+
+    # 2. Guardrail: Security & Prompt Injection
+    if not bypass_guardrails:
+        sec = guardrails.validate_security(query)
+        if not sec.passed:
+            guardrail_status["security"] = "BLOCKED"
+            return QueryResponse(
+                query=query,
+                model=model,
+                use_rag=use_rag,
+                answer=f"**[Security Alert]** {sec.reason}",
+                citations=[],
+                latency_ms=round((time.time() - start_time) * 1000, 2),
+                service_status={"gateway": True, "rag_service": check_rag_status(), "ollama_service": check_ollama_status()},
+                guardrail_status=guardrail_status
+            )
+
+    # 3. Guardrail: Scope Control
+    if not bypass_guardrails:
+        sc = guardrails.validate_scope(query)
+        if not sc.passed:
+            guardrail_status["scope"] = "BLOCKED"
+            return QueryResponse(
+                query=query,
+                model=model,
+                use_rag=use_rag,
+                answer=f"**[Scope Alert]** {sc.reason}",
+                citations=[],
+                latency_ms=round((time.time() - start_time) * 1000, 2),
+                service_status={"gateway": True, "rag_service": check_rag_status(), "ollama_service": check_ollama_status()},
+                guardrail_status=guardrail_status
+            )
 
     context_chunks = []
     citations = []
@@ -832,6 +900,22 @@ def handle_query(req: QueryRequest):
                 similarity_score=round(c.get("similarity_score", 0.0), 4),
                 snippet=c.get("raw_text", c.get("text", ""))[:280] + "..."
             ))
+
+        # 4. Guardrail: Insufficient Context Check
+        if not bypass_guardrails:
+            ic = guardrails.validate_retrieval_context(query, context_chunks)
+            if not ic.passed:
+                guardrail_status["insufficient_context"] = "BLOCKED"
+                return QueryResponse(
+                    query=query,
+                    model=model,
+                    use_rag=use_rag,
+                    answer=f"**[Insufficient Information]** {ic.reason}",
+                    citations=citations,
+                    latency_ms=round((time.time() - start_time) * 1000, 2),
+                    service_status={"gateway": True, "rag_service": check_rag_status(), "ollama_service": check_ollama_status()},
+                    guardrail_status=guardrail_status
+                )
 
     # Step 2: Prompt Construction
     if use_rag and context_chunks:
@@ -864,6 +948,11 @@ def handle_query(req: QueryRequest):
     else:
         answer = generate_fallback_simulation(query, context_chunks, use_rag, model)
 
+    # 5. Guardrail: Output Control
+    if not bypass_guardrails:
+        _, answer = guardrails.validate_output(answer, context_chunks, use_rag)
+        guardrail_status["output_control"] = "PASS"
+
     elapsed_ms = round((time.time() - start_time) * 1000, 2)
 
     return QueryResponse(
@@ -877,7 +966,8 @@ def handle_query(req: QueryRequest):
             "gateway": True,
             "rag_service": check_rag_status(),
             "ollama_service": ollama_ok
-        }
+        },
+        guardrail_status=guardrail_status
     )
 
 

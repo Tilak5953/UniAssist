@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-09-23T01:41:12Z",
+  "total_tests": 8,
+  "passed_tests": 8,
+  "failed_tests": 0,
+  "pass_rate_pct": 100.0,
+  "test_cases": [
+    {
+      "test_id": "TEST-01",
+      "test_name": "Answer Relevance to Question",
+      "expected_behavior": "Answer directly addresses the 75% statutory attendance requirement.",
+      "actual_output": "according to **bml munjal university \u2013 student attendance policy & condonation rules** [1. statutory attendance requirem...",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-02",
+      "test_name": "Answer Grounding in Retrieved Context",
+      "expected_behavior": "Answer asserts 750 regular backlog fee and cites official examination policy document.",
+      "actual_output": "Answer: According to **BML Munjal University \u2013 Semester Examination Policy & Guidelines*... | Citations: 3 chunks",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-03",
+      "test_name": "Absence of Unsupported or Hallucinated Claims",
+      "expected_behavior": "Answer identifies the 1,200 condonation fine without hallucinating unsupported amounts.",
+      "actual_output": "According to **BML Munjal University \u2013 Student Attendance Policy & Condonation Rules** [2. Categorie...",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-04",
+      "test_name": "Expected Response Format & Structure Adherence",
+      "expected_behavior": "Structured response without raw prompt leakage, mentioning examination hall timing rules.",
+      "actual_output": "According to **BML Munjal University \u2013 Semester Examination Policy & Guidelines** [3. Admit Card & Examination...",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-05",
+      "test_name": "Answers When Sufficient Information is Available",
+      "expected_behavior": "Provides complete answer regarding 800 re-evaluation fee when policy context is present.",
+      "actual_output": "According to **BML Munjal University \u2013 Semester Examination Policy & Guidelines** [5. Re-Evaluation ...",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-06",
+      "test_name": "Appropriately Refuses When Information is Unavailable",
+      "expected_behavior": "Politely states sufficient official policy information is unavailable in the knowledge base.",
+      "actual_output": "**[Insufficient Information]** I cannot find sufficient official university policy information in our knowledge base to ...",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-07",
+      "test_name": "Rejects Out-of-Scope Non-University Questions",
+      "expected_behavior": "Rejects non-academic cooking query with standard university assistant referral.",
+      "actual_output": "**[Scope Alert]** UniAssist is an academic knowledge assistant for BML Munjal University regulations, policies...",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-08",
+      "test_name": "Handles Excessively Long / Invalid Inputs Correctly",
+      "expected_behavior": "Blocks input exceeding 1,000 characters with an informative [Input Error] notice.",
+      "actual_output": "**[Input Error]** Input exceeds maximum allowed length of 1000 characters (received 2116 chars). Please shorte...",
+      "status": "PASS",
+      "failure_detail": null
+    }
+  ]
+}
