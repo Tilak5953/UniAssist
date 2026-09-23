@@ -208,7 +208,7 @@ class GuardrailsEngine:
             "what", "which", "where", "when", "does", "have", "with", "from", "that", "this",
             "about", "would", "should", "could", "there", "their", "university", "policy",
             "student", "students", "campus", "located", "location", "rules", "guidelines",
-            "regulations", "official", "information", "details"
+            "regulations", "official", "information", "details", "how", "much"
         }
         core_query_tokens = q_tokens - common_stop
 
@@ -217,13 +217,16 @@ class GuardrailsEngine:
         overlap_tokens = {t for t in core_query_tokens if t in all_context_text}
 
         # Insufficiency trigger condition:
-        # 1. Similarity score is below empirical threshold (0.25), OR
-        # 2. Query has specific topic nouns (e.g. "astronaut", "swimming", "pool") and <40% exist in retrieved context
-        is_low_similarity = (top_score < self.retrieval_threshold)
+        # A query has genuinely insufficient context if:
+        # 1. Similarity is near zero (< 0.10), OR
+        # 2. Key query concepts are missing (< 40% topical coverage), OR
+        # 3. Both low similarity (< 0.18) and weak concept overlap (< 60%)
         topic_coverage = (len(overlap_tokens) / max(1, len(core_query_tokens))) if core_query_tokens else 1.0
-        has_insufficient_topical_overlap = (len(core_query_tokens) >= 1 and topic_coverage < 0.40)
+        is_negligible_similarity = (top_score < 0.10)
+        has_poor_topical_overlap = (len(core_query_tokens) >= 1 and topic_coverage < 0.40)
+        is_marginal_match = (top_score < 0.18 and topic_coverage < 0.60)
 
-        if is_low_similarity or has_insufficient_topical_overlap:
+        if is_negligible_similarity or has_poor_topical_overlap or is_marginal_match:
             return GuardrailResult(
                 passed=False,
                 guardrail_name="insufficient_context",

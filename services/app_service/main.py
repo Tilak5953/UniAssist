@@ -287,7 +287,7 @@ def call_rag_service(query: str, top_k: int = 3) -> List[Dict[str, Any]]:
     payload = json.dumps({"query": query, "top_k": top_k}).encode("utf-8")
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
     try:
-        with urllib.request.urlopen(req, timeout=0.4) as resp:
+        with urllib.request.urlopen(req, timeout=2.0) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             return data.get("results", [])
     except Exception as e:
