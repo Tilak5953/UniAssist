@@ -1,0 +1,19 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Private keys, certificates, & credentials
+*.pem
+*.key
+id_rsa
+uniassist-key.pem
+
+# Local virtual environment
+venv/
+env/
+.venv/
+
+# OS artifacts
+.DS_Store
+Thumbs.db

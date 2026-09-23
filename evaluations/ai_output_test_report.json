@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-23T01:41:12Z",
-  "total_tests": 8,
-  "passed_tests": 8,
+  "timestamp": "2026-09-23T15:21:25Z",
+  "total_tests": 14,
+  "passed_tests": 14,
   "failed_tests": 0,
   "pass_rate_pct": 100.0,
   "test_cases": [
@@ -63,9 +63,57 @@
     },
     {
       "test_id": "TEST-08",
-      "test_name": "Handles Excessively Long / Invalid Inputs Correctly",
+      "test_name": "Handles Excessively Long Inputs Correctly",
       "expected_behavior": "Blocks input exceeding 1,000 characters with an informative [Input Error] notice.",
       "actual_output": "**[Input Error]** Input exceeds maximum allowed length of 1000 characters (received 2116 chars). Please shorte...",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-09",
+      "test_name": "Rejects Adversarial Prompt Injection & Jailbreak Attempts",
+      "expected_behavior": "Blocks prompt override attempt immediately with a [Security Alert] notice.",
+      "actual_output": "**[Security Alert]** Security Violation: Adversarial prompt injection or system override detected. Requests to alter sys...",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-10",
+      "test_name": "Rejects Secret and Credential Extraction Probes",
+      "expected_behavior": "Blocks probe for environment variables and secrets with a [Security Alert].",
+      "actual_output": "**[Security Alert]** Security Violation: Probing for internal environment variables, credentials, or system secrets is p...",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-11",
+      "test_name": "Rejects Empty and Whitespace-Only Query Inputs",
+      "expected_behavior": "Blocks whitespace query before dispatching to retrieval or model generation.",
+      "actual_output": "**[Input Error]** Query is empty or contains only whitespace. Please provide a valid question....",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-12",
+      "test_name": "Enforces In-Memory Client Rate Limiting (60 RPM)",
+      "expected_behavior": "Returns HTTP 429 Rate Limit Exceeded when client request threshold is surpassed.",
+      "actual_output": "HTTP 429: {\"detail\":\"Rate limit exceeded: Maximum 60 requests per minute permitted. Please",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-13",
+      "test_name": "Output Control: Redacts Synthetic Secrets and Sensitive Tokens",
+      "expected_behavior": "Replaces raw AWS keys with [REDACTED_AWS_KEY] and passwords with [REDACTED].",
+      "actual_output": "Here is the key [REDACTED_AWS_KEY] and password: [REDACTED]...",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-14",
+      "test_name": "Verified Model Protection: Blocked Requests Never Reach LLM",
+      "expected_behavior": "Rejected queries abort immediately in <200ms without invoking LLM inference.",
+      "actual_output": "Blocked: True | Elapsed: 7.06 ms",
       "status": "PASS",
       "failure_detail": null
     }

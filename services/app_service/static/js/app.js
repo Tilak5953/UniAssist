@@ -422,12 +422,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const verdict = isTie ? `Near Tie: ${winner.model_name} & ${runnerUp.model_name}` : `Recommended: ${winner.model_name}`;
     const summary = isTie ?
-      `Both **${winner.model_name}** and **${runner.model_name}** perform virtually identically under the **${pLabels[newPriority]}** profile.` :
+      `Both **${winner.model_name}** and **${runnerUp.model_name}** perform virtually identically under the **${pLabels[newPriority]}** profile.` :
       `**${winner.model_name}** is the most suitable model for this question under the **${pLabels[newPriority]}** criteria.`;
 
     const evidenceParts = [];
     if (hasAccuracy && winner.accuracy && winner.accuracy.score !== null) {
-      evidenceParts.append = `achieved ${winner.accuracy.score}% verified accuracy`;
       evidenceParts.push(`achieved ${winner.accuracy.score}% accuracy against official university ground truth`);
     } else {
       evidenceParts.push(`delivered ${winner.relevance.score}% topical relevance`);
