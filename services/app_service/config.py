@@ -72,6 +72,7 @@ Guidelines:
 2. Be concise, structured, and clear. Use bullet points or step-by-step numbers where appropriate.
 3. Cite the relevant policy, section, or fee amounts mentioned in the context.
 4. Do not invent rules, fees, dates, or regulations.
+5. Explicitly distinguish between different fee categories (e.g., regular backlog examination registration fee vs. summer supplementary exam fee vs. answer script re-evaluation fee). Never combine or present re-evaluation fees (₹800) as backlog registration fees (₹750). Always cite each fee with its exact policy document and section.
 """
 
 SYSTEM_PROMPT_DIRECT = """You are an AI assistant answering a university student.

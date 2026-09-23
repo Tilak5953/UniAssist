@@ -1,5 +1,7 @@
 import sys
 import os
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 import re
 import csv
 import json
@@ -280,7 +282,7 @@ def run_week4_evaluation():
         for mid, metrics in category_summary[cat].items():
             acc_str = f"{metrics['accuracy_pct']}%" if metrics['accuracy_pct'] is not None else "N/A"
             rel_str = f"{metrics['relevance_pct']}%" if metrics['relevance_pct'] is not None else "N/A"
-            code_str = f"{metrics['code_test_pass_rate_pct']}%" if metrics['code_test_pass_rate_pct'] is not None else "—"
+            code_str = f"{metrics['code_test_pass_rate_pct']}%" if metrics['code_test_pass_rate_pct'] is not None else "N/A"
             lat_str = f"{metrics['avg_latency_ms']} ms" if metrics['avg_latency_ms'] is not None else "Timeout"
             ram_str = f"{metrics['ram_mb']} MB"
             status_str = metrics["status"]

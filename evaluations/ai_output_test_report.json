@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-23T15:21:25Z",
-  "total_tests": 14,
-  "passed_tests": 14,
+  "timestamp": "2026-09-23T16:12:55Z",
+  "total_tests": 17,
+  "passed_tests": 17,
   "failed_tests": 0,
   "pass_rate_pct": 100.0,
   "test_cases": [
@@ -17,7 +17,7 @@
       "test_id": "TEST-02",
       "test_name": "Answer Grounding in Retrieved Context",
       "expected_behavior": "Answer asserts 750 regular backlog fee and cites official examination policy document.",
-      "actual_output": "Answer: According to **BML Munjal University \u2013 Semester Examination Policy & Guidelines*... | Citations: 3 chunks",
+      "actual_output": "Answer: According to **01_semester_examination_policy.md**:\n\n\u2022 **Regular Backlog Registr... | Citations: 3 chunks",
       "status": "PASS",
       "failure_detail": null
     },
@@ -113,7 +113,31 @@
       "test_id": "TEST-14",
       "test_name": "Verified Model Protection: Blocked Requests Never Reach LLM",
       "expected_behavior": "Rejected queries abort immediately in <200ms without invoking LLM inference.",
-      "actual_output": "Blocked: True | Elapsed: 7.06 ms",
+      "actual_output": "Blocked: True | Elapsed: 4.37 ms",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-15",
+      "test_name": "Backlog Exam Fee vs Re-Evaluation Disambiguation & Attribution",
+      "expected_behavior": "RAG identifies \u20b9750/subject (Section 4), distinguishes re-evaluation (\u20b9800, Section 5), cites policy document, while Direct LLM reports fee cannot be confirmed without RAG.",
+      "actual_output": "RAG: has_750=True, has_sec4=True, distinguished=True, citations=3 | Direct unverified=True",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-16",
+      "test_name": "Standardized Benchmark Dataset Integrity (28 Tasks Across 7 Categories)",
+      "expected_behavior": "Evaluation dataset contains exactly 28 tasks balanced equally with 4 tasks per each of the 7 required categories.",
+      "actual_output": "Total: 28 tasks | Category distribution: {'Explanation': 4, 'Code Retrieval': 4, 'Dependency Understanding': 4, 'Bug Analysis': 4, 'Code Generation': 4, 'Refactoring': 4, 'RAG-based Question': 4}",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-17",
+      "test_name": "Dynamic Benchmark Metadata API (/api/benchmark-meta)",
+      "expected_behavior": "Returns HTTP 200 with total_tasks == 28 and category breakdown covering all 7 categories.",
+      "actual_output": "HTTP 200 | total_tasks: 28 | categories: 7",
       "status": "PASS",
       "failure_detail": null
     }

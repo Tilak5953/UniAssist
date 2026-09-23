@@ -316,9 +316,98 @@ class AIOutputTestSuite:
             failure_detail=f"Blocked request took too long ({elapsed}ms), indicating possible unnecessary inference."
         )
 
+    # Test 15: Regression test for Backlog Exam Fee Disambiguation & Document Attribution
+    def test_backlog_exam_fee_disambiguation(self):
+        resp_rag = client.post("/api/ask", json={
+            "query": "How much is the backlog exam fee per subject?",
+            "use_rag": True,
+            "model": "qwen2.5:0.5b"
+        })
+        data_rag = resp_rag.json()
+        ans_rag = data_rag.get("answer", "")
+        citations = data_rag.get("citations", [])
+
+        has_750 = "750" in ans_rag
+        has_sec4 = "Section 4" in ans_rag or "4. Backlog" in ans_rag
+        # Must clearly distinguish that 800 is for re-evaluation, NOT for backlog registration
+        re_eval_distinguished = ("800" not in ans_rag) or ("re-evaluation" in ans_rag.lower() and "750" in ans_rag)
+        has_doc_citation = any("01_semester_examination_policy.md" in c.get("source_file", "") for c in citations)
+
+        # Direct LLM Query (no RAG)
+        resp_direct = client.post("/api/ask", json={
+            "query": "How much is the backlog exam fee per subject?",
+            "use_rag": False,
+            "model": "qwen2.5:0.5b"
+        })
+        data_direct = resp_direct.json()
+        ans_direct = data_direct.get("answer", "")
+        direct_reports_unverified = "cannot be confirmed" in ans_direct.lower() or "unverified" in ans_direct.lower() or "notice" in ans_direct.lower()
+
+        passed = has_750 and has_sec4 and re_eval_distinguished and has_doc_citation and direct_reports_unverified
+        self.log_test(
+            test_id="TEST-15",
+            name="Backlog Exam Fee vs Re-Evaluation Disambiguation & Attribution",
+            expected="RAG identifies ₹750/subject (Section 4), distinguishes re-evaluation (₹800, Section 5), cites policy document, while Direct LLM reports fee cannot be confirmed without RAG.",
+            actual=f"RAG: has_750={has_750}, has_sec4={has_sec4}, distinguished={re_eval_distinguished}, citations={len(citations)} | Direct unverified={direct_reports_unverified}",
+            passed=passed,
+            failure_detail=f"Failed fee disambiguation check. RAG answer: {ans_rag[:160]}... Direct answer: {ans_direct[:100]}..."
+        )
+
+    # Test 16: Benchmark Dataset Integrity Test (28 Tasks Across 7 Categories)
+    def test_benchmark_dataset_integrity(self):
+        from main import load_evaluation_dataset
+        dataset = load_evaluation_dataset()
+        total_count = len(dataset)
+        is_28 = (total_count == 28)
+
+        required_categories = [
+            "Explanation",
+            "Code Retrieval",
+            "Dependency Understanding",
+            "Bug Analysis",
+            "Code Generation",
+            "Refactoring",
+            "RAG-based Question"
+        ]
+        cat_counts = {}
+        for t in dataset:
+            c = t.get("category")
+            cat_counts[c] = cat_counts.get(c, 0) + 1
+
+        all_7_present = all(c in cat_counts for c in required_categories)
+        balanced = all(cat_counts.get(c, 0) == 4 for c in required_categories)
+        passed = is_28 and all_7_present and balanced
+
+        self.log_test(
+            test_id="TEST-16",
+            name="Standardized Benchmark Dataset Integrity (28 Tasks Across 7 Categories)",
+            expected="Evaluation dataset contains exactly 28 tasks balanced equally with 4 tasks per each of the 7 required categories.",
+            actual=f"Total: {total_count} tasks | Category distribution: {cat_counts}",
+            passed=passed,
+            failure_detail=f"Dataset mismatch: expected 28 tasks (4 per 7 categories), got {total_count} with distribution {cat_counts}"
+        )
+
+    # Test 17: Benchmark Metadata Endpoint Test
+    def test_benchmark_meta_api(self):
+        resp = client.get("/api/benchmark-meta")
+        passed_status = (resp.status_code == 200)
+        data = resp.json()
+        total_tasks = data.get("total_tasks")
+        cats = data.get("categories", {})
+        passed = passed_status and (total_tasks == 28) and (len(cats) == 7)
+
+        self.log_test(
+            test_id="TEST-17",
+            name="Dynamic Benchmark Metadata API (/api/benchmark-meta)",
+            expected="Returns HTTP 200 with total_tasks == 28 and category breakdown covering all 7 categories.",
+            actual=f"HTTP {resp.status_code} | total_tasks: {total_tasks} | categories: {len(cats)}",
+            passed=passed,
+            failure_detail=f"Benchmark metadata endpoint returned unexpected payload: {data}"
+        )
+
     def run_all(self) -> Dict[str, Any]:
         print("================================================================")
-        print("UniAssist AI Output Systematic Testing Suite (Tasks 1-14)")
+        print("UniAssist AI Output Systematic Testing Suite (Tasks 1-17)")
         print("Deterministic PASS/FAIL Output Checks (Week 4 Quality Gate)")
         print("================================================================\n")
 
@@ -336,6 +425,9 @@ class AIOutputTestSuite:
         self.test_rate_limiting()
         self.test_output_control_redaction()
         self.test_model_bypass_on_guardrail_block()
+        self.test_backlog_exam_fee_disambiguation()
+        self.test_benchmark_dataset_integrity()
+        self.test_benchmark_meta_api()
 
         total = len(self.results)
         passed_count = sum(1 for r in self.results if r["status"] == "PASS")

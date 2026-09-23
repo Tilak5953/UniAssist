@@ -881,8 +881,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  async function loadBenchmarkMeta() {
+    try {
+      const res = await fetch('/api/benchmark-meta');
+      if (res.ok) {
+        const data = await res.json();
+        const countSpan = document.getElementById('eval-dataset-count');
+        if (countSpan && data.total_tasks) {
+          countSpan.textContent = data.total_tasks;
+        }
+      }
+    } catch (e) {
+      console.warn('Could not load benchmark metadata:', e);
+    }
+  }
+
   if (btnOpenEval && evalModal) {
-    btnOpenEval.addEventListener('click', () => evalModal.classList.add('active'));
+    btnOpenEval.addEventListener('click', () => {
+      loadBenchmarkMeta();
+      evalModal.classList.add('active');
+    });
   }
   if (btnCloseEvalModal && evalModal) {
     btnCloseEvalModal.addEventListener('click', () => evalModal.classList.remove('active'));
@@ -931,6 +949,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ollamaStatusLabel.textContent = 'Standby (Simulation Active)';
             ollamaStatusBadge.querySelector('.pulse-dot').className = 'pulse-dot warning';
           }
+        }
+        if (s.dataset_tasks) {
+          const countSpan = document.getElementById('eval-dataset-count');
+          if (countSpan) countSpan.textContent = s.dataset_tasks;
         }
       }
     } catch (e) {

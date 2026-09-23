@@ -3,208 +3,578 @@
     "id": "EXP-01",
     "category": "Explanation",
     "task": "Explain how the 10-point letter grading scale converts to grade points and how SGPA is calculated.",
-    "expected_concepts": ["10-point", "grade point", "credit", "SGPA", "weighted average"],
-    "ground_truth": "The 10-point grading system assigns letter grades (O=10, A+=9, A=8, B+=7, B=6, C=5, P=4, F=0). SGPA is computed as the sum of (Course Credits * Grade Points) divided by the total semester registered credits."
+    "expected_concepts": [
+      "10-point",
+      "grade point",
+      "credit",
+      "SGPA",
+      "weighted average"
+    ],
+    "ground_truth": "The 10-point grading system assigns letter grades (O=10, A+=9, A=8, B+=7, B=6, C=5, P=4, F=0). SGPA is computed as the sum of (Course Credits * Grade Points) divided by the total semester registered credits.",
+    "question": "Explain how the 10-point letter grading scale converts to grade points and how SGPA is calculated.",
+    "required_facts": [
+      "10-point",
+      "grade point",
+      "credit",
+      "SGPA",
+      "weighted average"
+    ]
   },
   {
     "id": "EXP-02",
     "category": "Explanation",
     "task": "Explain how dense vector embeddings and cosine similarity enable semantic retrieval in UniAssist.",
-    "expected_concepts": ["embedding", "vector", "cosine similarity", "dot product", "semantic"],
-    "ground_truth": "Dense embeddings project text chunks into 256-dimensional numerical vector space. Cosine similarity calculates the cosine of the angle between query and document vectors (dot product normalized by vector magnitudes), retrieving semantically relevant chunks even with differing vocabulary."
+    "expected_concepts": [
+      "embedding",
+      "vector",
+      "cosine similarity",
+      "dot product",
+      "semantic"
+    ],
+    "ground_truth": "Dense embeddings project text chunks into 256-dimensional numerical vector space. Cosine similarity calculates the cosine of the angle between query and document vectors (dot product normalized by vector magnitudes), retrieving semantically relevant chunks even with differing vocabulary.",
+    "question": "Explain how dense vector embeddings and cosine similarity enable semantic retrieval in UniAssist.",
+    "required_facts": [
+      "embedding",
+      "vector",
+      "cosine similarity",
+      "dot product",
+      "semantic"
+    ]
   },
   {
     "id": "EXP-03",
     "category": "Explanation",
     "task": "Explain the official university formula used to convert CGPA to equivalent percentage and the minimum passing criteria.",
-    "expected_concepts": ["CGPA - 0.75", "10", "percentage", "40%", "passing"],
-    "ground_truth": "The equivalent percentage is calculated using the official formula: Equivalent Percentage = (CGPA - 0.75) * 10. The minimum passing criteria requires at least 40% in Continuous Internal Assessment (CIA) and 40% in End-Semester Examinations (ESE) with a minimum overall grade of P (grade point 4)."
+    "expected_concepts": [
+      "CGPA - 0.75",
+      "10",
+      "percentage",
+      "40%",
+      "passing"
+    ],
+    "ground_truth": "The equivalent percentage is calculated using the official formula: Equivalent Percentage = (CGPA - 0.75) * 10. The minimum passing criteria requires at least 40% in Continuous Internal Assessment (CIA) and 40% in End-Semester Examinations (ESE) with a minimum overall grade of P (grade point 4).",
+    "question": "Explain the official university formula used to convert CGPA to equivalent percentage and the minimum passing criteria.",
+    "required_facts": [
+      "CGPA - 0.75",
+      "10",
+      "percentage",
+      "40%",
+      "passing"
+    ]
   },
   {
     "id": "EXP-04",
     "category": "Explanation",
     "task": "Explain how sliding window chunking works in UniAssist and why chunk overlap is essential for retrieval quality.",
-    "expected_concepts": ["sliding window", "chunk_size", "chunk_overlap", "boundary", "context"],
-    "ground_truth": "The DocumentChunker segments text into fixed character windows (default 600 characters) with a step forward of (chunk_size - chunk_overlap, default 120 characters). The overlap ensures that sentences, definitions, or regulatory clauses spanning chunk boundaries are not split in half, preserving semantic continuity during retrieval."
+    "expected_concepts": [
+      "sliding window",
+      "chunk_size",
+      "chunk_overlap",
+      "boundary",
+      "context"
+    ],
+    "ground_truth": "The DocumentChunker segments text into fixed character windows (default 600 characters) with a step forward of (chunk_size - chunk_overlap, default 120 characters). The overlap ensures that sentences, definitions, or regulatory clauses spanning chunk boundaries are not split in half, preserving semantic continuity during retrieval.",
+    "question": "Explain how sliding window chunking works in UniAssist and why chunk overlap is essential for retrieval quality.",
+    "required_facts": [
+      "sliding window",
+      "chunk_size",
+      "chunk_overlap",
+      "boundary",
+      "context"
+    ]
   },
   {
     "id": "RET-01",
     "category": "Code Retrieval",
     "task": "Identify which function and file in the codebase performs sliding window text chunking with overlap.",
-    "expected_concepts": ["DocumentChunker", "chunk_text_sliding_window", "chunking.py", "chunk_size", "chunk_overlap"],
-    "ground_truth": "The chunk_text_sliding_window method inside the DocumentChunker class in services/rag_service/chunking.py."
+    "expected_concepts": [
+      "DocumentChunker",
+      "chunk_text_sliding_window",
+      "chunking.py",
+      "chunk_size",
+      "chunk_overlap"
+    ],
+    "ground_truth": "The chunk_text_sliding_window method inside the DocumentChunker class in services/rag_service/chunking.py.",
+    "question": "Identify which function and file in the codebase performs sliding window text chunking with overlap.",
+    "required_facts": [
+      "DocumentChunker",
+      "chunk_text_sliding_window",
+      "chunking.py",
+      "chunk_size",
+      "chunk_overlap"
+    ]
   },
   {
     "id": "RET-02",
     "category": "Code Retrieval",
     "task": "Which module and function implements cosine similarity calculation between two float vectors in UniAssist?",
-    "expected_concepts": ["cosine_similarity", "vector_store.py", "norm", "dot product"],
-    "ground_truth": "The cosine_similarity function in services/rag_service/vector_store.py."
+    "expected_concepts": [
+      "cosine_similarity",
+      "vector_store.py",
+      "norm",
+      "dot product"
+    ],
+    "ground_truth": "The cosine_similarity function in services/rag_service/vector_store.py.",
+    "question": "Which module and function implements cosine similarity calculation between two float vectors in UniAssist?",
+    "required_facts": [
+      "cosine_similarity",
+      "vector_store.py",
+      "norm",
+      "dot product"
+    ]
   },
   {
     "id": "RET-03",
     "category": "Code Retrieval",
     "task": "Which FastAPI router endpoint and handler function in app_service performs question-specific multi-model live evaluation?",
-    "expected_concepts": ["/api/compare-models", "compare_models", "CompareModelsRequest", "main.py"],
-    "ground_truth": "The @app.post('/api/compare-models') route handler function compare_models in services/app_service/main.py."
+    "expected_concepts": [
+      "/api/compare-models",
+      "compare_models",
+      "CompareModelsRequest",
+      "main.py"
+    ],
+    "ground_truth": "The @app.post('/api/compare-models') route handler function compare_models in services/app_service/main.py.",
+    "question": "Which FastAPI router endpoint and handler function in app_service performs question-specific multi-model live evaluation?",
+    "required_facts": [
+      "/api/compare-models",
+      "compare_models",
+      "CompareModelsRequest",
+      "main.py"
+    ]
   },
   {
     "id": "RET-04",
     "category": "Code Retrieval",
     "task": "Which class and methods in the RAG service manage persistent storage and disk re-loading of indexed vector embeddings?",
-    "expected_concepts": ["VectorStore", "save_to_disk", "load_from_disk", "vector_store.py"],
-    "ground_truth": "The VectorStore class with its save_to_disk and load_from_disk methods in services/rag_service/vector_store.py."
+    "expected_concepts": [
+      "VectorStore",
+      "save_to_disk",
+      "load_from_disk",
+      "vector_store.py"
+    ],
+    "ground_truth": "The VectorStore class with its save_to_disk and load_from_disk methods in services/rag_service/vector_store.py.",
+    "question": "Which class and methods in the RAG service manage persistent storage and disk re-loading of indexed vector embeddings?",
+    "required_facts": [
+      "VectorStore",
+      "save_to_disk",
+      "load_from_disk",
+      "vector_store.py"
+    ]
   },
   {
     "id": "DEP-01",
     "category": "Dependency Understanding",
     "task": "Explain the architectural dependency chain when a student submits a question to UniAssist.",
-    "expected_concepts": ["app-service", "rag-service", "ollama-service", "gateway", "retrieval"],
-    "ground_truth": "The student browser communicates with the Application Gateway (app-service on port 8000), which queries the RAG Service (rag-service on port 8001) for context chunks, constructs the grounded prompt, and dispatches it to the Ollama LLM Inference Engine (ollama-service on port 11434)."
+    "expected_concepts": [
+      "app-service",
+      "rag-service",
+      "ollama-service",
+      "gateway",
+      "retrieval"
+    ],
+    "ground_truth": "The student browser communicates with the Application Gateway (app-service on port 8000), which queries the RAG Service (rag-service on port 8001) for context chunks, constructs the grounded prompt, and dispatches it to the Ollama LLM Inference Engine (ollama-service on port 11434).",
+    "question": "Explain the architectural dependency chain when a student submits a question to UniAssist.",
+    "required_facts": [
+      "app-service",
+      "rag-service",
+      "ollama-service",
+      "gateway",
+      "retrieval"
+    ]
   },
   {
     "id": "DEP-02",
     "category": "Dependency Understanding",
     "task": "How do the Docker containers communicate internally, and what persistent storage volumes are mounted?",
-    "expected_concepts": ["uniassist-net", "bridge", "ollama_data", "rag_data", "knowledge_base"],
-    "ground_truth": "Containers communicate over the private Docker bridge network 'uniassist-net'. Persistent data is preserved via 'ollama_data' for model weights, 'rag_data' for the vector index, and a read-only bind mount for 'knowledge_base'."
+    "expected_concepts": [
+      "uniassist-net",
+      "bridge",
+      "ollama_data",
+      "rag_data",
+      "knowledge_base"
+    ],
+    "ground_truth": "Containers communicate over the private Docker bridge network 'uniassist-net'. Persistent data is preserved via 'ollama_data' for model weights, 'rag_data' for the vector index, and a read-only bind mount for 'knowledge_base'.",
+    "question": "How do the Docker containers communicate internally, and what persistent storage volumes are mounted?",
+    "required_facts": [
+      "uniassist-net",
+      "bridge",
+      "ollama_data",
+      "rag_data",
+      "knowledge_base"
+    ]
   },
   {
     "id": "DEP-03",
     "category": "Dependency Understanding",
     "task": "What Docker environment variables and resource constraints are set on Ollama to prevent RAM exhaustion on a 2GB EC2 host?",
-    "expected_concepts": ["OLLAMA_MAX_LOADED_MODELS=1", "OLLAMA_KEEP_ALIVE=0", "OLLAMA_NUM_PARALLEL=1", "memory limit"],
-    "ground_truth": "In docker-compose.yml, ollama-service is configured with OLLAMA_MAX_LOADED_MODELS=1 to unload idle weights, OLLAMA_KEEP_ALIVE=0 to release VRAM immediately after inference, OLLAMA_NUM_PARALLEL=1 to block concurrent memory thrashing, and a Docker container memory limit of 1500M."
+    "expected_concepts": [
+      "OLLAMA_MAX_LOADED_MODELS=1",
+      "OLLAMA_KEEP_ALIVE=0",
+      "OLLAMA_NUM_PARALLEL=1",
+      "memory limit"
+    ],
+    "ground_truth": "In docker-compose.yml, ollama-service is configured with OLLAMA_MAX_LOADED_MODELS=1 to unload idle weights, OLLAMA_KEEP_ALIVE=0 to release VRAM immediately after inference, OLLAMA_NUM_PARALLEL=1 to block concurrent memory thrashing, and a Docker container memory limit of 1500M.",
+    "question": "What Docker environment variables and resource constraints are set on Ollama to prevent RAM exhaustion on a 2GB EC2 host?",
+    "required_facts": [
+      "OLLAMA_MAX_LOADED_MODELS=1",
+      "OLLAMA_KEEP_ALIVE=0",
+      "OLLAMA_NUM_PARALLEL=1",
+      "memory limit"
+    ]
   },
   {
     "id": "DEP-04",
     "category": "Dependency Understanding",
     "task": "How does the UniAssist Gateway handle high availability and service failure if the Ollama container is offline or unreachable?",
-    "expected_concepts": ["fallback", "generate_fallback_simulation", "check_ollama_status", "graceful degradation"],
-    "ground_truth": "The Gateway implements check_ollama_status() with a 1.5s timeout. If Ollama is offline or fails, the Gateway gracefully falls back to generate_fallback_simulation(), combining retrieved vector knowledge with deterministic model calibration without throwing HTTP 500 errors to the user."
+    "expected_concepts": [
+      "fallback",
+      "generate_fallback_simulation",
+      "check_ollama_status",
+      "graceful degradation"
+    ],
+    "ground_truth": "The Gateway implements check_ollama_status() with a 1.5s timeout. If Ollama is offline or fails, the Gateway gracefully falls back to generate_fallback_simulation(), combining retrieved vector knowledge with deterministic model calibration without throwing HTTP 500 errors to the user.",
+    "question": "How does the UniAssist Gateway handle high availability and service failure if the Ollama container is offline or unreachable?",
+    "required_facts": [
+      "fallback",
+      "generate_fallback_simulation",
+      "check_ollama_status",
+      "graceful degradation"
+    ]
   },
   {
     "id": "BUG-01",
     "category": "Bug Analysis",
     "task": "Analyze the following Python snippet for a potential runtime bug:\n\ndef calculate_sgpa(grades, credits):\n    total_points = sum(g * c for g, c in zip(grades, credits))\n    return total_points / sum(credits)\n",
-    "expected_concepts": ["ZeroDivisionError", "division by zero", "empty", "sum(credits) == 0"],
+    "expected_concepts": [
+      "ZeroDivisionError",
+      "division by zero",
+      "empty",
+      "sum(credits) == 0"
+    ],
     "ground_truth": "If the credits list is empty or sum(credits) is 0, the function will raise a ZeroDivisionError. It must validate that sum(credits) > 0 before division.",
-    "test_code": "def calculate_sgpa(grades, credits):\n    if not credits or sum(credits) == 0:\n        return 0.0\n    total_points = sum(g * c for g, c in zip(grades, credits))\n    return total_points / sum(credits)\nassert calculate_sgpa([], []) == 0.0\nassert calculate_sgpa([8, 9], [0, 0]) == 0.0\nassert calculate_sgpa([10, 8], [4, 4]) == 9.0"
+    "test_code": "def calculate_sgpa(grades, credits):\n    if not credits or sum(credits) == 0:\n        return 0.0\n    total_points = sum(g * c for g, c in zip(grades, credits))\n    return total_points / sum(credits)\nassert calculate_sgpa([], []) == 0.0\nassert calculate_sgpa([8, 9], [0, 0]) == 0.0\nassert calculate_sgpa([10, 8], [4, 4]) == 9.0",
+    "question": "Analyze the following Python snippet for a potential runtime bug:\n\ndef calculate_sgpa(grades, credits):\n    total_points = sum(g * c for g, c in zip(grades, credits))\n    return total_points / sum(credits)\n",
+    "required_facts": [
+      "ZeroDivisionError",
+      "division by zero",
+      "empty",
+      "sum(credits) == 0"
+    ]
   },
   {
     "id": "BUG-02",
     "category": "Bug Analysis",
     "task": "Analyze this condonation eligibility snippet for a logic bug:\n\ndef is_eligible_condonation(attendance_pct):\n    if attendance_pct >= 65:\n        return True\n    return False\n",
-    "expected_concepts": ["upper bound", "75%", "74.9", "already eligible", "bracket"],
+    "expected_concepts": [
+      "upper bound",
+      "75%",
+      "74.9",
+      "already eligible",
+      "bracket"
+    ],
     "ground_truth": "The function fails to check the upper boundary (< 75%). Students with 75% or higher attendance do not require condonation as they already meet the statutory threshold. Condonation applies specifically to the 65% to 74.9% bracket.",
-    "test_code": "def is_eligible_condonation(attendance_pct):\n    return 65.0 <= attendance_pct < 75.0\nassert is_eligible_condonation(80.0) == False\nassert is_eligible_condonation(70.0) == True\nassert is_eligible_condonation(60.0) == False"
+    "test_code": "def is_eligible_condonation(attendance_pct):\n    return 65.0 <= attendance_pct < 75.0\nassert is_eligible_condonation(80.0) == False\nassert is_eligible_condonation(70.0) == True\nassert is_eligible_condonation(60.0) == False",
+    "question": "Analyze this condonation eligibility snippet for a logic bug:\n\ndef is_eligible_condonation(attendance_pct):\n    if attendance_pct >= 65:\n        return True\n    return False\n",
+    "required_facts": [
+      "upper bound",
+      "75%",
+      "74.9",
+      "already eligible",
+      "bracket"
+    ]
   },
   {
     "id": "BUG-03",
     "category": "Bug Analysis",
     "task": "Analyze this late tuition fee calculation for an escalation bug:\n\ndef calculate_late_fine(days_late):\n    return days_late * 100\n",
-    "expected_concepts": ["escalation", "15 days", "250", "tier", "fine"],
+    "expected_concepts": [
+      "escalation",
+      "15 days",
+      "250",
+      "tier",
+      "fine"
+    ],
     "ground_truth": "The policy mandates ₹100/day for the first 15 days, but escalates to ₹250/day for delays beyond 15 days (days 16 to 30). The snippet fails to implement the tiered penalty structure.",
-    "test_code": "def calculate_late_fine(days_late):\n    if days_late <= 0: return 0\n    if days_late <= 15: return days_late * 100\n    return (15 * 100) + ((days_late - 15) * 250)\nassert calculate_late_fine(10) == 1000\nassert calculate_late_fine(20) == 2750"
+    "test_code": "def calculate_late_fine(days_late):\n    if days_late <= 0: return 0\n    if days_late <= 15: return days_late * 100\n    return (15 * 100) + ((days_late - 15) * 250)\nassert calculate_late_fine(10) == 1000\nassert calculate_late_fine(20) == 2750",
+    "question": "Analyze this late tuition fee calculation for an escalation bug:\n\ndef calculate_late_fine(days_late):\n    return days_late * 100\n",
+    "required_facts": [
+      "escalation",
+      "15 days",
+      "250",
+      "tier",
+      "fine"
+    ]
   },
   {
     "id": "BUG-04",
     "category": "Bug Analysis",
     "task": "Identify the Python anti-pattern and bug in this disciplinary incident logger:\n\ndef record_violation(student_id, violations=[]):\n    violations.append('Late Curfew')\n    return violations\n",
-    "expected_concepts": ["mutable default argument", "shared list", "persistent state", "None"],
+    "expected_concepts": [
+      "mutable default argument",
+      "shared list",
+      "persistent state",
+      "None"
+    ],
     "ground_truth": "Using a mutable default argument (violations=[]) causes the list to be shared across all function calls. Violations from one student will persist and leak into subsequent student calls. It should default to None and initialize a new list inside.",
-    "test_code": "def record_violation(student_id, violations=None):\n    if violations is None: violations = []\n    violations.append('Late Curfew')\n    return violations\na = record_violation('S1')\nb = record_violation('S2')\nassert len(a) == 1 and len(b) == 1"
+    "test_code": "def record_violation(student_id, violations=None):\n    if violations is None: violations = []\n    violations.append('Late Curfew')\n    return violations\na = record_violation('S1')\nb = record_violation('S2')\nassert len(a) == 1 and len(b) == 1",
+    "question": "Identify the Python anti-pattern and bug in this disciplinary incident logger:\n\ndef record_violation(student_id, violations=[]):\n    violations.append('Late Curfew')\n    return violations\n",
+    "required_facts": [
+      "mutable default argument",
+      "shared list",
+      "persistent state",
+      "None"
+    ]
   },
   {
     "id": "GEN-01",
     "category": "Code Generation",
     "task": "Write a Python function `check_exam_eligibility(attendance_pct, has_medical_cert)` that implements university attendance rules: >=75% eligible, 65-74.9% eligible only with condonation/medical certificate (fee: 1200), <65% debarred.",
-    "expected_concepts": ["def check_exam_eligibility", "75", "65", "return"],
+    "expected_concepts": [
+      "def check_exam_eligibility",
+      "75",
+      "65",
+      "return"
+    ],
     "ground_truth": "def check_exam_eligibility(attendance_pct, has_medical_cert):\n    if attendance_pct >= 75.0:\n        return {'status': 'Eligible', 'fee': 0}\n    elif 65.0 <= attendance_pct < 75.0 and has_medical_cert:\n        return {'status': 'Condonation Granted', 'fee': 1200}\n    else:\n        return {'status': 'Debarred', 'fee': 0}",
-    "test_code": "assert check_exam_eligibility(80.0, False) == {'status': 'Eligible', 'fee': 0}\nassert check_exam_eligibility(70.0, True) == {'status': 'Condonation Granted', 'fee': 1200}\nassert check_exam_eligibility(70.0, False) == {'status': 'Debarred', 'fee': 0}\nassert check_exam_eligibility(55.0, True) == {'status': 'Debarred', 'fee': 0}"
+    "test_code": "assert check_exam_eligibility(80.0, False) == {'status': 'Eligible', 'fee': 0}\nassert check_exam_eligibility(70.0, True) == {'status': 'Condonation Granted', 'fee': 1200}\nassert check_exam_eligibility(70.0, False) == {'status': 'Debarred', 'fee': 0}\nassert check_exam_eligibility(55.0, True) == {'status': 'Debarred', 'fee': 0}",
+    "question": "Write a Python function `check_exam_eligibility(attendance_pct, has_medical_cert)` that implements university attendance rules: >=75% eligible, 65-74.9% eligible only with condonation/medical certificate (fee: 1200), <65% debarred.",
+    "required_facts": [
+      "def check_exam_eligibility",
+      "75",
+      "65",
+      "return"
+    ]
   },
   {
     "id": "GEN-02",
     "category": "Code Generation",
     "task": "Write a Python function `calculate_backlog_fee(regular_subjects, summer_subjects)` where regular backlog is ₹750 per subject and summer supplementary is ₹1500 per subject.",
-    "expected_concepts": ["def calculate_backlog_fee", "750", "1500", "return"],
+    "expected_concepts": [
+      "def calculate_backlog_fee",
+      "750",
+      "1500",
+      "return"
+    ],
     "ground_truth": "def calculate_backlog_fee(regular_subjects, summer_subjects):\n    return (regular_subjects * 750) + (summer_subjects * 1500)",
-    "test_code": "assert calculate_backlog_fee(2, 1) == 3000\nassert calculate_backlog_fee(0, 0) == 0\nassert calculate_backlog_fee(3, 0) == 2250\nassert calculate_backlog_fee(0, 2) == 3000"
+    "test_code": "assert calculate_backlog_fee(2, 1) == 3000\nassert calculate_backlog_fee(0, 0) == 0\nassert calculate_backlog_fee(3, 0) == 2250\nassert calculate_backlog_fee(0, 2) == 3000",
+    "question": "Write a Python function `calculate_backlog_fee(regular_subjects, summer_subjects)` where regular backlog is ₹750 per subject and summer supplementary is ₹1500 per subject.",
+    "required_facts": [
+      "def calculate_backlog_fee",
+      "750",
+      "1500",
+      "return"
+    ]
   },
   {
     "id": "GEN-03",
     "category": "Code Generation",
     "task": "Write a Python function `convert_cgpa_to_percentage(cgpa)` implementing the official formula: (CGPA - 0.75) * 10, rounded to 2 decimal places.",
-    "expected_concepts": ["def convert_cgpa_to_percentage", "0.75", "10", "round"],
+    "expected_concepts": [
+      "def convert_cgpa_to_percentage",
+      "0.75",
+      "10",
+      "round"
+    ],
     "ground_truth": "def convert_cgpa_to_percentage(cgpa):\n    return round((cgpa - 0.75) * 10, 2)",
-    "test_code": "assert convert_cgpa_to_percentage(8.5) == 77.5\nassert convert_cgpa_to_percentage(7.0) == 62.5\nassert convert_cgpa_to_percentage(10.0) == 92.5\nassert convert_cgpa_to_percentage(5.0) == 42.5"
+    "test_code": "assert convert_cgpa_to_percentage(8.5) == 77.5\nassert convert_cgpa_to_percentage(7.0) == 62.5\nassert convert_cgpa_to_percentage(10.0) == 92.5\nassert convert_cgpa_to_percentage(5.0) == 42.5",
+    "question": "Write a Python function `convert_cgpa_to_percentage(cgpa)` implementing the official formula: (CGPA - 0.75) * 10, rounded to 2 decimal places.",
+    "required_facts": [
+      "def convert_cgpa_to_percentage",
+      "0.75",
+      "10",
+      "round"
+    ]
   },
   {
     "id": "GEN-04",
     "category": "Code Generation",
     "task": "Write a Python function `calculate_merit_scholarship(tuition_fee, batch_percentile)` where batch_percentile >= 98.0 gets 75% waiver, >= 95.0 gets 50% waiver, >= 90.0 gets 25% waiver, and below 90.0 gets 0.0.",
-    "expected_concepts": ["def calculate_merit_scholarship", "98", "95", "90", "0.75"],
+    "expected_concepts": [
+      "def calculate_merit_scholarship",
+      "98",
+      "95",
+      "90",
+      "0.75"
+    ],
     "ground_truth": "def calculate_merit_scholarship(tuition_fee, batch_percentile):\n    if batch_percentile >= 98.0: return round(tuition_fee * 0.75, 2)\n    elif batch_percentile >= 95.0: return round(tuition_fee * 0.50, 2)\n    elif batch_percentile >= 90.0: return round(tuition_fee * 0.25, 2)\n    return 0.0",
-    "test_code": "assert calculate_merit_scholarship(125000, 99.0) == 93750.0\nassert calculate_merit_scholarship(125000, 96.0) == 62500.0\nassert calculate_merit_scholarship(125000, 91.0) == 31250.0\nassert calculate_merit_scholarship(125000, 85.0) == 0.0"
+    "test_code": "assert calculate_merit_scholarship(125000, 99.0) == 93750.0\nassert calculate_merit_scholarship(125000, 96.0) == 62500.0\nassert calculate_merit_scholarship(125000, 91.0) == 31250.0\nassert calculate_merit_scholarship(125000, 85.0) == 0.0",
+    "question": "Write a Python function `calculate_merit_scholarship(tuition_fee, batch_percentile)` where batch_percentile >= 98.0 gets 75% waiver, >= 95.0 gets 50% waiver, >= 90.0 gets 25% waiver, and below 90.0 gets 0.0.",
+    "required_facts": [
+      "def calculate_merit_scholarship",
+      "98",
+      "95",
+      "90",
+      "0.75"
+    ]
   },
   {
     "id": "REF-01",
     "category": "Refactoring",
     "task": "Refactor this O(N*M) list lookup into an O(1) dictionary lookup:\n\ndef find_course_grade(student_records, target_course):\n    for record in student_records:\n        if record['course'] == target_course:\n            return record['grade']\n    return None\n",
-    "expected_concepts": ["dictionary", "dict", "map", "O(1)", "get"],
-    "ground_truth": "course_dict = {record['course']: record['grade'] for record in student_records}\nreturn course_dict.get(target_course, None)"
+    "expected_concepts": [
+      "dictionary",
+      "dict",
+      "map",
+      "O(1)",
+      "get"
+    ],
+    "ground_truth": "course_dict = {record['course']: record['grade'] for record in student_records}\nreturn course_dict.get(target_course, None)",
+    "question": "Refactor this O(N*M) list lookup into an O(1) dictionary lookup:\n\ndef find_course_grade(student_records, target_course):\n    for record in student_records:\n        if record['course'] == target_course:\n            return record['grade']\n    return None\n",
+    "required_facts": [
+      "dictionary",
+      "dict",
+      "map",
+      "O(1)",
+      "get"
+    ]
   },
   {
     "id": "REF-02",
     "category": "Refactoring",
     "task": "Refactor this repetitive exception handling in vector storage loading:\n\ntry:\n    with open(f1) as a: d1 = json.load(a)\nexcept Exception: d1 = {}\ntry:\n    with open(f2) as b: d2 = json.load(b)\nexcept Exception: d2 = {}\n",
-    "expected_concepts": ["helper function", "reusable", "def load_json_safe", "dry"],
-    "ground_truth": "def load_json_safe(file_path, default=None):\n    if default is None: default = {}\n    try:\n        with open(file_path, 'r', encoding='utf-8') as f:\n            return json.load(f)\n    except Exception:\n        return default\n\nd1 = load_json_safe(f1)\nd2 = load_json_safe(f2)"
+    "expected_concepts": [
+      "helper function",
+      "reusable",
+      "def load_json_safe",
+      "dry"
+    ],
+    "ground_truth": "def load_json_safe(file_path, default=None):\n    if default is None: default = {}\n    try:\n        with open(file_path, 'r', encoding='utf-8') as f:\n            return json.load(f)\n    except Exception:\n        return default\n\nd1 = load_json_safe(f1)\nd2 = load_json_safe(f2)",
+    "question": "Refactor this repetitive exception handling in vector storage loading:\n\ntry:\n    with open(f1) as a: d1 = json.load(a)\nexcept Exception: d1 = {}\ntry:\n    with open(f2) as b: d2 = json.load(b)\nexcept Exception: d2 = {}\n",
+    "required_facts": [
+      "helper function",
+      "reusable",
+      "def load_json_safe",
+      "dry"
+    ]
   },
   {
     "id": "REF-03",
     "category": "Refactoring",
     "task": "Refactor this hardcoded if-else role-permission ladder into a clean dictionary dispatch or set mapping:\n\ndef get_access_level(role):\n    if role == 'student': return 1\n    elif role == 'faculty': return 2\n    elif role == 'dean': return 3\n    elif role == 'admin': return 4\n    else: return 0\n",
-    "expected_concepts": ["dict", "dictionary", "get", "mapping", "O(1)"],
-    "ground_truth": "ROLE_PERMISSIONS = {'student': 1, 'faculty': 2, 'dean': 3, 'admin': 4}\ndef get_access_level(role):\n    return ROLE_PERMISSIONS.get(role, 0)"
+    "expected_concepts": [
+      "dict",
+      "dictionary",
+      "get",
+      "mapping",
+      "O(1)"
+    ],
+    "ground_truth": "ROLE_PERMISSIONS = {'student': 1, 'faculty': 2, 'dean': 3, 'admin': 4}\ndef get_access_level(role):\n    return ROLE_PERMISSIONS.get(role, 0)",
+    "question": "Refactor this hardcoded if-else role-permission ladder into a clean dictionary dispatch or set mapping:\n\ndef get_access_level(role):\n    if role == 'student': return 1\n    elif role == 'faculty': return 2\n    elif role == 'dean': return 3\n    elif role == 'admin': return 4\n    else: return 0\n",
+    "required_facts": [
+      "dict",
+      "dictionary",
+      "get",
+      "mapping",
+      "O(1)"
+    ]
   },
   {
     "id": "REF-04",
     "category": "Refactoring",
     "task": "Refactor an iterative list comprehension loop computing vector dot product and norms into a clean mathematical function with early division-by-zero check.",
-    "expected_concepts": ["dot_product", "norm", "sum", "math.sqrt", "division by zero"],
-    "ground_truth": "def cosine_similarity(v1, v2):\n    if len(v1) != len(v2) or not v1:\n        return 0.0\n    dot = sum(a * b for a, b in zip(v1, v2))\n    norm1 = math.sqrt(sum(a * a for a in v1))\n    norm2 = math.sqrt(sum(b * b for b in v2))\n    if norm1 == 0.0 or norm2 == 0.0:\n        return 0.0\n    return dot / (norm1 * norm2)"
+    "expected_concepts": [
+      "dot_product",
+      "norm",
+      "sum",
+      "math.sqrt",
+      "division by zero"
+    ],
+    "ground_truth": "def cosine_similarity(v1, v2):\n    if len(v1) != len(v2) or not v1:\n        return 0.0\n    dot = sum(a * b for a, b in zip(v1, v2))\n    norm1 = math.sqrt(sum(a * a for a in v1))\n    norm2 = math.sqrt(sum(b * b for b in v2))\n    if norm1 == 0.0 or norm2 == 0.0:\n        return 0.0\n    return dot / (norm1 * norm2)",
+    "question": "Refactor an iterative list comprehension loop computing vector dot product and norms into a clean mathematical function with early division-by-zero check.",
+    "required_facts": [
+      "dot_product",
+      "norm",
+      "sum",
+      "math.sqrt",
+      "division by zero"
+    ]
   },
   {
     "id": "RAG-01",
     "category": "RAG-based Question",
     "task": "What is the mandatory attendance requirement to appear in end-semester examinations and what happens if a student has less than 65% attendance?",
-    "expected_concepts": ["75%", "65%", "Debarred", "repeat", "condonation"],
+    "expected_concepts": [
+      "75%",
+      "65%",
+      "Debarred",
+      "repeat",
+      "condonation"
+    ],
     "ground_truth": "Students must maintain a minimum of 75% aggregate attendance in each individual course. If attendance falls below 65%, no condonation is permitted under any circumstances and the student is debarred and must repeat the course.",
-    "expected_file": "02_attendance_policy_and_condonation.md"
+    "expected_file": "02_attendance_policy_and_condonation.md",
+    "question": "What is the mandatory attendance requirement to appear in end-semester examinations and what happens if a student has less than 65% attendance?",
+    "required_facts": [
+      "75%",
+      "65%",
+      "Debarred",
+      "repeat",
+      "condonation"
+    ]
   },
   {
     "id": "RAG-02",
     "category": "RAG-based Question",
     "task": "What are the fees for regular backlog examinations versus summer supplementary examinations, and what is the re-evaluation fee?",
-    "expected_concepts": ["₹750", "₹1,500", "₹800", "re-evaluation", "supplementary"],
+    "expected_concepts": [
+      "₹750",
+      "₹1,500",
+      "₹800",
+      "re-evaluation",
+      "supplementary"
+    ],
     "ground_truth": "Regular backlog examination fee is ₹750 per subject, summer supplementary fee is ₹1,500 per subject, and formal re-evaluation of an answer script costs ₹800 per subject.",
-    "expected_file": "01_semester_examination_policy.md"
+    "expected_file": "01_semester_examination_policy.md",
+    "question": "What are the fees for regular backlog examinations versus summer supplementary examinations, and what is the re-evaluation fee?",
+    "required_facts": [
+      "₹750",
+      "₹1,500",
+      "₹800",
+      "re-evaluation",
+      "supplementary"
+    ]
   },
   {
     "id": "RAG-03",
     "category": "RAG-based Question",
     "task": "What is the book borrowing limit and loan duration for undergraduate students in the central library, and what is the overdue fine?",
-    "expected_concepts": ["4 books", "14 days", "₹5", "₹10", "library"],
+    "expected_concepts": [
+      "4 books",
+      "14 days",
+      "₹5",
+      "₹10",
+      "library"
+    ],
     "ground_truth": "Undergraduate students can borrow up to 4 books for a loan duration of 14 days. Overdue late returns incur a fine of ₹5 per day per book for the first 7 overdue days, escalating to ₹10 per day thereafter.",
-    "expected_file": "05_campus_facilities_and_code_of_conduct.md"
+    "expected_file": "05_campus_facilities_and_code_of_conduct.md",
+    "question": "What is the book borrowing limit and loan duration for undergraduate students in the central library, and what is the overdue fine?",
+    "required_facts": [
+      "4 books",
+      "14 days",
+      "₹5",
+      "₹10",
+      "library"
+    ]
   },
   {
     "id": "RAG-04",
     "category": "RAG-based Question",
     "task": "What is the mandatory hostel biometric curfew timing on campus, and by when must a night-out e-pass request be submitted?",
-    "expected_concepts": ["10:30 PM", "biometric", "5:00 PM", "e-pass", "hostel"],
+    "expected_concepts": [
+      "10:30 PM",
+      "biometric",
+      "5:00 PM",
+      "e-pass",
+      "hostel"
+    ],
     "ground_truth": "The mandatory hostel biometric curfew is 10:30 PM daily. Students requesting a night-out e-pass must submit their digital request to the hostel warden by 5:00 PM on the preceding day.",
-    "expected_file": "05_campus_facilities_and_code_of_conduct.md"
+    "expected_file": "05_campus_facilities_and_code_of_conduct.md",
+    "question": "What is the mandatory hostel biometric curfew timing on campus, and by when must a night-out e-pass request be submitted?",
+    "required_facts": [
+      "10:30 PM",
+      "biometric",
+      "5:00 PM",
+      "e-pass",
+      "hostel"
+    ]
   }
 ]

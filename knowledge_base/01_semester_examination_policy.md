@@ -48,10 +48,10 @@ Every regular semester course is evaluated using Continuous Internal Assessment 
 Students who are not satisfied with their ESE results can request answer script verification and re-evaluation within **14 calendar days** from the date of result declaration on the portal.
 
 1. **Step 1: Soft Copy of Evaluated Script (Photocopy Verification)**
-   - Fee: **₹300 per subject**.
+   - Soft copy verification fee: **₹300 per subject**.
    - Student receives an evaluated digital copy with marking rubric within 5 working days.
 2. **Step 2: Formal Re-Evaluation**
-   - Fee: **₹800 per subject**.
+   - Formal re-evaluation fee: **₹800 per subject**.
    - Script is assigned to an independent external examiner.
    - If the revised mark varies by more than **15%**, the script is sent to a third evaluator, and the average of the two nearest marks is finalized.
    - If marks increase by **10% or more**, a 50% fee refund (₹400) is credited back to the student's institutional account.
