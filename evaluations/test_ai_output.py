@@ -405,9 +405,74 @@ class AIOutputTestSuite:
             failure_detail=f"Benchmark metadata endpoint returned unexpected payload: {data}"
         )
 
+    # Test 18: Independent Accuracy Scoring for Diverse Model Outputs
+    def test_independent_accuracy_scoring(self):
+        """
+        Verifies that accuracy scores are calculated independently from each model's actual answer text
+        rather than being hardcoded, shared, or coupled across models.
+        Provides three deliberately different answers against the same verified ground truth and asserts
+        that the resulting accuracy scores strictly reflect the factual differences.
+        """
+        from main import evaluate_accuracy
+
+        # Standard ground truth reference with 3 distinct facts
+        ref_task = {
+            "id": "GROUND-TRUTH-VERIFY-01",
+            "question": "What are the rules regarding attendance, condonation, and debarment?",
+            "required_facts": ["75%", "condonation", "Debarred"],
+            "ground_truth": "Students must have 75% attendance. Condonation up to 10% is available for medical leave, below which students are Debarred."
+        }
+
+        # Model 1 Answer: Concise / Low coverage (contains only 1 of 3 facts: "75%")
+        model_1_answer = "Students must maintain minimum 75% class attendance throughout the semester."
+
+        # Model 2 Answer: Moderate coverage (contains 2 of 3 facts: "75%" and "condonation")
+        model_2_answer = "Students need 75% attendance. If attendance falls between 65% and 74%, condonation can be sought from the Dean."
+
+        # Model 3 Answer: Full coverage (contains all 3 facts: "75%", "condonation", "Debarred")
+        model_3_answer = "The university requires 75% attendance. Eligible cases may receive condonation, but students below 65% are Debarred."
+
+        eval_1 = evaluate_accuracy(model_1_answer, ref_task)
+        eval_2 = evaluate_accuracy(model_2_answer, ref_task)
+        eval_3 = evaluate_accuracy(model_3_answer, ref_task)
+
+        score_1 = eval_1.get("score")
+        score_2 = eval_2.get("score")
+        score_3 = eval_3.get("score")
+
+        # Verify scores are strictly based on facts matched
+        correct_1 = (score_1 == 33.3 and eval_1["matched_facts"] == ["75%"] and set(eval_1["missing_facts"]) == {"condonation", "Debarred"})
+        correct_2 = (score_2 == 66.7 and set(eval_2["matched_facts"]) == {"75%", "condonation"} and eval_2["missing_facts"] == ["Debarred"])
+        correct_3 = (score_3 == 100.0 and set(eval_3["matched_facts"]) == {"75%", "condonation", "Debarred"} and eval_3["missing_facts"] == [])
+
+        # Verify strictly distinct scores reflecting answer content
+        distinct_and_monotonic = (score_1 < score_2 < score_3)
+
+        # Also verify live comparison endpoint evaluates models independently
+        resp = client.post("/api/compare-models", json={
+            "query": "What is the late fee for tuition payment and refund policy?",
+            "use_rag": True
+        })
+        live_data = resp.json()
+        live_models = live_data.get("model_results", [])
+        live_scores = [m.get("accuracy", {}).get("score") for m in live_models]
+        # In live comparison, scores are verified and not all forced to be identical
+        live_independent = len(live_scores) == 3 and not (live_scores[0] == live_scores[1] == live_scores[2])
+
+        passed = correct_1 and correct_2 and correct_3 and distinct_and_monotonic and live_independent
+
+        self.log_test(
+            test_id="TEST-18",
+            name="Independent Accuracy Scoring for Diverse Model Outputs",
+            expected="Models returning different answers receive distinct accuracy scores (e.g. 33.3% < 66.7% < 100.0%) strictly derived from their individual factual text without shared data or hardcoded values.",
+            actual=f"Unit test: {score_1}% < {score_2}% < {score_3}% | Live comparison scores: {live_scores}",
+            passed=passed,
+            failure_detail=f"Accuracy scores failed independent derivation: unit=[{score_1}, {score_2}, {score_3}], live={live_scores}"
+        )
+
     def run_all(self) -> Dict[str, Any]:
         print("================================================================")
-        print("UniAssist AI Output Systematic Testing Suite (Tasks 1-17)")
+        print("UniAssist AI Output Systematic Testing Suite (Tasks 1-18)")
         print("Deterministic PASS/FAIL Output Checks (Week 4 Quality Gate)")
         print("================================================================\n")
 
@@ -428,6 +493,7 @@ class AIOutputTestSuite:
         self.test_backlog_exam_fee_disambiguation()
         self.test_benchmark_dataset_integrity()
         self.test_benchmark_meta_api()
+        self.test_independent_accuracy_scoring()
 
         total = len(self.results)
         passed_count = sum(1 for r in self.results if r["status"] == "PASS")

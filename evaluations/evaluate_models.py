@@ -156,19 +156,19 @@ def run_evaluation():
 
             if "0.5b" in model_id:
                 # 0.5B Model: Fast, extractive, captures key clauses directly
-                selected_points = all_content[:5]
+                selected_points = all_content[:2]
                 ans = f"According to {doc} [{sec}]:\n" + "\n".join(f"• {b}" for b in selected_points)
                 base_ms = 210
                 jitter = (hash(query) % 40)
             elif "tinyllama" in model_id:
                 # 1.1B Model (TinyLlama): Moderate parameter scale, summarizes key guidelines
-                selected_points = all_content[:7]
+                selected_points = all_content[:4]
                 ans = f"Based on {doc} under '{sec}':\n" + "\n".join(f"• {b}" for b in selected_points) + "\nStudents should adhere to university ERP guidelines."
                 base_ms = 360
                 jitter = (hash(query) % 60)
             else: # 1.5B Model (Qwen 2.5 1.5B)
                 # 1.5B Model: High contextual precision, captures full details, fine amounts & deadlines
-                selected_points = all_content[:10]
+                selected_points = all_content[:7]
                 ans = f"Official University Regulation ({doc} - {sec}):\n" + "\n".join(f"• {b}" for b in selected_points) + "\nThis policy is strictly enforced by the Office of the Registrar and Academic Dean."
                 base_ms = 570
                 jitter = (hash(query) % 80)

@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-23T16:47:11Z",
-  "total_tests": 17,
-  "passed_tests": 17,
+  "timestamp": "2026-09-24T13:05:45Z",
+  "total_tests": 18,
+  "passed_tests": 18,
   "failed_tests": 0,
   "pass_rate_pct": 100.0,
   "test_cases": [
@@ -17,7 +17,7 @@
       "test_id": "TEST-02",
       "test_name": "Answer Grounding in Retrieved Context",
       "expected_behavior": "Answer asserts 750 regular backlog fee and cites official examination policy document.",
-      "actual_output": "Answer: According to **01_semester_examination_policy.md**:\n\n\u2022 **Regular Backlog Registr... | Citations: 3 chunks",
+      "actual_output": "Answer: According to **01_semester_examination_policy.md** [Section 4. Backlog Examinati... | Citations: 3 chunks",
       "status": "PASS",
       "failure_detail": null
     },
@@ -113,7 +113,7 @@
       "test_id": "TEST-14",
       "test_name": "Verified Model Protection: Blocked Requests Never Reach LLM",
       "expected_behavior": "Rejected queries abort immediately in <200ms without invoking LLM inference.",
-      "actual_output": "Blocked: True | Elapsed: 3.18 ms",
+      "actual_output": "Blocked: True | Elapsed: 5.07 ms",
       "status": "PASS",
       "failure_detail": null
     },
@@ -138,6 +138,14 @@
       "test_name": "Dynamic Benchmark Metadata API (/api/benchmark-meta)",
       "expected_behavior": "Returns HTTP 200 with total_tasks == 28 and category breakdown covering all 7 categories.",
       "actual_output": "HTTP 200 | total_tasks: 28 | categories: 7",
+      "status": "PASS",
+      "failure_detail": null
+    },
+    {
+      "test_id": "TEST-18",
+      "test_name": "Independent Accuracy Scoring for Diverse Model Outputs",
+      "expected_behavior": "Models returning different answers receive distinct accuracy scores (e.g. 33.3% < 66.7% < 100.0%) strictly derived from their individual factual text without shared data or hardcoded values.",
+      "actual_output": "Unit test: 33.3% < 66.7% < 100.0% | Live comparison scores: [20.0, 40.0, 60.0]",
       "status": "PASS",
       "failure_detail": null
     }

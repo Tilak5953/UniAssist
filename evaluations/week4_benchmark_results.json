@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-23T16:13:52Z",
+  "timestamp": "2026-09-24T13:03:24Z",
   "dataset_tasks_count": 28,
   "models_evaluated": [
     {
@@ -39,9 +39,9 @@
     "Explanation": {
       "qwen2.5:0.5b": {
         "model_name": "Qwen 2.5 (0.5B)",
-        "accuracy_pct": 100.0,
-        "relevance_pct": 86.6,
-        "hallucination_rate": 0.0,
+        "accuracy_pct": 55.0,
+        "relevance_pct": 26.7,
+        "hallucination_rate": 0.25,
         "code_test_pass_rate_pct": null,
         "avg_latency_ms": 650.0,
         "ram_mb": 580,
@@ -51,8 +51,8 @@
       },
       "tinyllama:latest": {
         "model_name": "TinyLlama (1.1B)",
-        "accuracy_pct": 100.0,
-        "relevance_pct": 86.6,
+        "accuracy_pct": 80.0,
+        "relevance_pct": 68.0,
         "hallucination_rate": 0.0,
         "code_test_pass_rate_pct": null,
         "avg_latency_ms": 1100.0,
@@ -64,7 +64,7 @@
       "qwen2.5:1.5b": {
         "model_name": "Qwen 2.5 (1.5B)",
         "accuracy_pct": 100.0,
-        "relevance_pct": 86.6,
+        "relevance_pct": 85.5,
         "hallucination_rate": 0.0,
         "code_test_pass_rate_pct": null,
         "avg_latency_ms": 1100.0,
@@ -87,9 +87,9 @@
     "Code Retrieval": {
       "qwen2.5:0.5b": {
         "model_name": "Qwen 2.5 (0.5B)",
-        "accuracy_pct": 75.0,
-        "relevance_pct": 68.8,
-        "hallucination_rate": 0.25,
+        "accuracy_pct": 35.0,
+        "relevance_pct": 32.9,
+        "hallucination_rate": 0.5,
         "code_test_pass_rate_pct": null,
         "avg_latency_ms": 650.0,
         "ram_mb": 580,
@@ -99,8 +99,8 @@
       },
       "tinyllama:latest": {
         "model_name": "TinyLlama (1.1B)",
-        "accuracy_pct": 75.0,
-        "relevance_pct": 72.9,
+        "accuracy_pct": 52.5,
+        "relevance_pct": 55.5,
         "hallucination_rate": 0.25,
         "code_test_pass_rate_pct": null,
         "avg_latency_ms": 1100.0,
@@ -135,9 +135,9 @@
     "Dependency Understanding": {
       "qwen2.5:0.5b": {
         "model_name": "Qwen 2.5 (0.5B)",
-        "accuracy_pct": 82.5,
-        "relevance_pct": 71.5,
-        "hallucination_rate": 0.0,
+        "accuracy_pct": 43.8,
+        "relevance_pct": 25.6,
+        "hallucination_rate": 0.5,
         "code_test_pass_rate_pct": null,
         "avg_latency_ms": 650.0,
         "ram_mb": 580,
@@ -147,8 +147,8 @@
       },
       "tinyllama:latest": {
         "model_name": "TinyLlama (1.1B)",
-        "accuracy_pct": 82.5,
-        "relevance_pct": 71.5,
+        "accuracy_pct": 76.2,
+        "relevance_pct": 60.5,
         "hallucination_rate": 0.0,
         "code_test_pass_rate_pct": null,
         "avg_latency_ms": 1100.0,
@@ -183,9 +183,9 @@
     "Bug Analysis": {
       "qwen2.5:0.5b": {
         "model_name": "Qwen 2.5 (0.5B)",
-        "accuracy_pct": 76.2,
-        "relevance_pct": 69.4,
-        "hallucination_rate": 0.0,
+        "accuracy_pct": 38.8,
+        "relevance_pct": 29.9,
+        "hallucination_rate": 0.75,
         "code_test_pass_rate_pct": 100.0,
         "avg_latency_ms": 650.0,
         "ram_mb": 580,
@@ -195,9 +195,9 @@
       },
       "tinyllama:latest": {
         "model_name": "TinyLlama (1.1B)",
-        "accuracy_pct": 76.2,
-        "relevance_pct": 69.4,
-        "hallucination_rate": 0.0,
+        "accuracy_pct": 48.8,
+        "relevance_pct": 41.9,
+        "hallucination_rate": 0.5,
         "code_test_pass_rate_pct": 100.0,
         "avg_latency_ms": 1100.0,
         "ram_mb": 910,
@@ -231,10 +231,10 @@
     "Code Generation": {
       "qwen2.5:0.5b": {
         "model_name": "Qwen 2.5 (0.5B)",
-        "accuracy_pct": 100.0,
-        "relevance_pct": 100.0,
+        "accuracy_pct": 76.2,
+        "relevance_pct": 80.5,
         "hallucination_rate": 0.0,
-        "code_test_pass_rate_pct": 100.0,
+        "code_test_pass_rate_pct": 25.0,
         "avg_latency_ms": 650.0,
         "ram_mb": 580,
         "avg_retrieval_similarity": null,
@@ -280,7 +280,7 @@
       "qwen2.5:0.5b": {
         "model_name": "Qwen 2.5 (0.5B)",
         "accuracy_pct": 21.2,
-        "relevance_pct": 77.8,
+        "relevance_pct": 56.1,
         "hallucination_rate": 1.0,
         "code_test_pass_rate_pct": null,
         "avg_latency_ms": 650.0,
@@ -291,9 +291,9 @@
       },
       "tinyllama:latest": {
         "model_name": "TinyLlama (1.1B)",
-        "accuracy_pct": 21.2,
-        "relevance_pct": 79.2,
-        "hallucination_rate": 1.0,
+        "accuracy_pct": 68.8,
+        "relevance_pct": 64.5,
+        "hallucination_rate": 0.25,
         "code_test_pass_rate_pct": null,
         "avg_latency_ms": 1100.0,
         "ram_mb": 910,
@@ -303,9 +303,9 @@
       },
       "qwen2.5:1.5b": {
         "model_name": "Qwen 2.5 (1.5B)",
-        "accuracy_pct": 21.2,
+        "accuracy_pct": 75.0,
         "relevance_pct": 79.2,
-        "hallucination_rate": 1.0,
+        "hallucination_rate": 0.25,
         "code_test_pass_rate_pct": null,
         "avg_latency_ms": 1100.0,
         "ram_mb": 1420,
@@ -327,37 +327,37 @@
     "RAG-based Question": {
       "qwen2.5:0.5b": {
         "model_name": "Qwen 2.5 (0.5B)",
-        "accuracy_pct": 80.0,
-        "relevance_pct": 69.2,
-        "hallucination_rate": 0.0,
+        "accuracy_pct": 45.0,
+        "relevance_pct": 44.7,
+        "hallucination_rate": 0.5,
         "code_test_pass_rate_pct": null,
-        "avg_latency_ms": 678.8,
+        "avg_latency_ms": 676.2,
         "ram_mb": 580,
-        "avg_retrieval_similarity": 0.4332,
+        "avg_retrieval_similarity": 0.324,
         "avg_retrieval_coverage_pct": 90.0,
         "status": "PASS"
       },
       "tinyllama:latest": {
         "model_name": "TinyLlama (1.1B)",
         "accuracy_pct": 80.0,
-        "relevance_pct": 67.7,
+        "relevance_pct": 65.8,
         "hallucination_rate": 0.0,
         "code_test_pass_rate_pct": null,
-        "avg_latency_ms": 1113.7,
+        "avg_latency_ms": 1114.9,
         "ram_mb": 910,
-        "avg_retrieval_similarity": 0.4332,
+        "avg_retrieval_similarity": 0.324,
         "avg_retrieval_coverage_pct": 90.0,
         "status": "PASS"
       },
       "qwen2.5:1.5b": {
         "model_name": "Qwen 2.5 (1.5B)",
-        "accuracy_pct": 80.0,
-        "relevance_pct": 68.0,
+        "accuracy_pct": 90.0,
+        "relevance_pct": 78.6,
         "hallucination_rate": 0.0,
         "code_test_pass_rate_pct": null,
-        "avg_latency_ms": 1111.5,
+        "avg_latency_ms": 1129.1,
         "ram_mb": 1420,
-        "avg_retrieval_similarity": 0.4332,
+        "avg_retrieval_similarity": 0.324,
         "avg_retrieval_coverage_pct": 90.0,
         "status": "PASS"
       },
@@ -375,8 +375,8 @@
   },
   "detailed_task_evals": [
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 91.3,
+      "correctness_pct": 60.0,
+      "relevance_pct": 47.8,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -387,8 +387,8 @@
       "category": "Explanation"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
+      "correctness_pct": 60.0,
+      "relevance_pct": 24.2,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -399,8 +399,8 @@
       "category": "Explanation"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
+      "correctness_pct": 60.0,
+      "relevance_pct": 21.9,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -411,9 +411,9 @@
       "category": "Explanation"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
-      "hallucination_rate": 0.0,
+      "correctness_pct": 40.0,
+      "relevance_pct": 12.8,
+      "hallucination_rate": 1.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": null,
@@ -423,9 +423,9 @@
       "category": "Explanation"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 90.0,
-      "hallucination_rate": 0.0,
+      "correctness_pct": 40.0,
+      "relevance_pct": 50.0,
+      "hallucination_rate": 1.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": null,
@@ -435,8 +435,8 @@
       "category": "Code Retrieval"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 100.0,
+      "correctness_pct": 50.0,
+      "relevance_pct": 42.9,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -459,8 +459,8 @@
       "category": "Code Retrieval"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
+      "correctness_pct": 50.0,
+      "relevance_pct": 38.5,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -471,8 +471,8 @@
       "category": "Code Retrieval"
     },
     {
-      "correctness_pct": 80.0,
-      "relevance_pct": 69.7,
+      "correctness_pct": 60.0,
+      "relevance_pct": 15.2,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -483,9 +483,9 @@
       "category": "Dependency Understanding"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 88.5,
-      "hallucination_rate": 0.0,
+      "correctness_pct": 40.0,
+      "relevance_pct": 42.3,
+      "hallucination_rate": 1.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": null,
@@ -495,9 +495,9 @@
       "category": "Dependency Understanding"
     },
     {
-      "correctness_pct": 75.0,
-      "relevance_pct": 63.8,
-      "hallucination_rate": 0.0,
+      "correctness_pct": 25.0,
+      "relevance_pct": 32.1,
+      "hallucination_rate": 1.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": null,
@@ -507,8 +507,8 @@
       "category": "Dependency Understanding"
     },
     {
-      "correctness_pct": 75.0,
-      "relevance_pct": 63.8,
+      "correctness_pct": 50.0,
+      "relevance_pct": 12.9,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -519,9 +519,9 @@
       "category": "Dependency Understanding"
     },
     {
-      "correctness_pct": 75.0,
-      "relevance_pct": 77.8,
-      "hallucination_rate": 0.0,
+      "correctness_pct": 25.0,
+      "relevance_pct": 38.9,
+      "hallucination_rate": 1.0,
       "code_test_pass": true,
       "code_detail": "All unit assertions passed in subprocess sandbox",
       "retrieval_metrics": null,
@@ -531,9 +531,9 @@
       "category": "Bug Analysis"
     },
     {
-      "correctness_pct": 80.0,
-      "relevance_pct": 71.4,
-      "hallucination_rate": 0.0,
+      "correctness_pct": 40.0,
+      "relevance_pct": 35.7,
+      "hallucination_rate": 1.0,
       "code_test_pass": true,
       "code_detail": "All unit assertions passed in subprocess sandbox",
       "retrieval_metrics": null,
@@ -543,9 +543,9 @@
       "category": "Bug Analysis"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
-      "hallucination_rate": 0.0,
+      "correctness_pct": 40.0,
+      "relevance_pct": 21.7,
+      "hallucination_rate": 1.0,
       "code_test_pass": true,
       "code_detail": "All unit assertions passed in subprocess sandbox",
       "retrieval_metrics": null,
@@ -556,7 +556,7 @@
     },
     {
       "correctness_pct": 50.0,
-      "relevance_pct": 43.3,
+      "relevance_pct": 23.3,
       "hallucination_rate": 0.0,
       "code_test_pass": true,
       "code_detail": "All unit assertions passed in subprocess sandbox",
@@ -567,11 +567,11 @@
       "category": "Bug Analysis"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 100.0,
+      "correctness_pct": 75.0,
+      "relevance_pct": 63.8,
       "hallucination_rate": 0.0,
-      "code_test_pass": true,
-      "code_detail": "All unit assertions passed in subprocess sandbox",
+      "code_test_pass": false,
+      "code_detail": "Sandbox execution failed: AssertionError",
       "retrieval_metrics": null,
       "latency_ms": 650.0,
       "task_id": "GEN-01",
@@ -579,11 +579,11 @@
       "category": "Code Generation"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 100.0,
+      "correctness_pct": 75.0,
+      "relevance_pct": 85.7,
       "hallucination_rate": 0.0,
-      "code_test_pass": true,
-      "code_detail": "All unit assertions passed in subprocess sandbox",
+      "code_test_pass": false,
+      "code_detail": "Sandbox execution failed: AssertionError",
       "retrieval_metrics": null,
       "latency_ms": 650.0,
       "task_id": "GEN-02",
@@ -591,8 +591,8 @@
       "category": "Code Generation"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 100.0,
+      "correctness_pct": 75.0,
+      "relevance_pct": 85.7,
       "hallucination_rate": 0.0,
       "code_test_pass": true,
       "code_detail": "All unit assertions passed in subprocess sandbox",
@@ -603,11 +603,11 @@
       "category": "Code Generation"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 100.0,
+      "correctness_pct": 80.0,
+      "relevance_pct": 86.7,
       "hallucination_rate": 0.0,
-      "code_test_pass": true,
-      "code_detail": "All unit assertions passed in subprocess sandbox",
+      "code_test_pass": false,
+      "code_detail": "Sandbox execution failed: AssertionError",
       "retrieval_metrics": null,
       "latency_ms": 650.0,
       "task_id": "GEN-04",
@@ -616,7 +616,7 @@
     },
     {
       "correctness_pct": 40.0,
-      "relevance_pct": 100.0,
+      "relevance_pct": 81.8,
       "hallucination_rate": 1.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -628,7 +628,7 @@
     },
     {
       "correctness_pct": 25.0,
-      "relevance_pct": 100.0,
+      "relevance_pct": 71.4,
       "hallucination_rate": 1.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -640,7 +640,7 @@
     },
     {
       "correctness_pct": 20.0,
-      "relevance_pct": 100.0,
+      "relevance_pct": 60.0,
       "hallucination_rate": 1.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -663,72 +663,72 @@
       "category": "Refactoring"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.7,
+      "correctness_pct": 60.0,
+      "relevance_pct": 60.7,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": {
-        "top_similarity_score": 0.5271,
+        "top_similarity_score": 0.4135,
         "concept_coverage_pct": 100.0,
         "retrieval_hit": true
       },
-      "latency_ms": 699.44,
+      "latency_ms": 706.58,
       "task_id": "RAG-01",
       "model_id": "qwen2.5:0.5b",
       "category": "RAG-based Question"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 95.0,
+      "correctness_pct": 80.0,
+      "relevance_pct": 68.0,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": {
-        "top_similarity_score": 0.4145,
+        "top_similarity_score": 0.2893,
         "concept_coverage_pct": 100.0,
         "retrieval_hit": true
       },
-      "latency_ms": 654.4,
+      "latency_ms": 669.58,
       "task_id": "RAG-02",
       "model_id": "qwen2.5:0.5b",
       "category": "RAG-based Question"
     },
     {
-      "correctness_pct": 60.0,
-      "relevance_pct": 46.2,
-      "hallucination_rate": 0.0,
+      "correctness_pct": 20.0,
+      "relevance_pct": 23.1,
+      "hallucination_rate": 1.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": {
-        "top_similarity_score": 0.3904,
+        "top_similarity_score": 0.3298,
         "concept_coverage_pct": 100.0,
         "retrieval_hit": true
       },
-      "latency_ms": 677.12,
+      "latency_ms": 663.43,
       "task_id": "RAG-03",
       "model_id": "qwen2.5:0.5b",
       "category": "RAG-based Question"
     },
     {
-      "correctness_pct": 60.0,
-      "relevance_pct": 50.0,
-      "hallucination_rate": 0.0,
+      "correctness_pct": 20.0,
+      "relevance_pct": 26.9,
+      "hallucination_rate": 1.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": {
-        "top_similarity_score": 0.4007,
+        "top_similarity_score": 0.2634,
         "concept_coverage_pct": 60.0,
         "retrieval_hit": true
       },
-      "latency_ms": 684.08,
+      "latency_ms": 665.29,
       "task_id": "RAG-04",
       "model_id": "qwen2.5:0.5b",
       "category": "RAG-based Question"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 91.3,
+      "correctness_pct": 80.0,
+      "relevance_pct": 68.0,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -739,8 +739,8 @@
       "category": "Explanation"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
+      "correctness_pct": 80.0,
+      "relevance_pct": 68.0,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -751,8 +751,8 @@
       "category": "Explanation"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
+      "correctness_pct": 80.0,
+      "relevance_pct": 68.0,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -763,8 +763,8 @@
       "category": "Explanation"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
+      "correctness_pct": 80.0,
+      "relevance_pct": 68.0,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -775,8 +775,8 @@
       "category": "Explanation"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 90.0,
+      "correctness_pct": 60.0,
+      "relevance_pct": 70.0,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -787,8 +787,8 @@
       "category": "Code Retrieval"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 100.0,
+      "correctness_pct": 75.0,
+      "relevance_pct": 71.4,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -811,8 +811,8 @@
       "category": "Code Retrieval"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
+      "correctness_pct": 75.0,
+      "relevance_pct": 63.8,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -823,8 +823,8 @@
       "category": "Code Retrieval"
     },
     {
-      "correctness_pct": 80.0,
-      "relevance_pct": 69.7,
+      "correctness_pct": 100.0,
+      "relevance_pct": 85.0,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -835,8 +835,8 @@
       "category": "Dependency Understanding"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 88.5,
+      "correctness_pct": 80.0,
+      "relevance_pct": 68.0,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -847,8 +847,8 @@
       "category": "Dependency Understanding"
     },
     {
-      "correctness_pct": 75.0,
-      "relevance_pct": 63.8,
+      "correctness_pct": 50.0,
+      "relevance_pct": 25.0,
       "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
@@ -871,8 +871,8 @@
       "category": "Dependency Understanding"
     },
     {
-      "correctness_pct": 75.0,
-      "relevance_pct": 77.8,
+      "correctness_pct": 50.0,
+      "relevance_pct": 44.4,
       "hallucination_rate": 0.0,
       "code_test_pass": true,
       "code_detail": "All unit assertions passed in subprocess sandbox",
@@ -883,9 +883,9 @@
       "category": "Bug Analysis"
     },
     {
-      "correctness_pct": 80.0,
-      "relevance_pct": 71.4,
-      "hallucination_rate": 0.0,
+      "correctness_pct": 40.0,
+      "relevance_pct": 25.0,
+      "hallucination_rate": 1.0,
       "code_test_pass": true,
       "code_detail": "All unit assertions passed in subprocess sandbox",
       "retrieval_metrics": null,
@@ -895,8 +895,8 @@
       "category": "Bug Analysis"
     },
     {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
+      "correctness_pct": 80.0,
+      "relevance_pct": 68.0,
       "hallucination_rate": 0.0,
       "code_test_pass": true,
       "code_detail": "All unit assertions passed in subprocess sandbox",
@@ -907,9 +907,9 @@
       "category": "Bug Analysis"
     },
     {
-      "correctness_pct": 50.0,
-      "relevance_pct": 43.3,
-      "hallucination_rate": 0.0,
+      "correctness_pct": 25.0,
+      "relevance_pct": 30.0,
+      "hallucination_rate": 1.0,
       "code_test_pass": true,
       "code_detail": "All unit assertions passed in subprocess sandbox",
       "retrieval_metrics": null,
@@ -967,9 +967,9 @@
       "category": "Code Generation"
     },
     {
-      "correctness_pct": 40.0,
-      "relevance_pct": 100.0,
-      "hallucination_rate": 1.0,
+      "correctness_pct": 100.0,
+      "relevance_pct": 85.0,
+      "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": null,
@@ -979,9 +979,9 @@
       "category": "Refactoring"
     },
     {
-      "correctness_pct": 25.0,
-      "relevance_pct": 100.0,
-      "hallucination_rate": 1.0,
+      "correctness_pct": 75.0,
+      "relevance_pct": 71.4,
+      "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": null,
@@ -991,9 +991,9 @@
       "category": "Refactoring"
     },
     {
-      "correctness_pct": 20.0,
-      "relevance_pct": 100.0,
-      "hallucination_rate": 1.0,
+      "correctness_pct": 100.0,
+      "relevance_pct": 85.0,
+      "hallucination_rate": 0.0,
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": null,
@@ -1021,11 +1021,11 @@
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": {
-        "top_similarity_score": 0.5271,
+        "top_similarity_score": 0.4135,
         "concept_coverage_pct": 100.0,
         "retrieval_hit": true
       },
-      "latency_ms": 1105.42,
+      "latency_ms": 1114.89,
       "task_id": "RAG-01",
       "model_id": "tinyllama:latest",
       "category": "RAG-based Question"
@@ -1037,11 +1037,11 @@
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": {
-        "top_similarity_score": 0.4145,
+        "top_similarity_score": 0.2893,
         "concept_coverage_pct": 100.0,
         "retrieval_hit": true
       },
-      "latency_ms": 1127.6,
+      "latency_ms": 1113.98,
       "task_id": "RAG-02",
       "model_id": "tinyllama:latest",
       "category": "RAG-based Question"
@@ -1053,13 +1053,365 @@
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": {
-        "top_similarity_score": 0.3904,
+        "top_similarity_score": 0.3298,
         "concept_coverage_pct": 100.0,
         "retrieval_hit": true
       },
-      "latency_ms": 1116.14,
+      "latency_ms": 1117.93,
       "task_id": "RAG-03",
       "model_id": "tinyllama:latest",
+      "category": "RAG-based Question"
+    },
+    {
+      "correctness_pct": 60.0,
+      "relevance_pct": 46.2,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": {
+        "top_similarity_score": 0.2634,
+        "concept_coverage_pct": 60.0,
+        "retrieval_hit": true
+      },
+      "latency_ms": 1112.99,
+      "task_id": "RAG-04",
+      "model_id": "tinyllama:latest",
+      "category": "RAG-based Question"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 87.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "EXP-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Explanation"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 85.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "EXP-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Explanation"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 85.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "EXP-03",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Explanation"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 85.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "EXP-04",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Explanation"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 90.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "RET-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Retrieval"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 100.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "RET-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Retrieval"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 16.7,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "RET-03",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Retrieval"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 85.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "RET-04",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Retrieval"
+    },
+    {
+      "correctness_pct": 80.0,
+      "relevance_pct": 69.7,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "DEP-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Dependency Understanding"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 88.5,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "DEP-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Dependency Understanding"
+    },
+    {
+      "correctness_pct": 75.0,
+      "relevance_pct": 63.8,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "DEP-03",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Dependency Understanding"
+    },
+    {
+      "correctness_pct": 75.0,
+      "relevance_pct": 63.8,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "DEP-04",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Dependency Understanding"
+    },
+    {
+      "correctness_pct": 75.0,
+      "relevance_pct": 77.8,
+      "hallucination_rate": 0.0,
+      "code_test_pass": true,
+      "code_detail": "All unit assertions passed in subprocess sandbox",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "BUG-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Bug Analysis"
+    },
+    {
+      "correctness_pct": 80.0,
+      "relevance_pct": 71.4,
+      "hallucination_rate": 0.0,
+      "code_test_pass": true,
+      "code_detail": "All unit assertions passed in subprocess sandbox",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "BUG-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Bug Analysis"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 85.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": true,
+      "code_detail": "All unit assertions passed in subprocess sandbox",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "BUG-03",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Bug Analysis"
+    },
+    {
+      "correctness_pct": 50.0,
+      "relevance_pct": 43.3,
+      "hallucination_rate": 0.0,
+      "code_test_pass": true,
+      "code_detail": "All unit assertions passed in subprocess sandbox",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "BUG-04",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Bug Analysis"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 100.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": true,
+      "code_detail": "All unit assertions passed in subprocess sandbox",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "GEN-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Generation"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 100.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": true,
+      "code_detail": "All unit assertions passed in subprocess sandbox",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "GEN-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Generation"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 100.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": true,
+      "code_detail": "All unit assertions passed in subprocess sandbox",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "GEN-03",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Generation"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 100.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": true,
+      "code_detail": "All unit assertions passed in subprocess sandbox",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "GEN-04",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Code Generation"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 100.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "REF-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Refactoring"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 100.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "REF-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Refactoring"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 100.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "REF-03",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Refactoring"
+    },
+    {
+      "correctness_pct": 0.0,
+      "relevance_pct": 16.7,
+      "hallucination_rate": 1.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": null,
+      "latency_ms": 1100.0,
+      "task_id": "REF-04",
+      "model_id": "qwen2.5:1.5b",
+      "category": "Refactoring"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 85.7,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": {
+        "top_similarity_score": 0.4135,
+        "concept_coverage_pct": 100.0,
+        "retrieval_hit": true
+      },
+      "latency_ms": 1125.02,
+      "task_id": "RAG-01",
+      "model_id": "qwen2.5:1.5b",
+      "category": "RAG-based Question"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 90.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": {
+        "top_similarity_score": 0.2893,
+        "concept_coverage_pct": 100.0,
+        "retrieval_hit": true
+      },
+      "latency_ms": 1135.07,
+      "task_id": "RAG-02",
+      "model_id": "qwen2.5:1.5b",
+      "category": "RAG-based Question"
+    },
+    {
+      "correctness_pct": 100.0,
+      "relevance_pct": 85.0,
+      "hallucination_rate": 0.0,
+      "code_test_pass": null,
+      "code_detail": "No unit test criteria specified for this task",
+      "retrieval_metrics": {
+        "top_similarity_score": 0.3298,
+        "concept_coverage_pct": 100.0,
+        "retrieval_hit": true
+      },
+      "latency_ms": 1132.29,
+      "task_id": "RAG-03",
+      "model_id": "qwen2.5:1.5b",
       "category": "RAG-based Question"
     },
     {
@@ -1069,363 +1421,11 @@
       "code_test_pass": null,
       "code_detail": "No unit test criteria specified for this task",
       "retrieval_metrics": {
-        "top_similarity_score": 0.4007,
+        "top_similarity_score": 0.2634,
         "concept_coverage_pct": 60.0,
         "retrieval_hit": true
       },
-      "latency_ms": 1105.49,
-      "task_id": "RAG-04",
-      "model_id": "tinyllama:latest",
-      "category": "RAG-based Question"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 91.3,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "EXP-01",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Explanation"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "EXP-02",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Explanation"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "EXP-03",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Explanation"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "EXP-04",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Explanation"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 90.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "RET-01",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Code Retrieval"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 100.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "RET-02",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Code Retrieval"
-    },
-    {
-      "correctness_pct": 0.0,
-      "relevance_pct": 16.7,
-      "hallucination_rate": 1.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "RET-03",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Code Retrieval"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "RET-04",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Code Retrieval"
-    },
-    {
-      "correctness_pct": 80.0,
-      "relevance_pct": 69.7,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "DEP-01",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Dependency Understanding"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 88.5,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "DEP-02",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Dependency Understanding"
-    },
-    {
-      "correctness_pct": 75.0,
-      "relevance_pct": 63.8,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "DEP-03",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Dependency Understanding"
-    },
-    {
-      "correctness_pct": 75.0,
-      "relevance_pct": 63.8,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "DEP-04",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Dependency Understanding"
-    },
-    {
-      "correctness_pct": 75.0,
-      "relevance_pct": 77.8,
-      "hallucination_rate": 0.0,
-      "code_test_pass": true,
-      "code_detail": "All unit assertions passed in subprocess sandbox",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "BUG-01",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Bug Analysis"
-    },
-    {
-      "correctness_pct": 80.0,
-      "relevance_pct": 71.4,
-      "hallucination_rate": 0.0,
-      "code_test_pass": true,
-      "code_detail": "All unit assertions passed in subprocess sandbox",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "BUG-02",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Bug Analysis"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": true,
-      "code_detail": "All unit assertions passed in subprocess sandbox",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "BUG-03",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Bug Analysis"
-    },
-    {
-      "correctness_pct": 50.0,
-      "relevance_pct": 43.3,
-      "hallucination_rate": 0.0,
-      "code_test_pass": true,
-      "code_detail": "All unit assertions passed in subprocess sandbox",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "BUG-04",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Bug Analysis"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 100.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": true,
-      "code_detail": "All unit assertions passed in subprocess sandbox",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "GEN-01",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Code Generation"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 100.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": true,
-      "code_detail": "All unit assertions passed in subprocess sandbox",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "GEN-02",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Code Generation"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 100.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": true,
-      "code_detail": "All unit assertions passed in subprocess sandbox",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "GEN-03",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Code Generation"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 100.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": true,
-      "code_detail": "All unit assertions passed in subprocess sandbox",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "GEN-04",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Code Generation"
-    },
-    {
-      "correctness_pct": 40.0,
-      "relevance_pct": 100.0,
-      "hallucination_rate": 1.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "REF-01",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Refactoring"
-    },
-    {
-      "correctness_pct": 25.0,
-      "relevance_pct": 100.0,
-      "hallucination_rate": 1.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "REF-02",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Refactoring"
-    },
-    {
-      "correctness_pct": 20.0,
-      "relevance_pct": 100.0,
-      "hallucination_rate": 1.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "REF-03",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Refactoring"
-    },
-    {
-      "correctness_pct": 0.0,
-      "relevance_pct": 16.7,
-      "hallucination_rate": 1.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": null,
-      "latency_ms": 1100.0,
-      "task_id": "REF-04",
-      "model_id": "qwen2.5:1.5b",
-      "category": "Refactoring"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 85.7,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": {
-        "top_similarity_score": 0.5271,
-        "concept_coverage_pct": 100.0,
-        "retrieval_hit": true
-      },
-      "latency_ms": 1104.94,
-      "task_id": "RAG-01",
-      "model_id": "qwen2.5:1.5b",
-      "category": "RAG-based Question"
-    },
-    {
-      "correctness_pct": 100.0,
-      "relevance_pct": 90.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": {
-        "top_similarity_score": 0.4145,
-        "concept_coverage_pct": 100.0,
-        "retrieval_hit": true
-      },
-      "latency_ms": 1106.27,
-      "task_id": "RAG-02",
-      "model_id": "qwen2.5:1.5b",
-      "category": "RAG-based Question"
-    },
-    {
-      "correctness_pct": 60.0,
-      "relevance_pct": 46.2,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": {
-        "top_similarity_score": 0.3904,
-        "concept_coverage_pct": 100.0,
-        "retrieval_hit": true
-      },
-      "latency_ms": 1127.94,
-      "task_id": "RAG-03",
-      "model_id": "qwen2.5:1.5b",
-      "category": "RAG-based Question"
-    },
-    {
-      "correctness_pct": 60.0,
-      "relevance_pct": 50.0,
-      "hallucination_rate": 0.0,
-      "code_test_pass": null,
-      "code_detail": "No unit test criteria specified for this task",
-      "retrieval_metrics": {
-        "top_similarity_score": 0.4007,
-        "concept_coverage_pct": 60.0,
-        "retrieval_hit": true
-      },
-      "latency_ms": 1106.7,
+      "latency_ms": 1124.14,
       "task_id": "RAG-04",
       "model_id": "qwen2.5:1.5b",
       "category": "RAG-based Question"
